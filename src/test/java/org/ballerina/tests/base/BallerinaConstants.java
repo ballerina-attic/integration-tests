@@ -15,15 +15,11 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.wso2.ballerina.deployment;
+package org.ballerina.tests.base;
 
-/**
- * FrameworkConstants.
- */
-public class FrameworkConstants {
-    public static final String SYSTEM_ARTIFACT_RESOURCE_LOCATION = "framework.resource.location";
-    public static final String JSON_FILE_PATH = "jsonFilePath";
-    public static final String DEFAULT_TESTNG_FILE = "testng.xml";
-    public static final String TESTNG_RESULT_OUT_DIRECTORY = "intergration-tests";
+public class BallerinaConstants {
+
+    public static String ENABLE_URL_REMAP = "ENABLE_REMAP";
+    public static String POD_TAG_NAME = "ballerina";
 
 }

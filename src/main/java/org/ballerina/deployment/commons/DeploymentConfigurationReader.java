@@ -15,13 +15,13 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.wso2.ballerina.deployment.commons;
+package org.ballerina.deployment.commons;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.wso2.ballerina.deployment.FrameworkConstants;
-import org.wso2.ballerina.deployment.beans.Deployment;
-import org.wso2.ballerina.deployment.beans.Port;
+import org.ballerina.deployment.FrameworkConstants;
+import org.ballerina.deployment.beans.Deployment;
+import org.ballerina.deployment.beans.Port;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.FileInputStream;
@@ -35,8 +35,8 @@ import java.util.Map.Entry;
 public class DeploymentConfigurationReader {
 
     private static final Log log = LogFactory
-            .getLog(org.wso2.ballerina.deployment.commons.DeploymentConfigurationReader.class);
-    private static org.wso2.ballerina.deployment.commons.DeploymentConfigurationReader deploymentConfigurationReader = null;
+            .getLog(DeploymentConfigurationReader.class);
+    private static DeploymentConfigurationReader deploymentConfigurationReader = null;
     private static HashMap<String, Deployment> deploymentHashMap;
 
     //Get the only object available
@@ -44,7 +44,7 @@ public class DeploymentConfigurationReader {
     }
 
     public static DeploymentConfigurationReader readConfiguration() throws IOException {
-        synchronized (org.wso2.ballerina.deployment.commons.DeploymentConfigurationReader.class) {
+        synchronized (DeploymentConfigurationReader.class) {
             if (deploymentConfigurationReader == null) {
                 deploymentConfigurationReader = new DeploymentConfigurationReader();
                 deploymentHashMap = readConfigurationYaml();

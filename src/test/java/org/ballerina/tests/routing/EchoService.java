@@ -15,13 +15,13 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.wso2.ballerina.deployment.routing;
+package org.ballerina.tests.routing;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.ballerina.tests.base.BallerinaBaseTest;
 import org.testng.annotations.Test;
-import org.wso2.ballerina.deployment.Base.BallerinaBaseTest;
 
 import static org.testng.Assert.assertEquals;
 

@@ -15,11 +15,11 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.wso2.ballerina.deployment.commons;
+package org.ballerina.deployment.commons;
 
+import org.ballerina.deployment.FrameworkConstants;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.wso2.ballerina.deployment.FrameworkConstants;
-import org.wso2.ballerina.deployment.beans.InstanceUrls;
+import org.ballerina.deployment.beans.InstanceUrls;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;

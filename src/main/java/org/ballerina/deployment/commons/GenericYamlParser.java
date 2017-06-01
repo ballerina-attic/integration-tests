@@ -16,7 +16,7 @@
 *  under the License.
 */
 
-package org.wso2.ballerina.deployment.commons;
+package org.ballerina.deployment.commons;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -32,7 +32,7 @@ import java.util.Map;
  */
 class GenericYamlParser {
 
-    private Log log = LogFactory.getLog(org.wso2.ballerina.deployment.commons.GenericYamlParser.class);
+    private Log log = LogFactory.getLog(GenericYamlParser.class);
 
     Map<String, String> yamlInitializer(String fileName) {
 

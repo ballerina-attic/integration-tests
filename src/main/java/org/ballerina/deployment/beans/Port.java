@@ -16,7 +16,7 @@
 *  under the License.
 */
 
-package org.wso2.ballerina.deployment.beans;
+package org.ballerina.deployment.beans;
 
 /**
  * Ports definitions

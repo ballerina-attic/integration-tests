@@ -16,13 +16,13 @@
 *  under the License.
 */
 
-package org.wso2.ballerina.deployment.utills;
+package org.ballerina.deployment.utills;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.wso2.ballerina.deployment.FrameworkConstants;
-import org.wso2.ballerina.deployment.beans.Deployment;
-import org.wso2.ballerina.deployment.commons.DeploymentConfigurationReader;
+import org.ballerina.deployment.FrameworkConstants;
+import org.ballerina.deployment.beans.Deployment;
+import org.ballerina.deployment.commons.DeploymentConfigurationReader;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -36,7 +36,7 @@ import java.util.HashMap;
  */
 public class ScriptExecutorUtil {
 
-    private static final Log log = LogFactory.getLog(org.wso2.ballerina.deployment.utills.ScriptExecutorUtil.class);
+    private static final Log log = LogFactory.getLog(ScriptExecutorUtil.class);
 
     private static void processOutputGenerator(String[] command, String filePath) throws IOException {
 

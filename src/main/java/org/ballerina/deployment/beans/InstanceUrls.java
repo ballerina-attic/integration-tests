@@ -16,9 +16,7 @@
 *  under the License.
 */
 
-package org.wso2.ballerina.deployment.beans;
-
-import org.wso2.ballerina.deployment.beans.Port;
+package org.ballerina.deployment.beans;
 
 import java.util.List;
 
@@ -30,7 +28,7 @@ public class InstanceUrls {
 
     private String hostIP;
     private String lable;
-    private List<org.wso2.ballerina.deployment.beans.Port> ports;
+    private List<Port> ports;
 
     public String getHostIP() {
         return hostIP;
@@ -40,7 +38,7 @@ public class InstanceUrls {
         this.hostIP = hostIP;
     }
 
-    public List<org.wso2.ballerina.deployment.beans.Port> getPorts() {
+    public List<Port> getPorts() {
         return ports;
     }
 

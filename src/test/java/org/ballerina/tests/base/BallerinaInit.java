@@ -15,15 +15,15 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.wso2.ballerina.deployment.Base;
+package org.ballerina.tests.base;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.wso2.ballerina.deployment.beans.InstanceUrls;
-import org.wso2.ballerina.deployment.beans.Port;
-import org.wso2.ballerina.deployment.commons.DeploymentConfigurationReader;
-import org.wso2.ballerina.deployment.commons.DeploymentDataReader;
-import org.wso2.ballerina.deployment.utills.ScriptExecutorUtil;
+import org.ballerina.deployment.commons.DeploymentConfigurationReader;
+import org.ballerina.deployment.commons.DeploymentDataReader;
+import org.ballerina.deployment.beans.InstanceUrls;
+import org.ballerina.deployment.beans.Port;
+import org.ballerina.deployment.utills.ScriptExecutorUtil;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;

@@ -15,7 +15,7 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.wso2.ballerina.deployment.Base;
+package org.ballerina.tests.base;
 
 import org.testng.ITestContext;
 import org.testng.annotations.AfterSuite;
