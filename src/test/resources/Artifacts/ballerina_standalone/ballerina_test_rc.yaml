@@ -43,7 +43,7 @@ spec:
           value : "https://github.com/ballerinalang/integration-tests.git"
         -
           name : ballerina_test_repo_name
-          value : "ballerina-distributed-tests"
+          value : "integration-tests"
         -
           name : JAVA_HOME
           value : "/opt/java/jdk1.8.0_121"
