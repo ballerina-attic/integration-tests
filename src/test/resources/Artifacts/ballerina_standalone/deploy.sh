@@ -14,6 +14,7 @@
 # limitations under the License.
 
 ballerina_port=32013
+server_response="Ping from the server!"
 
 prgdir=$(dirname "$0")
 script_path=$(cd "$prgdir"; pwd)
@@ -42,13 +43,14 @@ sleep 10
 
 # The loop is used as a global timer. Current loop timer is 3*100 Sec.
 for number in {1..100}
- do
-  echo $(date) " Waiting for server startup!"
-  if [ ! -z "$(curl --output /dev/null --silent --get --fail --connect-timeout 5 --max-time 10 http://${host}:${ballerina_port}/hello)" ]
-  then
-   break
-  fi
- sleep 3
+do
+echo $(date)" Waiting for server startup!"
+echo "$(curl --silent --get --fail --connect-timeout 5 --max-time 10 http://${host}:${port}/hello2)"
+ if [ $server_response == "$(curl --silent --get --fail --connect-timeout 5 --max-time 10 http://${host}:${port}/hello)" ]
+ then
+  break
+ fi
+sleep 3
 done
 
 echo 'Generating The deployment.json!'
