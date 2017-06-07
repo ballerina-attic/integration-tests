@@ -45,8 +45,7 @@ sleep 10
 for number in {1..100}
 do
 echo $(date)" Waiting for server startup!"
-echo "$(curl --silent --get --fail --connect-timeout 5 --max-time 10 http://${host}:${port}/hello2)"
- if [ $server_response == "$(curl --silent --get --fail --connect-timeout 5 --max-time 10 http://${host}:${port}/hello)" ]
+ if [ "$server_response" == "$(curl --silent --get --fail --connect-timeout 5 --max-time 10 http://${host}:${ballerina_port}/hello)" ]
  then
   break
  fi
