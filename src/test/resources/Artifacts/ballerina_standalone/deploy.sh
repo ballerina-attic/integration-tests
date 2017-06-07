@@ -40,12 +40,18 @@ host=$(getKubeNodeIP "${kube_nodes[0]}")
 echo "Waiting Ballerina to launch on http://${host}:${ballerina_port}"
 sleep 10
 
-until $(curl --output /dev/null --silent --get --fail http://${host}:${ballerina_port}/hello); do
-    echo -ne '.'
-    sleep 3
+# The loop is used as a global timer. Current loop timer is 3*100 Sec.
+for number in {1..100}
+ do
+  echo $(date) " Waiting for server startup!"
+  if [ ! -z "$(curl --output /dev/null --silent --get --fail --connect-timeout 5 --max-time 10 http://${host}:${ballerina_port}/hello)" ]
+  then
+   break
+  fi
+ sleep 3
 done
 
-echo 'Server started successfully!! Generating The deployment.json!'
+echo 'Generating The deployment.json!'
 pods=$(kubectl get pods --output=jsonpath={.items..metadata.name})
 json='['
 for pod in $pods; do
