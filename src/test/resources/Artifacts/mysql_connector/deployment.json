@@ -1,0 +1,1 @@
+[{"hostIP" :"192.168.48.164", "lable" :"ballerina-server", "ports" :[{"protocol" :"servlet-http",  "port" :"32013"}]},{"hostIP" :"192.168.48.163", "lable" :"mysql-db", "ports" :[{"protocol" :"mysql-port",  "port" :"30306"}]}]
