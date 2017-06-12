@@ -34,7 +34,7 @@ spec:
         env:
         -
           name : pattern
-          value : "ballerina_standalone"
+          value : "mysql_connector"
         -
           name : ballerina_home
           value : "/opt/ballerina"
