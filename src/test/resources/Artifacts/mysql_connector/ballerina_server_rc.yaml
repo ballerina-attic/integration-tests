@@ -40,7 +40,7 @@ spec:
           value : "/opt/ballerina"
         -
           name : ballerina_test_repo
-          value : "-b mysql_connector https://github.com/yasassri/integration-tests.git"
+          value : "https://github.com/yasassri/integration-tests.git"
         -
           name : ballerina_test_repo_name
           value : "integration-tests"
