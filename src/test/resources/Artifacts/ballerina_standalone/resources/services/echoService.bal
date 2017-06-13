@@ -6,6 +6,7 @@ import ballerina.net.http;
 service echo {
     
     @http:POST{}
+    @http:Path {value:"/"}
     resource echo (message m) {
         http:convertToResponse(m);
         reply m;

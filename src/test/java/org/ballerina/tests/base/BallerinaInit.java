@@ -24,6 +24,7 @@ import org.ballerina.deployment.commons.DeploymentDataReader;
 import org.ballerina.deployment.beans.InstanceUrls;
 import org.ballerina.deployment.beans.Port;
 import org.ballerina.deployment.utills.ScriptExecutorUtil;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +33,7 @@ public class BallerinaInit {
 
     private static final Log log = LogFactory.getLog(BallerinaInit.class);
     public static String ballerinaURL;
+    public static String mysqlURL;
 
     protected HashMap<String, String> instanceMap;
 
@@ -58,8 +60,12 @@ public class BallerinaInit {
         for (InstanceUrls url : urlList) {
             if (instanceMap != null) {
                 if (url.getLable().equals(instanceMap.get(BallerinaConstants.POD_TAG_NAME))) {
-                        ballerinaURL = getHTTPSUrl("servlet-http", url.getHostIP(), url.getPorts(), "");
+                    ballerinaURL = getHTTPSUrl(BallerinaConstants.BAL_PORT_NAME, url.getHostIP(), url.getPorts(), "");
                 }
+                if (url.getLable().equals(instanceMap.get(BallerinaConstants.POD_TAG_NAME_MYSQL))) {
+                    mysqlURL = getJDBCUrl(BallerinaConstants.MYSQL_PORT_NAME, url.getHostIP(), url.getPorts(), "/BAL_DB");
+                }
+
             }
         }
     }
@@ -76,6 +82,19 @@ public class BallerinaInit {
         return Url;
     }
 
+    protected String getJDBCUrl(String protocol, String hostIP, List<Port> ports, String databasename) {
+
+        // 192.168.48.44:30306/BAL_DB
+        String Url = hostIP + ":";
+        for (Port port : ports) {
+            if (port.getProtocol().equals(protocol)) {
+                Url = Url + port.getPort() + databasename;
+                break;
+            }
+        }
+        return Url;
+    }
+
     private boolean isURLRemapEnabled() {
         log.info("URL Remap Enabled is set to : " + System.getenv(BallerinaConstants.ENABLE_URL_REMAP));
         return Boolean.parseBoolean((System.getenv(BallerinaConstants.ENABLE_URL_REMAP)));
@@ -83,7 +102,7 @@ public class BallerinaInit {
 
     private String getRemappedURL(String localIP) {
 
-        String remappedURL = System.getenv("IP_" +localIP.replace(".","_"));
+        String remappedURL = System.getenv("IP_" + localIP.replace(".", "_"));
 
         if (remappedURL.equals("") | remappedURL == null) {
             log.info("No remap value found for the Local IP : " + localIP);

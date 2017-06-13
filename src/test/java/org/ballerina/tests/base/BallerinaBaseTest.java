@@ -43,5 +43,4 @@ public class BallerinaBaseTest extends BallerinaInit {
     public void deleteEnvironment(ITestContext ctx) throws Exception {
         super.unSetTestSuite(ctx.getCurrentXmlTest().getSuite().getName());
     }
-
 }
