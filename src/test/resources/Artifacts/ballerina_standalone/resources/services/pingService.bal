@@ -13,5 +13,4 @@ service pingService {
         messages:setStringPayload(response, "Ping from the server!");
         reply response;
     }
-    
 }

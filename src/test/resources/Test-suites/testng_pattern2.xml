@@ -18,11 +18,11 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="pattern2">
+<suite name="mysql_connector">
     <parameter name="useDefaultListeners" value="false"/>
-    <test name="ballerina_jms" preserve-order="true" parallel="false">
+    <test name="jdbc_transactions_mysql" preserve-order="true" parallel="false">
         <classes>
-            <!--<class name="BallerinaIntegrationTestCase"/>-->
+            <class name="org.ballerina.tests.connectors.rdbms.transactions.RDBMSTransactions"/>
         </classes>
     </test>
 </suite>

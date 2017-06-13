@@ -18,8 +18,8 @@ deployments:
     repository: N/A
     suite: pattern2
     undeployscripts: undeploy.sh
-    filePath: data.json
+    filePath: deployment.json
     instancemap :
     -
-      ballerina : ballerina-test-version-1
+      ballerina : ballerina-server
       mysql : mysql-db

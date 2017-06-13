@@ -19,7 +19,7 @@ function insertToDBSuccess (json payload) (string responsePayload){
             sql:Parameter paraCity = {sqlType:"varchar", value:(string)payload.city, direction:0};
             sql:Parameter[] paramsEmp = [paraID, paraFirstName, paraLastName, paraAddress, paraCity];
             sql:ClientConnector.update (connectionInstance, "Insert into personsinlanka(personid,firstname,lastname,address,city) values (?,?,?,?,?)", paramsEmp);
-        }aborted {
+        } aborted {
             returnVal = -1;
             responsePayload = "Data Insertion Failed";
         }
