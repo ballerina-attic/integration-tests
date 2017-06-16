@@ -16,18 +16,19 @@
 *  under the License.
 */
 
-package org.ballerina.deployment.utills;
+package org.ballerina.integration.tests.core.utills;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ballerina.deployment.FrameworkConstants;
-import org.ballerina.deployment.beans.Deployment;
-import org.ballerina.deployment.commons.DeploymentConfigurationReader;
+import org.ballerina.integration.tests.core.FrameworkConstants;
+import org.ballerina.integration.tests.core.beans.Deployment;
+import org.ballerina.integration.tests.core.commons.DeploymentConfigurationReader;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -38,17 +39,30 @@ public class ScriptExecutorUtil {
 
     private static final Log log = LogFactory.getLog(ScriptExecutorUtil.class);
 
-    private static void processOutputGenerator(String[] command, String filePath) throws IOException {
+    private static void processOutputGenerator(String[] command, String filePath) {
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
-        Process process = processBuilder.start();
-        BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        String line;
+        BufferedReader br = null;
+        try {
+            Process process = processBuilder.start();
+            br = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
+            String line;
 
-        log.info(" Listing Docker Run Output .... " + Arrays.toString(command) + " is: ");
+            log.info(" Listing Run Output .... " + Arrays.toString(command) + " is: ");
 
-        while ((line = br.readLine()) != null) {
-            log.info(line);
+            while ((line = br.readLine()) != null) {
+                log.info(line);
+            }
+        } catch (IOException e) {
+            log.error("Error while streaming process output : " + e.getMessage(), e);
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                }
+
+            }
         }
 
         File f = new File(filePath);

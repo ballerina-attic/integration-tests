@@ -16,7 +16,7 @@
 *  under the License.
 */
 
-package org.ballerina.deployment.beans;
+package org.ballerina.integration.tests.core.beans;
 
 import java.util.List;
 

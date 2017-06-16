@@ -15,7 +15,7 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.ballerina.deployment.commons;
+package org.ballerina.integration.tests.core.commons;
 
 /**
  * Deployment Yaml Constants.
@@ -23,13 +23,6 @@ package org.ballerina.deployment.commons;
 public class DeploymentYamlConstants {
     public static final String DEPLYMENT_YAML_FILE_NAME = "deployment.yaml";
     public static final String YAML_DEPLOYMENTS = "deployments";
-    protected static final String YAML_DEPLOYMENT_PORTS = "ports";
-    protected static final String YAML_DEPLOYMENT_PORT_NAME = "name";
-    protected static final String YAML_DEPLOYMENT_PORT_TARGET_PORT = "targetPort";
-    protected static final String YAML_DEPLOYMENT_PORT_PORT = "port";
-    protected static final String YAML_DEPLOYMENT_PORT_NODE_PORT = "nodePort";
-    protected static final String YAML_DEPLOYMENT_PORT_PROTOCOL = "protocol";
-    protected static final String YAML_DEPLOYMENT_INSTANCES_ENV_MAP = "envVariableMap";
     protected static final String YAML_DEPLOYMENT_SCRIPT = "deployscripts";
     protected static final String YAML_DEPLOYMENT_NAME = "name";
     protected static final String YAML_DEPLOYMENT_REPO = "repository";

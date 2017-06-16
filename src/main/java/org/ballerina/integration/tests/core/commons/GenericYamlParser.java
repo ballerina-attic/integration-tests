@@ -16,7 +16,7 @@
 *  under the License.
 */
 
-package org.ballerina.deployment.commons;
+package org.ballerina.integration.tests.core.commons;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,6 +24,7 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
@@ -38,15 +39,22 @@ class GenericYamlParser {
 
         Yaml yaml = new Yaml();
         Map<String, String> map = null;
+        InputStream inputStream = null;
 
         try {
-            InputStream inputStream = new FileInputStream(new File(fileName));
-
+            inputStream = new FileInputStream(new File(fileName));
             // Parse the YAML file and return the output as a series of Maps and Lists
             map = (Map<String, String>) yaml.load(inputStream);
 
         } catch (Exception e) {
             log.error("Error " + e.getMessage());
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                }
+            }
         }
         return map;
     }

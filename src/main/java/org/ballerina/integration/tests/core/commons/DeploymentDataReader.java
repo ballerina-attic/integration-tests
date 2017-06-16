@@ -15,18 +15,25 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.ballerina.deployment.commons;
+package org.ballerina.integration.tests.core.commons;
 
-import org.ballerina.deployment.FrameworkConstants;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.ballerina.integration.tests.core.FrameworkConstants;
+import org.ballerina.integration.tests.core.beans.InstanceUrls;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.ballerina.deployment.beans.InstanceUrls;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ *  Deployment Data Reader Class
+ */
 public class DeploymentDataReader {
 
+    private static final Log log = LogFactory.getLog(DeploymentDataReader.class);
     private List<InstanceUrls> instanceUrlsList;
 
     public DeploymentDataReader() {
@@ -40,7 +47,7 @@ public class DeploymentDataReader {
             try {
                 this.instanceUrlsList = Arrays.asList(mapper.readValue(file, InstanceUrls[].class));
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error("Error while mapping instance URLS : " + e.getMessage(), e);
             }
         }
     }

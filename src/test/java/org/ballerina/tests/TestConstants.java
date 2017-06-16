@@ -22,6 +22,6 @@ package org.ballerina.tests;
  * Test Level Constants.
  */
 public class TestConstants {
-    public static String MYSQL_USERNAME = "ballerina";
-    public static String MYSQL_PASSWORD = "ballerina";
+    public static final String MYSQL_USERNAME = "ballerina";
+    public static final String MYSQL_PASSWORD = "ballerina";
 }

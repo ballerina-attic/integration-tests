@@ -15,27 +15,28 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.ballerina.deployment.commons;
+
+package org.ballerina.integration.tests.core.commons;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ballerina.deployment.FrameworkConstants;
-import org.ballerina.deployment.beans.Deployment;
-import org.ballerina.deployment.beans.Port;
+import org.ballerina.integration.tests.core.FrameworkConstants;
+import org.ballerina.integration.tests.core.beans.Deployment;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
-import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Reader for deployment.yaml for deployment information
  */
 public class DeploymentConfigurationReader {
 
-    private static final Log log = LogFactory
-            .getLog(DeploymentConfigurationReader.class);
+    private static final Log log = LogFactory.getLog(DeploymentConfigurationReader.class);
     private static DeploymentConfigurationReader deploymentConfigurationReader = null;
     private static HashMap<String, Deployment> deploymentHashMap;
 
@@ -88,57 +89,6 @@ public class DeploymentConfigurationReader {
         }
 
         return deploymentHashMap;
-    }
-
-    private static Map<String, String> envVariableMap(Map<String, ArrayList<String>> instanceMap) {
-        Map<String, String> envVariableMap = null;
-        Iterator<Entry<String, ArrayList<String>>> itr = instanceMap.entrySet().iterator();
-        while (itr.hasNext()) {
-            Entry<String, ArrayList<String>> instanceEntry = itr.next();
-            if (instanceEntry.getKey().equals(DeploymentYamlConstants.YAML_DEPLOYMENT_INSTANCES_ENV_MAP)) {
-                try {
-                    Object valueObject = instanceEntry.getValue().get(0);
-                    envVariableMap = (LinkedHashMap) valueObject;
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }
-        return envVariableMap;
-    }
-
-    private static List<Port> portList(Map<String, ArrayList<String>> instanceMap) {
-        Map<String, String> portValuedMap;
-        Iterator<Entry<String, ArrayList<String>>> instanceIterator = instanceMap.entrySet().iterator();
-        List<Port> portList = new ArrayList<>();
-        while (instanceIterator.hasNext()) {
-            Entry<String, ArrayList<String>> instanceEntry = instanceIterator.next();
-            if (instanceEntry.getKey().equals(DeploymentYamlConstants.YAML_DEPLOYMENT_PORTS)) {
-                for (Object valueObject : instanceEntry.getValue()) {
-                    portValuedMap = (LinkedHashMap) valueObject;
-                    Iterator<Entry<String, String>> portIterator = portValuedMap.entrySet().iterator();
-                    Port port = new Port();
-                    while (portIterator.hasNext()) {
-                        Entry<String, String> portEntry = portIterator.next();
-                        if (portEntry.getKey().equals(DeploymentYamlConstants.YAML_DEPLOYMENT_PORT_NAME)) {
-                            port.setName(portEntry.getValue());
-                        } else if (portEntry.getKey().equals(DeploymentYamlConstants.YAML_DEPLOYMENT_PORT_PORT)) {
-                            port.setPort(Integer.parseInt(String.valueOf(portEntry.getValue())));
-                        } else if (portEntry.getKey().equals(DeploymentYamlConstants.YAML_DEPLOYMENT_PORT_NODE_PORT)) {
-                            port.setNodePort(Integer.parseInt(String.valueOf(portEntry.getValue())));
-                        } else if (portEntry.getKey()
-                                .equals(DeploymentYamlConstants.YAML_DEPLOYMENT_PORT_TARGET_PORT)) {
-                            port.setTargetPort(Integer.parseInt(String.valueOf(portEntry.getValue())));
-                        } else if (portEntry.getKey().equals(DeploymentYamlConstants.YAML_DEPLOYMENT_PORT_PROTOCOL)) {
-                            port.setProtocol(portEntry.getValue());
-                        }
-                    }
-                    portList.add(port);
-                }
-            }
-        }
-
-        return portList;
     }
 
     private static Map<String, Object> getDeploymentObjectMap() throws IOException {

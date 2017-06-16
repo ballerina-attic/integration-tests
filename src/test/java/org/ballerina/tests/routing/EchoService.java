@@ -27,13 +27,10 @@ import static org.testng.Assert.assertEquals;
 
 public class EchoService extends BallerinaBaseTest {
 
-    @Test
-    public void getPostToEcho() throws Exception{
+    @Test public void getPostToEcho() throws Exception {
         String serviceURL = ballerinaURL + "/echo";
 
-        StringRequestEntity requestEntity = new StringRequestEntity(
-                "{ \"Hello\":\"Ballerina\" };",
-                "application/json",
+        StringRequestEntity requestEntity = new StringRequestEntity("{ \"Hello\":\"Ballerina\" };", "application/json",
                 "UTF-8");
 
         HttpClient client = new HttpClient();

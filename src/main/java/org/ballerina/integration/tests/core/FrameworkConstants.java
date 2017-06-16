@@ -15,7 +15,7 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.ballerina.deployment;
+package org.ballerina.integration.tests.core;
 
 /**
  * FrameworkConstants.

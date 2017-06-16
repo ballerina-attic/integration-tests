@@ -19,11 +19,11 @@ package org.ballerina.tests.base;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ballerina.deployment.commons.DeploymentConfigurationReader;
-import org.ballerina.deployment.commons.DeploymentDataReader;
-import org.ballerina.deployment.beans.InstanceUrls;
-import org.ballerina.deployment.beans.Port;
-import org.ballerina.deployment.utills.ScriptExecutorUtil;
+import org.ballerina.integration.tests.core.beans.InstanceUrls;
+import org.ballerina.integration.tests.core.beans.Port;
+import org.ballerina.integration.tests.core.commons.DeploymentConfigurationReader;
+import org.ballerina.integration.tests.core.commons.DeploymentDataReader;
+import org.ballerina.integration.tests.core.utills.ScriptExecutorUtil;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -53,7 +53,7 @@ public class BallerinaInit {
             DeploymentConfigurationReader depconf = DeploymentConfigurationReader.readConfiguration();
             instanceMap = depconf.getDeploymentInstanceMap(patternName);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Exception occured while getting the deployment instance map : " + e.getMessage(), e);
         }
         DeploymentDataReader dataJsonReader = new DeploymentDataReader();
         List<InstanceUrls> urlList = dataJsonReader.getInstanceUrlsList();
@@ -63,7 +63,8 @@ public class BallerinaInit {
                     ballerinaURL = getHTTPSUrl(BallerinaConstants.BAL_PORT_NAME, url.getHostIP(), url.getPorts(), "");
                 }
                 if (url.getLable().equals(instanceMap.get(BallerinaConstants.POD_TAG_NAME_MYSQL))) {
-                    mysqlURL = getJDBCUrl(BallerinaConstants.MYSQL_PORT_NAME, url.getHostIP(), url.getPorts(), "/BAL_DB");
+                    mysqlURL = getJDBCUrl(BallerinaConstants.MYSQL_PORT_NAME, url.getHostIP(), url.getPorts(),
+                            "/BAL_DB");
                 }
 
             }
@@ -72,27 +73,27 @@ public class BallerinaInit {
 
     protected String getHTTPSUrl(String protocol, String hostIP, List<Port> ports, String context) {
 
-        String Url = "http://" + hostIP + ":";
+        String url = "http://" + hostIP + ":";
         for (Port port : ports) {
             if (port.getProtocol().equals(protocol)) {
-                Url = Url + port.getPort() + context;
+                url = url + port.getPort() + context;
                 break;
             }
         }
-        return Url;
+        return url;
     }
 
     protected String getJDBCUrl(String protocol, String hostIP, List<Port> ports, String databasename) {
 
         // 192.168.48.44:30306/BAL_DB
-        String Url = hostIP + ":";
+        String url = hostIP + ":";
         for (Port port : ports) {
             if (port.getProtocol().equals(protocol)) {
-                Url = Url + port.getPort() + databasename;
+                url = url + port.getPort() + databasename;
                 break;
             }
         }
-        return Url;
+        return url;
     }
 
     private boolean isURLRemapEnabled() {

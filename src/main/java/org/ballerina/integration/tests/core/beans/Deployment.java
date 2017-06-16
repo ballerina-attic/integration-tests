@@ -15,7 +15,7 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.ballerina.deployment.beans;
+package org.ballerina.integration.tests.core.beans;
 
 import java.util.HashMap;
 

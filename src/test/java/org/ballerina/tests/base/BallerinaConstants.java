@@ -19,10 +19,10 @@ package org.ballerina.tests.base;
 
 public class BallerinaConstants {
 
-    public static String ENABLE_URL_REMAP = "ENABLE_REMAP";
-    public static String POD_TAG_NAME = "ballerina";
-    public static String BAL_PORT_NAME = "servlet-http";
-    public static String POD_TAG_NAME_MYSQL = "mysql";
-    public static String MYSQL_PORT_NAME = "mysql-port";
+    public static final String ENABLE_URL_REMAP = "ENABLE_REMAP";
+    public static final String POD_TAG_NAME = "ballerina";
+    public static final String BAL_PORT_NAME = "servlet-http";
+    public static final String POD_TAG_NAME_MYSQL = "mysql";
+    public static final String MYSQL_PORT_NAME = "mysql-port";
 
 }
