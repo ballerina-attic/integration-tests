@@ -21,7 +21,7 @@ boolean status;
 @jms:ConnectionProperty {key:"connectionFactoryJNDIName", value:"TopicConnectionFactory"}
 @jms:ConnectionProperty {key:"sessionAcknowledgement", value:"AUTO_ACKNOWLEDGE"}
 
-service jmsService {
+service jmsService2 {
     resource onMessage (message m) {
 
         message replyMsg = {};
