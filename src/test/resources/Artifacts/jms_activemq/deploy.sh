@@ -22,7 +22,7 @@ echo "Kube Master URL is Set to : "$KUBERNETES_MASTER
 echo "Current location : "$script_path
 echo "Creating the K8S Pods and Service !!!!"
 
-echo "Creating the MySQL RC and Service!"
+echo "Creating the ActiveMQ RC and Service!"
 kubectl create -f $script_path/activemq_service.yaml
 kubectl create -f $script_path/activemq_rc.yaml
 

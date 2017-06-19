@@ -40,7 +40,7 @@ spec:
           value : "/opt/ballerina"
         -
           name : ballerina_test_repo
-          value : "https://github.com/yasassri/integration-tests.git"
+          value : "-b jms_con-activemq https://github.com/yasassri/integration-tests.git"
         -
           name : ballerina_test_repo_name
           value : "integration-tests"
