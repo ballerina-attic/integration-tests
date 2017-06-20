@@ -38,5 +38,5 @@ spec:
 
         ports:
         -
-          containerPort: 3306
+          containerPort: 61616
           protocol: "TCP"
