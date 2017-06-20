@@ -1,16 +1,12 @@
-package resources.services;
-
+package jms.automation;
 import ballerina.lang.messages;
 import ballerina.lang.system;
 import ballerina.net.jms;
 import ballerina.lang.errors;
 
-string payload;
-    boolean status;
-
 @jms:JMSSource {
     factoryInitial:"org.wso2.andes.jndi.PropertiesFileInitialContextFactory",
-    providerUrl:"jndi.properties"}
+    providerUrl:"/home/dilinig/wso2_products/ballerina/tests/jms/automation/jndi.properties"}
 @jms:ConnectionProperty {key:"connectionFactoryType", value:"topic"}
 @jms:ConnectionProperty {key:"destination", value:"MyTopic"}
 @jms:ConnectionProperty {key:"useReceiver", value:"true"}
@@ -21,10 +17,13 @@ string payload;
 @jms:ConnectionProperty {key:"connectionFactoryJNDIName", value:"TopicConnectionFactory"}
 @jms:ConnectionProperty {key:"sessionAcknowledgement", value:"AUTO_ACKNOWLEDGE"}
 
-service jmsService2 {
+service jmsTopicSubscriberService {
+
     resource onMessage (message m) {
 
         message replyMsg = {};
+        string payload;
+        boolean status;
 
         try {
 

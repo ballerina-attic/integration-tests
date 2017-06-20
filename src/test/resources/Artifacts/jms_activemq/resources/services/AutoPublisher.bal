@@ -1,14 +1,10 @@
-package resources.services;
-
+package jms.automation;
 import ballerina.net.jms;
 import ballerina.lang.messages;
 import ballerina.lang.system;
 import ballerina.net.http;
 import ballerina.lang.errors;
 
-
-boolean response;
-boolean status;
 
 @http:BasePath {value:"/publish"}
 service PublisherService {
@@ -17,9 +13,10 @@ service PublisherService {
     @http:Path {value:"/queue/{type}"}
     resource onQueueMessage (message m, @http:PathParam {value:"type"} string messageType) {
 
-        //Invoke : curl -v http://localhost:9091/publish/queue/text
+        //Invoke : curl -v http://localhost:9090/publish/queue/text
 
         message replyMsg = {};
+        boolean response;
 
         if (messageType == "text") {
             response = sendTextMessageToQueue();
@@ -50,6 +47,7 @@ service PublisherService {
         //Invoke : curl -v http://localhost:9091/publish/topic/text
 
         message replyMsg = {};
+        boolean response;
 
         if (messageType == "text") {
             response = sendTextMessageToTopic();
@@ -77,8 +75,9 @@ service PublisherService {
 
 function sendTextMessageToQueue () (boolean) {
 
+    boolean status;
     map properties = {"factoryInitial":"org.wso2.andes.jndi.PropertiesFileInitialContextFactory",
-                         "providerUrl":"jndi.properties",
+                         "providerUrl":"/home/dilinig/wso2_products/ballerina/tests/jms/automation/jndi.properties",
                          "connectionFactoryJNDIName":"QueueConnectionFactory",
                          "connectionFactoryType":"queue"};
 
@@ -112,8 +111,10 @@ function sendTextMessageToQueue () (boolean) {
 
 
 function sendTextMessageToTopic () (boolean) {
+
+    boolean status;
     map properties = {"factoryInitial":"org.wso2.andes.jndi.PropertiesFileInitialContextFactory",
-                         "providerUrl":"jndi.properties",
+                         "providerUrl":"/home/dilinig/wso2_products/ballerina/tests/jms/automation/jndi.properties",
                          "connectionFactoryJNDIName":"TopicConnectionFactory",
                          "connectionFactoryType":"topic"};
 
