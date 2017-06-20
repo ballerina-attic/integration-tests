@@ -6,7 +6,7 @@ import ballerina.net.jms;
 import ballerina.lang.errors;
 
 string payload;
-boolean status;
+    boolean status;
 
 @jms:JMSSource {
     factoryInitial:"org.wso2.andes.jndi.PropertiesFileInitialContextFactory",

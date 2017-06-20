@@ -23,3 +23,16 @@ deployments:
     -
       ballerina : ballerina-server
       mysql : mysql-db
+
+ -
+    name: jms_activemq
+    enable: false
+    deployscripts: deploy.sh
+    repository: N/A
+    suite: pattern2
+    undeployscripts: undeploy.sh
+    filePath: deployment.json
+    instancemap :
+    -
+      ballerina : ballerina-server
+      broker : activemq-server

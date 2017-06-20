@@ -33,20 +33,9 @@ spec:
         image: webcenter/activemq:5.14.3
         env:
         -
-          name: RABBITMQ_DEFAULT_USER
-          value: rabbit
-        -
-          name: RABBITMQ_DEFAULT_PASS
-          value: rabbit
-        -
-          name: MYSQL_USER
-          value: ballerina
-        -
-          name: MYSQL_PASSWORD
-          value: ballerina
-        -
-          name: JDBC_URL
-          value: jdbc:mysql://mysql-db:3306/BAL_DB
+          name: MQ_DEFAULT_USER
+          value: activemq
+
         ports:
         -
           containerPort: 3306

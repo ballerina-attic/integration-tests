@@ -23,7 +23,7 @@ spec:
   type: NodePort
   ports:
     -
-      name: 'amqp-port'
+      name: 'jms-port'
       port: 61616
       targetPort: 61616
       nodePort: 30572
