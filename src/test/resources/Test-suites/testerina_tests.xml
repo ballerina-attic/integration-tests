@@ -16,11 +16,12 @@
   ~ under the License.
   -->
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="suite of suites">
-    <suite-files>
-        <suite-file path="Test-suites/testerina_tests.xml"/>
-        <suite-file path="Test-suites/testng_pattern1.xml"/>
-        <!--<suite-file path="Test-suites/testng_pattern2.xml"/>-->
-        <!--<suite-file path="Test-suites/testng_pattern3.xml"/>-->
-    </suite-files>
+
+<suite name="testerina_tests">
+    <test name="ballerina-tests" preserve-order="true" parallel="false">
+        <classes>
+            <class name="org.ballerina.tests.natve.tests.AmazonS3ConnectorTest"/>
+            <!--<class name="org.ballerina.tests.natve.tests.ETCDConnectorTest"/>-->
+        </classes>
+    </test>
 </suite>
