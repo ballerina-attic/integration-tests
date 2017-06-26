@@ -15,17 +15,19 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.ballerina.tests.base;
+
+package org.ballerina.integration.tests.core.exceptions;
 
 /**
- * Ballerina Test Contants
+ * Integration Test Exception
  */
-public class BallerinaConstants {
-
-    public static final String ENABLE_URL_REMAP = "ENABLE_REMAP";
-    public static final String POD_TAG_NAME = "ballerina";
-    public static final String BAL_PORT_NAME = "servlet-http";
-    public static final String POD_TAG_NAME_MYSQL = "mysql";
-    public static final String MYSQL_PORT_NAME = "mysql-port";
-
+public class IntegrationTestException extends Exception {
+    /**
+     * Constructs a new {@link IntegrationTestException} with the specified detail message.
+     *
+     * @param message Error Message
+     */
+    public IntegrationTestException(String message) {
+        super(message);
+    }
 }
