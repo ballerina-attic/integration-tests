@@ -46,6 +46,11 @@ public class EnvironmentUtil {
         }
     }
 
+    /**
+     * Mathod to set environment variables
+     * @param key
+     * @param value
+     */
     public static void setEnv(String key, String value) {
         getModifiableEnvironmentMap().put(key, value);
     }

@@ -18,12 +18,13 @@
 package org.ballerina.integration.tests.core;
 
 /**
- * FrameworkConstants.
+ * Framework Constants
  */
 public class FrameworkConstants {
     public static final String SYSTEM_ARTIFACT_RESOURCE_LOCATION = "framework.resource.location";
     public static final String JSON_FILE_PATH = "jsonFilePath";
     public static final String DEFAULT_TESTNG_FILE = "testng.xml";
     public static final String TESTNG_RESULT_OUT_DIRECTORY = "intergration-tests";
+    public static final String NATIVE_TESTFILE_LOCATION = "/src/test/resources/testerina-tests/";
 
 }
