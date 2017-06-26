@@ -61,6 +61,7 @@ public class CryptoUtil {
                 int counter = 0;
                 for (String str : saltStringArr) {
                     salt[counter] = Byte.parseByte(String.valueOf(str));
+                    counter++;
                 }
             }
 
