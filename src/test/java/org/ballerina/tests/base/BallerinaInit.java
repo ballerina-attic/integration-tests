@@ -45,7 +45,11 @@ public class BallerinaInit {
         setURLs(pattern);
     }
 
-    //set the url's as specified in the deployment.json
+    /**
+     * Sets the url's as specified in the deployment.json
+     *
+     * @param patternName
+     */
     protected void setURLs(String patternName) {
 
         HashMap<String, String> instanceMap = null;
@@ -83,6 +87,15 @@ public class BallerinaInit {
         return url;
     }
 
+    /**
+     * Generates and return JDBC URL
+     *
+     * @param protocol
+     * @param hostIP
+     * @param ports
+     * @param databasename
+     * @return
+     */
     protected String getJDBCUrl(String protocol, String hostIP, List<Port> ports, String databasename) {
 
         // 192.168.48.44:30306/BAL_DB
@@ -96,27 +109,22 @@ public class BallerinaInit {
         return url;
     }
 
-    private boolean isURLRemapEnabled() {
-        log.info("URL Remap Enabled is set to : " + System.getenv(BallerinaConstants.ENABLE_URL_REMAP));
-        return Boolean.parseBoolean((System.getenv(BallerinaConstants.ENABLE_URL_REMAP)));
-    }
-
-    private String getRemappedURL(String localIP) {
-
-        String remappedURL = System.getenv("IP_" + localIP.replace(".", "_"));
-
-        if (remappedURL.equals("") | remappedURL == null) {
-            log.info("No remap value found for the Local IP : " + localIP);
-        }
-        return remappedURL;
-    }
-
-    //deploy environment
+    /**
+     * Deploy given environment
+     *
+     * @param pattern
+     * @throws IOException
+     */
     protected void setTestSuite(String pattern) throws IOException {
         ScriptExecutorUtil.deployScenario(pattern);
     }
 
-    //Undeploy environment
+    /**
+     * Undeploy given environment
+     *
+     * @param pattern
+     * @throws Exception
+     */
     protected void unSetTestSuite(String pattern) throws Exception {
         ScriptExecutorUtil.unDeployScenario(pattern);
     }

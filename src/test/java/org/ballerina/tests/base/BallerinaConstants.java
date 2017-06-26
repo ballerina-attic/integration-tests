@@ -17,6 +17,9 @@
 */
 package org.ballerina.tests.base;
 
+/**
+ * Ballerina Test Contants
+ */
 public class BallerinaConstants {
 
     public static final String ENABLE_URL_REMAP = "ENABLE_REMAP";

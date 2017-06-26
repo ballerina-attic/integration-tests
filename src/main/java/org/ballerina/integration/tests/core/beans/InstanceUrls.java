@@ -21,7 +21,7 @@ package org.ballerina.integration.tests.core.beans;
 import java.util.List;
 
 /**
- * Instance URL Bean
+ * Instance URL Bean, this will be populated based on deployment.json
  */
 
 public class InstanceUrls {

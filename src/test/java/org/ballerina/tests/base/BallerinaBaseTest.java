@@ -22,25 +22,33 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
+/**
+ * Base test class for all Ballerina test cases which requires a deployment
+ */
 public class BallerinaBaseTest extends BallerinaInit {
 
     /**
-     * Base test class for all Ballerina test cases.
+     * Method to setup the environment before test execution
+     *
+     * @param ctx
+     * @throws Exception
      */
-
-    @BeforeSuite(alwaysRun = true)
-    public void createEnvironment(ITestContext ctx) throws Exception {
+    @BeforeSuite(alwaysRun = true) public void createEnvironment(ITestContext ctx) throws Exception {
         super.setTestSuite(ctx.getCurrentXmlTest().getSuite().getName());
         super.init(ctx.getCurrentXmlTest().getSuite().getName());
     }
 
-    @BeforeClass(alwaysRun = true)
-    public void init(ITestContext ctx) throws Exception {
+    @BeforeClass(alwaysRun = true) public void init(ITestContext ctx) throws Exception {
 
     }
 
-    @AfterSuite(alwaysRun = true)
-    public void deleteEnvironment(ITestContext ctx) throws Exception {
+    /**
+     * Method to unset environments after test execution
+     *
+     * @param ctx
+     * @throws Exception
+     */
+    @AfterSuite(alwaysRun = true) public void deleteEnvironment(ITestContext ctx) throws Exception {
         super.unSetTestSuite(ctx.getCurrentXmlTest().getSuite().getName());
     }
 }

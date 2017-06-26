@@ -39,6 +39,12 @@ public class ScriptExecutorUtil {
 
     private static final Log log = LogFactory.getLog(ScriptExecutorUtil.class);
 
+    /**
+     * Method to start the cmd process and generate process output stream
+     *
+     * @param command
+     * @param filePath
+     */
     private static void processOutputGenerator(String[] command, String filePath) {
 
         ProcessBuilder processBuilder = new ProcessBuilder(command);
@@ -71,6 +77,12 @@ public class ScriptExecutorUtil {
         }
     }
 
+    /**
+     * Methos to deploy given scenario
+     *
+     * @param scenario
+     * @throws IOException
+     */
     public static void deployScenario(String scenario) throws IOException {
         String resourceLocation = System.getProperty(FrameworkConstants.SYSTEM_ARTIFACT_RESOURCE_LOCATION);
         HashMap<String, Deployment> deploymentHashMap = DeploymentConfigurationReader.readConfiguration()
@@ -84,6 +96,12 @@ public class ScriptExecutorUtil {
         }
     }
 
+    /**
+     * Method to undeploy given scenario
+     *
+     * @param scenario
+     * @throws IOException
+     */
     public static void unDeployScenario(String scenario) throws IOException {
         String resourceLocation = System.getProperty(FrameworkConstants.SYSTEM_ARTIFACT_RESOURCE_LOCATION);
         HashMap<String, Deployment> deploymentHashMap = DeploymentConfigurationReader.readConfiguration()
