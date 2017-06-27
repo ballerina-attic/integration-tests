@@ -18,14 +18,6 @@
 
 package org.ballerina.integration.tests.core.utills;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-import javax.crypto.spec.PBEParameterSpec;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
@@ -35,10 +27,17 @@ import java.security.spec.AlgorithmParameterSpec;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Base64;
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.PBEParameterSpec;
 
 /**
  * Encryption and Decryption class for String data
- *
  */
 public class CryptoUtil {
 
@@ -102,7 +101,7 @@ public class CryptoUtil {
         String charSet = "UTF-8";
         byte[] in = plainText.getBytes(charSet);
         byte[] out = ecipher.doFinal(in);
-        String encStr = new String(Base64.getEncoder().encode(out));
+        String encStr = new String(Base64.getEncoder().encode(out), charSet);
         return encStr;
     }
 
