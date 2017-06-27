@@ -39,7 +39,6 @@ import java.util.ArrayList;
 public class TesterinaTestUtils {
 
     /**
-     *
      * @param testContext
      * @param functionName
      * @throws Exception
@@ -58,13 +57,19 @@ public class TesterinaTestUtils {
     }
 
     /**
-     *
      * @param filePath
      * @return
      */
     public static TesterinaTest loadBalTests(String filePath) {
-        // When executing through maven the directory is set to target, hence extracting the path
-        Path programDirPath = Paths.get(System.getProperty("user.dir").split("target")[0]);
+        // When executing through maven the directory is set to target, hence extracting the path accordingly
+        String path = System.getProperty("user.dir");
+        Path programDirPath;
+        if (path.endsWith("target")) {
+            programDirPath = Paths.get(path.split("target")[0]);
+        } else {
+            programDirPath = Paths.get(path);
+        }
+
         EnvironmentUtil.setEnv("integration.home", programDirPath.toString());
         // Setting the netty-transports.yml configuration file to load the https configs
         System.setProperty("transports.netty.conf",

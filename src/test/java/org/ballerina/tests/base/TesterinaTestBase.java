@@ -29,7 +29,7 @@ import java.util.ArrayList;
  * Testerina test base
  */
 public class TesterinaTestBase {
-    String testFileName;
+    static String testFileName;
     public static TesterinaTest bTest;
 
     public TesterinaTestBase(String testFileName) {
@@ -37,7 +37,7 @@ public class TesterinaTestBase {
     }
 
     @DataProvider(name = "testFunctionProvider") public static Object[][] testFunctionProvider() {
-        bTest = TesterinaTestUtils.loadBalTests("AmazonS3_test.bal");
+        bTest = TesterinaTestUtils.loadBalTests(testFileName);
         ArrayList<TesterinaFunction> functions = bTest.getTestFunctions();
         String[][] arr = new String[functions.size()][1];
         int index = 0;

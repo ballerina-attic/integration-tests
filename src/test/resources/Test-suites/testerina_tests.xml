@@ -20,8 +20,9 @@
 <suite name="testerina_tests">
     <test name="ballerina-tests" preserve-order="true" parallel="false">
         <classes>
-            <class name="org.ballerina.tests.natve.tests.AmazonS3ConnectorTest"/>
-            <!--<class name="org.ballerina.tests.natve.tests.ETCDConnectorTest"/>-->
+            <class name="org.ballerina.tests.testerina.AmazonS3ConnectorTest"/>
+            <!--<class name="org.ballerina.tests.testerina.ETCDConnectorTest"/>-->
+            <!--<class name="org.ballerina.tests.testerina.AmazonLanmdaTest"/>-->
         </classes>
     </test>
 </suite>
