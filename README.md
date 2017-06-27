@@ -4,7 +4,9 @@ Integration-tests is a Kubernetes based integration test running framework. At a
 
 * Running native testerina tests
 * Deploying a given deployment pattern and running tests
-* Un-deploying deployments.
+* Un-deploying deployments
+* Password based value encryption and decryption
+* Setting Environment level variables
 
 ### How to add a new deployment and a Test
  

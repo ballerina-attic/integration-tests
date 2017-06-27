@@ -50,9 +50,12 @@ public class CryptoUtil {
     // Iteration count default
     int iterationCount = 500;
 
+    // Default key
+    String secretKey = "123456789";
+
     public CryptoUtil() {
 
-        // Expecting 0 - 255 values
+        // Expecting 0 - 128 values
         String saltString = System.getenv("INTEGRATION_SALT");
         if (saltString != null) {
             String[] saltStringArr = saltString.split(",");
@@ -70,10 +73,14 @@ public class CryptoUtil {
         if (iterations != null) {
             iterationCount = Integer.parseInt(iterations);
         }
+
+        String keyVal = System.getenv("INTEGRATION_KEY");
+        if (keyVal != null) {
+            secretKey = keyVal;
+        }
     }
 
     /**
-     * @param secretKey Key used to encrypt data
      * @param plainText Text input to be encrypted
      * @return Returns encrypted text
      * @throws java.security.NoSuchAlgorithmException
@@ -85,7 +92,7 @@ public class CryptoUtil {
      * @throws javax.crypto.IllegalBlockSizeException
      * @throws javax.crypto.BadPaddingException
      */
-    public String encrypt(String secretKey, String plainText)
+    public String encrypt(String plainText)
             throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, InvalidKeyException,
             InvalidAlgorithmParameterException, UnsupportedEncodingException, IllegalBlockSizeException,
             BadPaddingException {
@@ -106,7 +113,6 @@ public class CryptoUtil {
     }
 
     /**
-     * @param secretKey     Key used to decrypt data
      * @param encryptedText encrypted text input to decrypt
      * @return Returns plain text after decryption
      * @throws java.security.NoSuchAlgorithmException
@@ -118,7 +124,7 @@ public class CryptoUtil {
      * @throws javax.crypto.IllegalBlockSizeException
      * @throws javax.crypto.BadPaddingException
      */
-    public String decrypt(String secretKey, String encryptedText)
+    public String decrypt(String encryptedText)
             throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, InvalidKeyException,
             InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, IOException {
         //Key generation for enc and desc

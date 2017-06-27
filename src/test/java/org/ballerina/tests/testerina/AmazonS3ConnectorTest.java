@@ -18,6 +18,7 @@
 
 package org.ballerina.tests.testerina;
 
+import org.ballerina.integration.tests.core.utills.CryptoUtil;
 import org.ballerina.integration.tests.core.utills.EnvironmentUtil;
 import org.ballerina.integration.tests.core.utills.TesterinaTestUtils;
 import org.ballerina.tests.base.TesterinaTestBase;
@@ -31,10 +32,12 @@ public class AmazonS3ConnectorTest extends TesterinaTestBase {
         super("AmazonS3_test.bal");
     }
 
-    @BeforeClass public void initializeTests() {
-        //        EnvironmentUtil.setEnv("ACCESS_KEY", "XXXX");
-        //        EnvironmentUtil.setEnv("SECRET_ACCESS_KEY", "XXXXX");
-        //        EnvironmentUtil.setEnv("REGION", "XXXX");
+    @BeforeClass public void initializeTests() throws Exception {
+        CryptoUtil decrypter = new CryptoUtil();
+        EnvironmentUtil.setEnv("ACCESS_KEY", decrypter.decrypt("Ju3hHBJCaAtHI2epZh9cXbjGGhJPYkLz"));
+        EnvironmentUtil.setEnv("SECRET_ACCESS_KEY",
+                decrypter.decrypt("mfQ+z71RxiCvtFPyabbW0LzMZn64NIi3r8B0gjKEnARpmz7TUPwomeHuk08x5Zj2"));
+        EnvironmentUtil.setEnv("REGION", decrypter.decrypt("p4WW0s4aqQ2KR8zEqcBe7g=="));
     }
 
     @Test(dataProvider = "testFunctionProvider") public void testExecute(String function) throws Exception {
