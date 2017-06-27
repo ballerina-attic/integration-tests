@@ -19,7 +19,6 @@
 package org.ballerina.integration.tests.core.utills;
 
 import org.ballerina.integration.tests.core.FrameworkConstants;
-import org.ballerina.integration.tests.core.beans.TesterinaTest;
 import org.ballerina.integration.tests.core.exceptions.IntegrationTestException;
 import org.ballerinalang.BLangProgramLoader;
 import org.ballerinalang.natives.connectors.BallerinaConnectorManager;
@@ -43,7 +42,7 @@ public class TesterinaTestUtils {
      * @param functionName
      * @throws Exception
      */
-    public static void executeTest(TesterinaTest testContext, String functionName) throws Exception {
+    public static void executeTest(TesterinaContext testContext, String functionName) throws Exception {
         BallerinaConnectorManager.getInstance().initialize(new MessageProcessor());
 
         ArrayList<TesterinaFunction> testFunctions = testContext.getTestFunctions();
@@ -60,7 +59,7 @@ public class TesterinaTestUtils {
      * @param filePath
      * @return
      */
-    public static TesterinaTest loadBalTests(String filePath) {
+    public static TesterinaContext loadBalTests(String filePath) {
         // When executing through maven the directory is set to target, hence extracting the path accordingly
         String path = System.getProperty("user.dir");
         Path programDirPath;
@@ -74,12 +73,10 @@ public class TesterinaTestUtils {
         // Setting the netty-transports.yml configuration file to load the https configs
         System.setProperty("transports.netty.conf",
                 programDirPath.toString() + "/src/main/resources/netty-transports.yml");
-        TesterinaTest ballerinaTest = new TesterinaTest(filePath);
         ProgramFile progFile = new BLangProgramLoader().loadServiceProgramFile(programDirPath,
                 Paths.get(programDirPath + FrameworkConstants.NATIVE_TESTFILE_LOCATION + filePath));
 
         TesterinaContext tContext = new TesterinaContext(new ProgramFile[] { progFile });
-        ballerinaTest.setTestFunctions(tContext.getTestFunctions());
-        return ballerinaTest;
+        return tContext;
     }
 }

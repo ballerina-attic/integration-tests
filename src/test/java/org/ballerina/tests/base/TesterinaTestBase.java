@@ -18,8 +18,8 @@
 
 package org.ballerina.tests.base;
 
-import org.ballerina.integration.tests.core.beans.TesterinaTest;
 import org.ballerina.integration.tests.core.utills.TesterinaTestUtils;
+import org.ballerinalang.testerina.core.entity.TesterinaContext;
 import org.ballerinalang.testerina.core.entity.TesterinaFunction;
 import org.testng.annotations.DataProvider;
 
@@ -29,15 +29,13 @@ import java.util.ArrayList;
  * Testerina test base
  */
 public class TesterinaTestBase {
-    static String testFileName;
-    public static TesterinaTest bTest;
+    public TesterinaContext bTest;
 
     public TesterinaTestBase(String testFileName) {
-        this.testFileName = testFileName;
+        bTest = TesterinaTestUtils.loadBalTests(testFileName);
     }
 
-    @DataProvider(name = "testFunctionProvider") public static Object[][] testFunctionProvider() {
-        bTest = TesterinaTestUtils.loadBalTests(testFileName);
+    @DataProvider(name = "testFunctionProvider") public Object[][] testFunctionProvider() {
         ArrayList<TesterinaFunction> functions = bTest.getTestFunctions();
         String[][] arr = new String[functions.size()][1];
         int index = 0;

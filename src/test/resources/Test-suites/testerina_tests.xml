@@ -18,11 +18,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="testerina_tests">
-    <test name="ballerina-tests" preserve-order="true" parallel="false">
+    <test name="ballerina-tests">
         <classes>
             <class name="org.ballerina.tests.testerina.AmazonS3ConnectorTest"/>
             <!--<class name="org.ballerina.tests.testerina.ETCDConnectorTest"/>-->
             <!--<class name="org.ballerina.tests.testerina.AmazonLanmdaTest"/>-->
+            <!--<class name="org.ballerina.tests.testerina.FacebookConnectorTest"/>-->
         </classes>
     </test>
 </suite>
