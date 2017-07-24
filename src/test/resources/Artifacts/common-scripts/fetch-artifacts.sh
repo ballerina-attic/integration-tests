@@ -20,7 +20,6 @@ echo "ballerina_test_repo is : " ${balerina_test_repo}
 echo "ballerina_test_repo_name is : " ${balerina_test_repo_name}
 echo "Deployment Pattern is : " ${pattern}
 
-
 #Download the latest dirtribution
 sh get-latest-distribution.sh
 
@@ -34,8 +33,13 @@ echo "Deleting the temp directory!!"
 rm -rf tmp
 echo "Copying the dependency Jars"
 
-#Copy the dependency Jars to the server
-cp -r ${ballerina_home}/${ballerina_test_repo_name}/src/test/resources/Artifacts/${pattern}/resources/bre/lib/* ${ballerina_home}/distribution/bre/lib
+# Check if the dependency folder exists, If exists copy the dependencies
+if [ -d '${ballerina_home}/${ballerina_test_repo_name}/src/test/resources/Artifacts/${pattern}/resources/bre/lib' ]; then
+  echo "Copying Ballerina Dependencies. Pattern : " ${pattern}
+  cd ${ballerina_home}/${ballerina_test_repo_name}/src/test/resources/Artifacts/${pattern}/resources/bre/lib/
+  mvn dependency:copy-dependencies -DoutputDirectory=.
+  cp -r ${ballerina_home}/${ballerina_test_repo_name}/src/test/resources/Artifacts/${pattern}/resources/bre/lib/*.jar ${ballerina_home}/distribution/bre/lib
+fi
 
 #cd into the services package structure root
 cd ${ballerina_home}/${ballerina_test_repo_name}/src/test/resources/Artifacts/${pattern}
