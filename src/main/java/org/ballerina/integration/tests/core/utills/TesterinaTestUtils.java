@@ -20,7 +20,7 @@ package org.ballerina.integration.tests.core.utills;
 
 import org.ballerina.integration.tests.core.FrameworkConstants;
 import org.ballerina.integration.tests.core.exceptions.IntegrationTestException;
-import org.ballerinalang.BLangProgramLoader;
+import org.ballerinalang.BLangCompiler;
 import org.ballerinalang.natives.connectors.BallerinaConnectorManager;
 import org.ballerinalang.services.MessageProcessor;
 import org.ballerinalang.testerina.core.entity.TesterinaContext;
@@ -73,8 +73,7 @@ public class TesterinaTestUtils {
         // Setting the netty-transports.yml configuration file to load the https configs
         System.setProperty("transports.netty.conf",
                 programDirPath.toString() + "/src/main/resources/netty-transports.yml");
-        ProgramFile progFile = new BLangProgramLoader().loadServiceProgramFile(programDirPath,
-                Paths.get(programDirPath + FrameworkConstants.NATIVE_TESTFILE_LOCATION + filePath));
+        ProgramFile progFile = BLangCompiler.compile(programDirPath,Paths.get(programDirPath + FrameworkConstants.NATIVE_TESTFILE_LOCATION + filePath));
 
         TesterinaContext tContext = new TesterinaContext(new ProgramFile[] { progFile });
         return tContext;
