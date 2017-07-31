@@ -1,4 +1,4 @@
-FROM yazjava3
+FROM dockerhub.private.wso2.com/java8_ubuntu
 
 COPY init.sh /opt/init.sh
 RUN chmod +x /opt/init.sh
