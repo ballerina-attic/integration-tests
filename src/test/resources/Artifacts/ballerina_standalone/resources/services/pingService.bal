@@ -3,8 +3,8 @@ package resources.services;
 import ballerina.lang.messages;
 import ballerina.net.http;
 
-@http:BasePath {value:"/hello"}
-service pingService {
+@http:configuration {basePath:"/echo"}
+service<http> pingService {
     
     @http:GET{}
     @http:Path {value:"/"}
