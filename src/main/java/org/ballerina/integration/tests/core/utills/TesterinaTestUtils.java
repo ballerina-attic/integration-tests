@@ -73,7 +73,8 @@ public class TesterinaTestUtils {
         // Setting the netty-transports.yml configuration file to load the https configs
         System.setProperty("transports.netty.conf",
                 programDirPath.toString() + "/src/main/resources/netty-transports.yml");
-        ProgramFile progFile = BLangCompiler.compile(programDirPath,Paths.get(programDirPath + FrameworkConstants.NATIVE_TESTFILE_LOCATION + filePath));
+        ProgramFile progFile = BLangCompiler.compile(programDirPath,
+                Paths.get(programDirPath + FrameworkConstants.NATIVE_TESTFILE_LOCATION + filePath));
 
         TesterinaContext tContext = new TesterinaContext(new ProgramFile[] { progFile });
         return tContext;

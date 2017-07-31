@@ -14,32 +14,6 @@
 # limitations under the License.
 
 # Docker init script, this is the Entry Point of the Docker image
-# These variables are parsed as Environment variables through Kubernetes controller
-
-#pattern=null
-#ballerina_home=/opt/ballerina
-#ballerina_test_repo=https://github.com/yasassri/ballerina-distributed-tests.git
-#ballerina_test_repo_name=ballerina-distributed-tests
-
-
-echo "ballerina_home is set to : " $ballerina_home
-echo "repo name is set to : " $ballerina_test_repo
-echo "ballerina_test_repo_name is set to : "$ballerina_test_repo_name
-
-echo "Creating the Ballerina Home Directory"
-mkdir -p ${ballerina_home}
-
-#echo "Cloning the Ballerina Test Repo!!!"
-cd ${ballerina_home}
-mkdir distribution
-#git clone ${ballerina_test_repo}
-
-#cd ${ballerina_home}/${ballerina_test_repo_name}/src/test/resources/Artifacts/common-scripts
-
-#echo "ballerina_home is : " ${ballerina_home}
-#echo "ballerina_test_repo is : " ${balerina_test_repo}
-#echo "ballerina_test_repo_name is : " ${balerina_test_repo_name}
-#echo "Deployment Pattern is : " ${pattern}
 
 cd /opt
 # Check if the dependency folder exists, If exists copy the dependencies

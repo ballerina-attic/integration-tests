@@ -1,4 +1,4 @@
-FROM oraclejava8
+FROM yazjava3
 
 COPY init.sh /opt/init.sh
 RUN chmod +x /opt/init.sh

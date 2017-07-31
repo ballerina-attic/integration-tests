@@ -20,7 +20,7 @@ echo "Current location is set to : " ${current_location}
 cd ${current_location}/src/test/resources/docker
 
 echo "Downloading the Ballerina Distribution!"
-source get-latest-distribution.sh
+source ${current_location}/src/test/resources/docker/get-latest-distribution.sh
 
 #unzipping the distribution pack
 unzip -q ballerina-tools-*.zip
@@ -29,9 +29,9 @@ unzip -q ballerina-tools-*.zip
 rm ballerina-tools-*.zip
 
 # Download dependencies
-source get-depencencies.sh
+source ${current_location}/src/test/resources/docker/get-depencencies.sh
 
 # Creating the Docker image and pushing the image
-source build.sh
+source ${current_location}/src/test/resources/docker/build.sh
 
 echo "Creating the docker image!"
