@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.ballerinalang</groupId>
         <artifactId>ballerinalang</artifactId>
-        <version>0.89-SNAPSHOT</version>
+        <version>0.91.1-SNAPSHOT</version>
     </parent>
 
     <groupId>org.ballerinalang.tests</groupId>
@@ -193,6 +193,6 @@
         <codehaus.jackson.version>1.9.13</codehaus.jackson.version>
         <org.snakeyaml.version>1.16.0.wso2v1</org.snakeyaml.version>
         <mysql.con.version>6.0.5</mysql.con.version>
-        <ballerina.core.version>0.91-SNAPSHOT</ballerina.core.version>
+        <ballerina.core.version>0.91.1-SNAPSHOT</ballerina.core.version>
     </properties>
 </project>
