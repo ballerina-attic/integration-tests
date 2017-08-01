@@ -34,6 +34,8 @@ public class EchoService extends BallerinaBaseTest {
                 "UTF-8");
 
         HttpClient client = new HttpClient();
+        client.getHttpConnectionManager().getParams().setConnectionTimeout(10000);
+        client.getHttpConnectionManager().getParams().setSoTimeout(20000);
         PostMethod post = new PostMethod(serviceURL);
 
         post.setRequestEntity(requestEntity);
