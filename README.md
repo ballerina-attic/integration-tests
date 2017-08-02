@@ -1,4 +1,4 @@
-# interation-tests
+# integration-tests
 
 Integration-tests is a Kubernetes based integration test running framework. At a glance it supports the following set of features.
 
@@ -52,7 +52,7 @@ instancemap :			        : list of tag name mappings.
 ````
 If adding a new deployment to the test infrastructure, related configurations should be added in the deployment.yaml.
 
-### Adding deployment artifacts
+### Adding Deployment Artifacts
  
 Deployment artifacts contains replication controllers and kubernetes services. The nature and configurations change according to your environment requirement. Note : Before adding any new environments make sure that you cannot run your tests on top of already existing environment. 
  
@@ -86,12 +86,14 @@ The outcome of the deploy.sh is deployment.json, which has all the endpoints. Fo
 
 ````
 
-### Adding Test Artefacts
+### Adding Test Artifacts
 
 In Order to test some functionality you need ballerina services to be started in the ballerina server pod. To add services and external jars you need to add them to following locations
  
 **Bal Service**  : Artifacts/<PATTERN_NAME>/resources/services
 **External jars** : Artifacts/<PATTERN_NAME>/resources/bre/lib
+
+To add external Jars, define third party dependencies inside a POM and they will be automatically downloaded.
  
 When writing a test BallerinaBaseTest should be extended in your test class. When you extend this class, you will have access to ballerina endpoint and other relevant endpoints etc. 
  
