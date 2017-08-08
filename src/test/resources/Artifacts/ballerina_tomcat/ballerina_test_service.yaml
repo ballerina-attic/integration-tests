@@ -13,37 +13,22 @@
 # limitations under the License.
 
 apiVersion: v1
-kind: ReplicationController
+kind: Service
 metadata:
-  name: ballerina-test-version-1
   labels:
     name: ballerina-test-version-1
+  name: ballerina-test-version-1
 spec:
-  replicas: 1
+  type: NodePort
+  sessionAffinity: ClientIP
+  ports:
+    # ports that this service should serve on
+    -
+      name: 'servlet-http'
+      port: 9090
+      targetPort: 9090
+      nodePort: 32013
+
+  # label keys and values that must match in order to receive traffic for this service
   selector:
     name: ballerina-test-version-1
-  template:
-    metadata:
-      labels:
-        name: ballerina-test-version-1
-    spec:
-      containers:
-      -
-        name: ballerina-service
-        image: dockerhub.private.wso2.com/ballerina_integration_test_server:1.0
-        imagePullPolicy: Always
-        env:
-        -
-          name : pattern
-          value : "ballerina_standalone"
-        -
-          name : ballerina_home
-          value : "/opt/ballerina"
-
-        ports:
-        -
-          containerPort: 9090
-          protocol: "TCP"
-
-      imagePullSecrets:
-       - name: registrykey
