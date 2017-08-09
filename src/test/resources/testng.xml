@@ -21,6 +21,6 @@
         <!--suite-file path="Test-suites/testerina_tests.xml"/-->
         <suite-file path="Test-suites/testng_pattern1.xml"/>
         <!--<suite-file path="Test-suites/testng_pattern2.xml"/>-->
-        <!--<suite-file path="Test-suites/testng_pattern3.xml"/>-->
+        <suite-file path="Test-suites/testng_pattern3.xml"/>
     </suite-files>
 </suite>
