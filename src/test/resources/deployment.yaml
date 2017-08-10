@@ -11,8 +11,20 @@ deployments:
     -
       ballerina : ballerina-test-version-1
   -
+      name: ballerina_tomcat
+      enable: true
+      deployscripts: deploy.sh
+      repository: N/A
+      suite: pattern3
+      undeployscripts: undeploy.sh
+      filePath: deployment.json
+      instancemap :
+      -
+        ballerina : ballerina-server
+        tomcat : tomcat-rest-be
+  -
     name: mysql_connector
-    enable: true
+    enable: false
     deployscripts: deploy.sh
     repository: N/A
     suite: pattern2
@@ -27,7 +39,7 @@ deployments:
     enable: false
     deployscripts: deploy.sh
     repository: N/A
-    suite: pattern3
+    suite: pattern4
     undeployscripts: undeploy.sh
     filePath: deployment.json
     instancemap :

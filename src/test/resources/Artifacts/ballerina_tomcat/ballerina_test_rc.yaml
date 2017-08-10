@@ -15,17 +15,17 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: ballerina-test-version-1
+  name: ballerina-server
   labels:
-    name: ballerina-test-version-1
+    name: ballerina-server
 spec:
   replicas: 1
   selector:
-    name: ballerina-test-version-1
+    name: ballerina-server
   template:
     metadata:
       labels:
-        name: ballerina-test-version-1
+        name: ballerina-server
     spec:
       containers:
       -
@@ -35,10 +35,13 @@ spec:
         env:
         -
           name : pattern
-          value : "ballerina_standalone"
+          value : "ballerina_tomcat"
         -
           name : ballerina_home
           value : "/opt/ballerina"
+        -
+          name : TOMCAT_HOST
+          value : "http://tomcat-rest-be:8080"
 
         ports:
         -
