@@ -41,7 +41,7 @@ spec:
           value : "/opt/ballerina"
         -
           name : TOMCAT_HOST
-          value : "http://tomcat-rest-be:32015"
+          value : "http://tomcat-rest-be:8080"
 
         ports:
         -

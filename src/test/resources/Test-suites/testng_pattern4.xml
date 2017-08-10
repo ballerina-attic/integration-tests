@@ -18,11 +18,11 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="ballerina_tomcat">
+<suite name="jms_activemq">
     <parameter name="useDefaultListeners" value="false"/>
-    <test name="http_connector_tests" preserve-order="true" parallel="false">
+    <test name="jms_tests" preserve-order="true" parallel="false">
         <classes>
-            <class name="org.ballerina.tests.connectors.http.HTTPStatusCodesTests"/>
+            <!--<class name="org.ballerina.tests.connectors.rdbms.transactions.RDBMSTransactions"/>-->
         </classes>
     </test>
 </suite>
