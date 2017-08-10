@@ -23,6 +23,7 @@
     <test name="http_connector_tests" preserve-order="true" parallel="false">
         <classes>
             <class name="org.ballerina.tests.connectors.http.HTTPStatusCodesTests"/>
+            <class name="org.ballerina.tests.connectors.http.HTTPOutBoundStatusCodeTests"/>
         </classes>
     </test>
 </suite>
