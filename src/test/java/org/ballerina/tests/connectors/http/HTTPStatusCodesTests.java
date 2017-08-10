@@ -110,10 +110,10 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     }
 
     /**
-     * Test Pass through Scenario for a HEAD request, that receives HTTP 200 Status code
+     * Test Pass through Scenario for a HEAD request, that receives HTTP 2XX Status code
      * Client (HEAD) --> Ballerina --> BE | BE (HTTP 200 OK) --> Ballerina --> Client
      */
-    @Test(dataProvider = "2xxStatusCodes", enabled = true) public void headHTTP200(String code) throws IOException {
+    @Test(dataProvider = "2xxStatusCodes", enabled = true) public void headHTTP2XX(String code) throws IOException {
 
         //http://localhost:9090/statuscode/code/201?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/" + code;
