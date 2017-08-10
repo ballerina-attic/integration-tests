@@ -91,7 +91,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     @Test(dataProvider = "2xxStatusCodes") public void getHTTP2XX(String code) throws IOException {
 
         //http://localhost:9090/statuscode/code/201?withbody=false
-        String serviceURL = ballerinaURL + "statuscode/code/" + code + "?withbody=true";
+        String serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=true";
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
 
@@ -101,7 +101,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
         // Asserting the Response Message.
         assertEquals(new String(response), code + " with Body as the respose!");
 
-        serviceURL = ballerinaURL + "statuscode/code/" + code + "?withbody=false";
+        serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=false";
         GetMethod nobodyGet = new GetMethod(serviceURL);
         int statuscode2 = client.executeMethod(nobodyGet);
         assertEquals(String.valueOf(statuscode2), code);
@@ -116,7 +116,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     @Test(dataProvider = "2xxStatusCodes", enabled = true) public void headHTTP200(String code) throws IOException {
 
         //http://localhost:9090/statuscode/code/201?withbody=false
-        String serviceURL = ballerinaURL + "statuscode/code/" + code;
+        String serviceURL = ballerinaURL + "/statuscode/code/" + code;
         HeadMethod headRequest = new HeadMethod(serviceURL);
         int statuscode = client.executeMethod(headRequest);
 
@@ -134,7 +134,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     @Test public void getHTTP204() throws IOException {
 
         //http://localhost:9090/statuscode/code/204?withbody=false
-        String serviceURL = ballerinaURL + "statuscode/code/204?withbody=false";
+        String serviceURL = ballerinaURL + "/statuscode/code/204?withbody=false";
         GetMethod nobodyGet = new GetMethod(serviceURL);
         int statuscode2 = client.executeMethod(nobodyGet);
         assertEquals(statuscode2, HttpStatus.SC_NO_CONTENT);
@@ -150,7 +150,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     @Test(enabled = true) public void headHTTP204() throws IOException {
 
         //http://localhost:9090/statuscode/code/202
-        String serviceURL = ballerinaURL + "statuscode/code/204";
+        String serviceURL = ballerinaURL + "/statuscode/code/204";
         HeadMethod headRequest = new HeadMethod(serviceURL);
         int statuscode = client.executeMethod(headRequest);
 
@@ -169,7 +169,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     @Test public void postHTTP205() throws IOException {
 
         //http://localhost:9090/statuscode/code/205?withbody=false
-        String serviceURL = ballerinaURL + "statuscode/code/205?withbody=false";
+        String serviceURL = ballerinaURL + "/statuscode/code/205?withbody=false";
         PostMethod nobodyPost = new PostMethod(serviceURL);
         int statuscode2 = client.executeMethod(nobodyPost);
         assertEquals(statuscode2, HttpStatus.SC_RESET_CONTENT);
@@ -185,7 +185,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     @Test public void postHTTP206() throws IOException {
 
         //http://localhost:9090/statuscode/code/205?withbody=false
-        String serviceURL = ballerinaURL + "statuscode/code/206?withbody=true";
+        String serviceURL = ballerinaURL + "/statuscode/code/206?withbody=true";
         PostMethod nobodyPost = new PostMethod(serviceURL);
         int statuscode2 = client.executeMethod(nobodyPost);
         assertEquals(statuscode2, HttpStatus.SC_PARTIAL_CONTENT);
@@ -206,7 +206,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     @Test(dataProvider = "3xxStatusCodes") public void postHTTP3XX(String code) throws IOException {
 
         //http://localhost:9090/statuscode/code/205?withbody=false
-        String serviceURL = ballerinaURL + "statuscode/code/" + code + "?withbody=true";
+        String serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=true";
         PostMethod nobodyPost = new PostMethod(serviceURL);
         int statuscode = client.executeMethod(nobodyPost);
         assertEquals(String.valueOf(statuscode), code);
@@ -229,7 +229,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     @Test public void postHTTP304() throws IOException {
 
         //http://localhost:9090/statuscode/code/304?withbody=false
-        String serviceURL = ballerinaURL + "statuscode/code/304";
+        String serviceURL = ballerinaURL + "/statuscode/code/304";
         PostMethod nobodyPost = new PostMethod(serviceURL);
         int statuscode = client.executeMethod(nobodyPost);
         assertEquals(statuscode, HttpStatus.SC_NOT_MODIFIED);
@@ -253,7 +253,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     @Test(dataProvider = "4xxStatusCodes") public void postHTTP4XX(String code) throws IOException {
 
         //http://localhost:9090/statuscode/code/400?withbody=false
-        String serviceURL = ballerinaURL + "statuscode/code/" + code + "?withbody=true";
+        String serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=true";
         PostMethod nobodyPost = new PostMethod(serviceURL);
         int statuscode = client.executeMethod(nobodyPost);
         assertEquals(String.valueOf(statuscode), code);
@@ -270,7 +270,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     @Test public void postHTTP426() throws IOException {
 
         //http://localhost:9090/statuscode/code/404?withbody=false
-        String serviceURL = ballerinaURL + "statuscode/code/426?withbody=true";
+        String serviceURL = ballerinaURL + "/statuscode/code/426?withbody=true";
         PostMethod nobodyPost = new PostMethod(serviceURL);
         int statuscode = client.executeMethod(nobodyPost);
         assertEquals(statuscode, 426);
@@ -292,7 +292,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     @Test(dataProvider = "5xxStatusCodes") public void postHTTP5XX(String code) throws IOException {
 
         // http://localhost:9090/statuscode/code/500?withbody=false
-        String serviceURL = ballerinaURL + "statuscode/code/" + code + "?withbody=true";
+        String serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=true";
         PostMethod nobodyPost = new PostMethod(serviceURL);
         int statuscode = client.executeMethod(nobodyPost);
         assertEquals(String.valueOf(statuscode), code);
@@ -308,7 +308,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     @Test(dataProvider = "5xxStatusCodes") public void getHTTP5XX(String code) throws IOException {
 
         // http://localhost:9090/statuscode/code/500?withbody=false
-        String serviceURL = ballerinaURL + "statuscode/code/" + code + "?withbody=true";
+        String serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=true";
         GetMethod nobodyPost = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(nobodyPost);
         assertEquals(String.valueOf(statuscode), code);

@@ -22,13 +22,15 @@ echo "Kube Master URL is Set to : "$KUBERNETES_MASTER
 echo "Current location : "$script_path
 echo "Creating the K8S Pods!!!!"
 
+kubectl create -f $script_path/tomcat_service.yaml
+kubectl create -f $script_path/tomcat_rc.yaml
+
+sleep 10
+
 kubectl create -f $script_path/ballerina_test_service.yaml
 kubectl create -f $script_path/ballerina_test_rc.yaml
 
 sleep 10
-
-kubectl create -f $script_path/tomcat_service.yaml
-kubectl create -f $script_path/tomcat_rc.yaml
 
 function getKubeNodeIP() {
     IFS=$','
