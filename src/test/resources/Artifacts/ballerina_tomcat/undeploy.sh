@@ -13,5 +13,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 echo "Removing the K8S PODS!!!!!"
-kubectl delete rc,services,pods -l name="ballerina-test-version-1"
+kubectl delete rc,services,pods -l name="ballerina-server"
 kubectl delete rc,services,pods -l name="tomcat-rest-be"
