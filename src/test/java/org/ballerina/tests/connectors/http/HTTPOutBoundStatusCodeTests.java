@@ -8,17 +8,16 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.HeadMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
-//import org.ballerina.tests.base.BallerinaBaseTest;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.ballerina.tests.base.BallerinaBaseTest;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertNull;
 
-public class HTTPOutBoundStatusCodeTests {
+public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
-    String ballerinaURL = "http://localhost:9090";
     HttpClient client;
 
     HTTPOutBoundStatusCodeTests() {
