@@ -134,7 +134,7 @@ service <http> ServerConnectorService {
         }
 
         http:setStatusCode(response, statusCode);
-        messages:setHeader(response, "Location", "http://www.google.com");
+        messages:setHeader(response, "Location", "https://jsonplaceholder.typicode.com/users");
         reply response;
     }
 
