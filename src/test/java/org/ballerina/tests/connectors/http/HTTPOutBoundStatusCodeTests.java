@@ -22,8 +22,8 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
     HTTPOutBoundStatusCodeTests() {
         client = new HttpClient();
-        client.getHttpConnectionManager().getParams().setConnectionTimeout(10000);
-        client.getHttpConnectionManager().getParams().setSoTimeout(15000);
+        client.getHttpConnectionManager().getParams().setConnectionTimeout(5000);
+        client.getHttpConnectionManager().getParams().setSoTimeout(8000);
     }
 
     @Test
@@ -1115,10 +1115,6 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
         PostMethod post = new PostMethod(serviceURL);
         post.setRequestHeader("Authorization", "YWRtaW46YWRtaW4=");
-        post.setRequestHeader("Content-Type", "application/json");
-        StringRequestEntity requestEntity = new StringRequestEntity("{ \"Hello\":\"Ballerina\" };", "application/json",
-                "UTF-8");
-        post.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(post);
 
         // Asserting the Response Message and headers.
@@ -1131,10 +1127,6 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
         PutMethod put = new PutMethod(serviceURL);
         put.setRequestHeader("Authorization", "YWRtaW46YWRtaW4=");
-        put.setRequestHeader("Content-Type", "application/json");
-        StringRequestEntity requestEntity = new StringRequestEntity("{ \"Hello\":\"Ballerina\" };", "application/json",
-                "UTF-8");
-        put.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(put);
 
         // Asserting the Response Message and headers.
@@ -1173,10 +1165,6 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
         PostMethod post = new PostMethod(serviceURL);
         post.setRequestHeader("Authorization", "YWRtaW46YWRtaW45=");
-        post.setRequestHeader("Content-Type", "application/json");
-        StringRequestEntity requestEntity = new StringRequestEntity("{ \"Hello\":\"Ballerina\" };", "application/json",
-                "UTF-8");
-        post.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(post);
 
         // Asserting the Response Message and headers.
@@ -1189,10 +1177,6 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
         PutMethod put = new PutMethod(serviceURL);
         put.setRequestHeader("Authorization", "YWRtaW46YWRtaW45=");
-        put.setRequestHeader("Content-Type", "application/json");
-        StringRequestEntity requestEntity = new StringRequestEntity("{ \"Hello\":\"Ballerina\" };", "application/json",
-                "UTF-8");
-        put.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(put);
 
         // Asserting the Response Message and headers.
