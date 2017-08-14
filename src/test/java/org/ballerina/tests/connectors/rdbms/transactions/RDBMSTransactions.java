@@ -57,7 +57,7 @@ public class RDBMSTransactions extends BallerinaBaseTest {
 
         try {
             conn = DriverManager.getConnection(
-                    "jdbc:mysql://" + mysqlURL + "?" + "user=" + TestConstants.MYSQL_USERNAME + "&password="
+                    "jdbc:mysql://" + dbURL + "?" + "user=" + TestConstants.MYSQL_USERNAME + "&password="
                             + TestConstants.MYSQL_PASSWORD);
 
             stmt = conn.createStatement();
