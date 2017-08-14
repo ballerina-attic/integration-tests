@@ -32,8 +32,8 @@ import java.util.List;
 public class BallerinaInit {
 
     private static final Log log = LogFactory.getLog(BallerinaInit.class);
-    public static String ballerinaURL;
-    public static String mysqlURL;
+    public static String ballerinaURL = null;
+    public static String dbURL = null;
 
     protected HashMap<String, String> instanceMap;
 
@@ -67,7 +67,7 @@ public class BallerinaInit {
                     ballerinaURL = getHTTPSUrl(BallerinaConstants.BAL_PORT_NAME, url.getHostIP(), url.getPorts(), "");
                 }
                 if (url.getLable().equals(instanceMap.get(BallerinaConstants.POD_TAG_NAME_MYSQL))) {
-                    mysqlURL = getJDBCUrl(BallerinaConstants.MYSQL_PORT_NAME, url.getHostIP(), url.getPorts(),
+                    dbURL = getJDBCUrl(BallerinaConstants.MYSQL_PORT_NAME, url.getHostIP(), url.getPorts(),
                             "/BAL_DB");
                 }
 
