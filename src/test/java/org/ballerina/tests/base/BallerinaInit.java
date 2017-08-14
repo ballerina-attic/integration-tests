@@ -66,10 +66,13 @@ public class BallerinaInit {
                 if (url.getLable().equals(instanceMap.get(BallerinaConstants.POD_TAG_NAME))) {
                     ballerinaURL = getHTTPSUrl(BallerinaConstants.BAL_PORT_NAME, url.getHostIP(), url.getPorts(), "");
                 }
-                if (url.getLable().equals(instanceMap.get(BallerinaConstants.POD_TAG_NAME_MYSQL))) {
-                    mysqlURL = getJDBCUrl(BallerinaConstants.MYSQL_PORT_NAME, url.getHostIP(), url.getPorts(),
-                            "/BAL_DB");
+                if(patternName.equalsIgnoreCase("mysql_connector")){
+                    if (url.getLable().equals(instanceMap.get(BallerinaConstants.POD_TAG_NAME_MYSQL))) {
+                        mysqlURL = getJDBCUrl(BallerinaConstants.MYSQL_PORT_NAME, url.getHostIP(), url.getPorts(),
+                                "/BAL_DB");
+                    }
                 }
+
 
             }
         }
