@@ -11,12 +11,10 @@ import ballerina.lang.errors;
 }
 service <http> ServerConnectorService {
 
-    @http:GET {}
-    @http:POST {}
-    @http:HEAD {}
-    @http:PUT {}
-    @http:DELETE {}
-    @http:Path {value:"/call"}
+   @http:resourceConfig {
+        methods:["POST", "GET", "HEAD", "PUT", "DELETE"],
+        path:"/call"
+    }
     resource getMenuDetailsResource (message m) {
         message response = {};
 
@@ -26,12 +24,10 @@ service <http> ServerConnectorService {
         reply response;
     }
 
-    @http:GET {}
-    @http:POST {}
-    @http:HEAD {}
-    @http:PUT {}
-    @http:DELETE {}
-    @http:Path {value:"/call/batch"}
+    @http:resourceConfig {
+        methods:["POST", "GET", "HEAD", "PUT", "DELETE"],
+        path:"/call/batch"
+    }
     resource batchProcessingResource(message m){
         int statusCode = 202;
         message response = {};
@@ -43,12 +39,10 @@ service <http> ServerConnectorService {
         reply response;
     }
 
-    @http:GET {}
-    @http:POST {}
-    @http:HEAD {}
-    @http:PUT {}
-    @http:DELETE {}
-    @http:Path {value:"/call/changed"}
+    @http:resourceConfig {
+        methods:["POST", "GET", "HEAD", "PUT", "DELETE"],
+        path:"/call/changed"
+    }
     resource getModifiedMenuDetailsResource(message m){
         int statusCode = 203;
         message response = {};
@@ -59,9 +53,10 @@ service <http> ServerConnectorService {
         reply response;
     }
 
-    @http:POST {}
-    @http:PUT {}
-    @http:Path {value:"/orders/{orderid}"}
+    @http:resourceConfig {
+        methods:["POST", "PUT"],
+        path:"/orders/{orderid}"
+    }
     resource createOrderResource(message m, @http:PathParam {value:"orderid"} string orderId){
         message response = {};
         int statusCode = 201;
@@ -74,9 +69,10 @@ service <http> ServerConnectorService {
         reply response;
     }
 
-    @http:PUT {}
-    @http:DELETE {}
-    @http:Path {value:"/orders/update/{orderid}"}
+    @http:resourceConfig {
+        methods:["DELETE", "PUT"],
+        path:"/orders/update/{orderid}"
+    }
     resource updateOrderResource(message m, @http:PathParam {value:"orderid"} string orderId){
         message response = {};
         int statusCode = 204;
@@ -89,12 +85,10 @@ service <http> ServerConnectorService {
         reply response;
     }
 
-    @http:GET {}
-    @http:POST {}
-    @http:HEAD {}
-    @http:PUT {}
-    @http:DELETE {}
-    @http:Path {value:"/call/batch/reset"}
+    @http:resourceConfig {
+        methods:["POST", "GET", "HEAD", "PUT", "DELETE"],
+        path:"/call/batch/reset"
+    }
     resource batchProcessingResetResource(message m){
         int statusCode = 205;
         message response = {};
@@ -103,12 +97,11 @@ service <http> ServerConnectorService {
         reply response;
     }
 
-    @http:GET {}
-    @http:POST {}
-    @http:HEAD {}
-    @http:PUT {}
-    @http:DELETE {}
-    @http:Path {value:"/call/batch/{code}"}
+
+    @http:resourceConfig {
+        methods:["POST", "GET", "HEAD", "PUT", "DELETE"],
+        path:"/call/batch/{code}"
+    }
     resource batchProcessingRedirectionResource(message m, @http:PathParam {value:"code"} string code){
         message response = {};
         int statusCode;
@@ -138,12 +131,10 @@ service <http> ServerConnectorService {
         reply response;
     }
 
-    @http:GET {}
-    @http:POST {}
-    @http:HEAD {}
-    @http:PUT {}
-    @http:DELETE {}
-    @http:Path {value:"/call/order/{orderid}"}
+    @http:resourceConfig {
+        methods:["POST", "GET", "HEAD", "PUT", "DELETE"],
+        path:"/call/order/{orderid}"
+    }
     resource getOrderDetailsResource (message m, @http:PathParam {value:"orderid"} string orderid) {
         message response = {};
         errors:TypeConversionError err;
@@ -189,12 +180,10 @@ service <http> ServerConnectorService {
         reply response;
     }
 
-    @http:GET {}
-    @http:POST {}
-    @http:HEAD {}
-    @http:PUT {}
-    @http:DELETE {}
-    @http:Path {value:"/call/new"}
+    @http:resourceConfig {
+        methods:["POST", "GET", "HEAD", "PUT", "DELETE"],
+        path:"/call/new"
+    }
     resource getNewMenuDetailsResource (message m) {
         message response = {};
 
@@ -208,12 +197,10 @@ service <http> ServerConnectorService {
         reply response;
     }
 
-    @http:GET {}
-    @http:POST {}
-    @http:HEAD {}
-    @http:PUT {}
-    @http:DELETE {}
-    @http:Path {value:"/call/notimplemented"}
+    @http:resourceConfig {
+        methods:["POST", "GET", "HEAD", "PUT", "DELETE"],
+        path:"/call/notimplemented"
+    }
     resource workInprogressResource (message m) {
         message response = {};
 
@@ -222,12 +209,10 @@ service <http> ServerConnectorService {
         reply response;
     }
 
-    @http:GET {}
-    @http:POST {}
-    @http:HEAD {}
-    @http:PUT {}
-    @http:DELETE {}
-    @http:Path {value:"/call/unavailable"}
+    @http:resourceConfig {
+        methods:["POST", "GET", "HEAD", "PUT", "DELETE"],
+        path:"/call/unavailable"
+    }
     resource serviceUnavailableResource (message m) {
         message response = {};
 
