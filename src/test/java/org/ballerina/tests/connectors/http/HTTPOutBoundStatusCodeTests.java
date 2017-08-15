@@ -22,8 +22,8 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
     HTTPOutBoundStatusCodeTests() {
         client = new HttpClient();
-        client.getHttpConnectionManager().getParams().setConnectionTimeout(10000);
-        client.getHttpConnectionManager().getParams().setSoTimeout(15000);
+        client.getHttpConnectionManager().getParams().setConnectionTimeout(5000);
+        client.getHttpConnectionManager().getParams().setSoTimeout(8000);
     }
 
     @Test
