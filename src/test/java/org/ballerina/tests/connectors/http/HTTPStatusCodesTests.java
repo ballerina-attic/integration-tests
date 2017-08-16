@@ -36,6 +36,7 @@ import static org.testng.Assert.assertNull;
 
 /**
  * Tests HTTP Status Codes
+ * Uses StatusCodeService.bal service
  */
 public class HTTPStatusCodesTests extends BallerinaBaseTest {
 

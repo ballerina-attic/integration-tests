@@ -8,9 +8,10 @@ import ballerina.lang.system;
 }
 service <http> StatusCodeService {
 
-    @http:POST {}
-    @http:GET {}
-    @http:Path {value:"/code/{code}"}
+    @http:resourceConfig {
+        methods:["POST", "GET"],
+        path:"/code/{code}"
+    }
     resource statusCodeResource (message m, @http:PathParam {value:"code"} string codeValue, @http:QueryParam {value:"withbody"}string withbody) {
         string resourcePath = "/RESTfulService/mock/statusCodeService/" + codeValue + "?withbody=" + withbody;
         message response = {};
@@ -23,8 +24,10 @@ service <http> StatusCodeService {
         reply response;
     }
 
-    @http:HEAD {}
-    @http:Path {value:"/code/{code}"}
+    @http:resourceConfig {
+        methods:["HEAD"],
+        path:"/code/{code}"
+    }
     resource statusCodeResource2 (message m, @http:PathParam {value:"code"} string codeValue) {
         string resourcePath = "/RESTfulService/mock/statusCodeService/" + codeValue;
         message response = {};
