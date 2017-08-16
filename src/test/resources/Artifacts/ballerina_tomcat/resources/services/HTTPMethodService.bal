@@ -39,7 +39,7 @@ service <http> HTTPMethodService {
 
     @http:resourceConfig {
         methods:["GET"],
-        path:"/gettopost1"
+        path:"/gettopost"
     }
     resource getResource (message m) {
         string resourcePath = "/RESTfulService/mock/service/post";
@@ -55,12 +55,28 @@ service <http> HTTPMethodService {
 
     @http:resourceConfig {
         methods:["POST"],
-        path:"/gettopost1"
+        path:"/posttoput"
     }
     resource postResource (message m) {
         string resourcePath = "/RESTfulService/mock/service/put";
         message response = {};
         string method = "PUT";
+        string connection = system:getEnv("TOMCAT_HOST");
+
+        http:ClientConnector httpCheck = create http:ClientConnector(connection);
+        response = httpCheck.execute(method, resourcePath, m);
+
+        reply response;
+    }
+
+    @http:resourceConfig {
+        methods:["PUT"],
+        path:"/puttopost"
+    }
+    resource putResource (message m) {
+        string resourcePath = "/RESTfulService/mock/service/post";
+        message response = {};
+        string method = "POST";
         string connection = system:getEnv("TOMCAT_HOST");
 
         http:ClientConnector httpCheck = create http:ClientConnector(connection);
