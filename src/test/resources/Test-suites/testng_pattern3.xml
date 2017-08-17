@@ -24,6 +24,7 @@
         <classes>
             <class name="org.ballerina.tests.connectors.http.HTTPStatusCodesTests"/>
             <class name="org.ballerina.tests.connectors.http.HTTPOutBoundStatusCodeTests"/>
+            <class name="org.ballerina.tests.connectors.http.HTTPMethodsTests"/>
         </classes>
     </test>
 </suite>

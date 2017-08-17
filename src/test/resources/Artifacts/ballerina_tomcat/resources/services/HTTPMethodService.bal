@@ -26,6 +26,22 @@ service <http> HTTPMethodService {
     }
 
     @http:resourceConfig {
+        methods:["HEAD"],
+        path:"/head"
+    }
+    resource headResource (message m) {
+        string resourcePath = "/RESTfulService/mock/service/head";
+        message response = {};
+        string method = "HEAD";
+        string connection = system:getEnv("TOMCAT_HOST");
+
+        http:ClientConnector httpCheck = create http:ClientConnector(connection);
+        response = httpCheck.execute(method, resourcePath, m);
+
+        reply response;
+    }
+
+    @http:resourceConfig {
         methods:["GET"],
         path:"/get"
     }
@@ -90,6 +106,21 @@ service <http> HTTPMethodService {
     }
 
     @http:resourceConfig {
+        methods:["GET"],
+        path:"/doget"
+    }
+    resource getResource2 (message m) {
+        string resourcePath = "/RESTfulService/mock/service/get";
+        message response = {};
+        string connection = system:getEnv("TOMCAT_HOST");
+
+        http:ClientConnector httpCheck = create http:ClientConnector(connection);
+        response = httpCheck.get(resourcePath, m);
+
+        reply response;
+    }
+
+    @http:resourceConfig {
         methods:["POST"],
         path:"/posttoput"
     }
@@ -106,6 +137,21 @@ service <http> HTTPMethodService {
     }
 
     @http:resourceConfig {
+        methods:["POST"],
+        path:"/dopost"
+    }
+    resource postResource2 (message m) {
+        string resourcePath = "/RESTfulService/mock/service/post";
+        message response = {};
+        string connection = system:getEnv("TOMCAT_HOST");
+
+        http:ClientConnector httpCheck = create http:ClientConnector(connection);
+        response = httpCheck.post(resourcePath, m);
+
+        reply response;
+    }
+
+    @http:resourceConfig {
         methods:["PUT"],
         path:"/puttopost"
     }
@@ -117,6 +163,21 @@ service <http> HTTPMethodService {
 
         http:ClientConnector httpCheck = create http:ClientConnector(connection);
         response = httpCheck.execute(method, resourcePath, m);
+
+        reply response;
+    }
+
+    @http:resourceConfig {
+        methods:["PUT"],
+        path:"/doput"
+    }
+    resource putResource2 (message m) {
+        string resourcePath = "/RESTfulService/mock/service/put";
+        message response = {};
+        string connection = system:getEnv("TOMCAT_HOST");
+
+        http:ClientConnector httpCheck = create http:ClientConnector(connection);
+        response = httpCheck.put(resourcePath, m);
 
         reply response;
     }
