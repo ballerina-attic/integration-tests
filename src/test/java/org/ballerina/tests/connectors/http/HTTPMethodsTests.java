@@ -31,7 +31,7 @@ public class HTTPMethodsTests {
     @Test(description = "Test all methods in one server resource") public void testAllVerbsInOneResource()
             throws IOException {
 
-        String serviceURL = ballerinaURL + "/httpmethods/method/all";
+        String serviceURL = ballerinaURL + "/httpmethods/all";
         //String assertResponse = "{\"POST Method:Request Status\":\"Sucess\"}";
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
@@ -45,7 +45,7 @@ public class HTTPMethodsTests {
         statuscode = client.executeMethod(put);
         assertEquals(statuscode, HttpStatus.SC_OK);
 
-        DeleteMethod delete = new DeleteMethod();
+        DeleteMethod delete = new DeleteMethod(serviceURL);
         statuscode = client.executeMethod(delete);
         assertEquals(statuscode, HttpStatus.SC_OK);
 
@@ -54,15 +54,29 @@ public class HTTPMethodsTests {
         assertEquals(statuscode, HttpStatus.SC_OK);
     }
 
-    @Test(description = "Doing a GET call and calling the BE with the same") public void testGetResource() {
+    @Test(description = "Doing a GET call and calling the BE with the same") public void testGetResource()
+            throws IOException {
+        String serviceURL = ballerinaURL + "/httpmethods/get";
+        GetMethod get = new GetMethod(serviceURL);
+        int statuscode = client.executeMethod(get);
+        assertEquals(statuscode, HttpStatus.SC_OK);
+    }
+
+    @Test(description = "") public void testPostResource() throws IOException {
+
+        String serviceURL = ballerinaURL + "/httpmethods/post";
+        PostMethod post = new PostMethod(serviceURL);
+        int statuscode = client.executeMethod(post);
+        assertEquals(statuscode, HttpStatus.SC_OK);
 
     }
 
-    @Test(description = "") public void testPostResource() {
+    @Test(description = "") public void testPutResource() throws IOException {
 
-    }
-
-    @Test(description = "") public void testPutResource() {
+        String serviceURL = ballerinaURL + "/httpmethods/put";
+        PutMethod put = new PutMethod(serviceURL);
+        int statuscode = client.executeMethod(put);
+        assertEquals(statuscode, HttpStatus.SC_OK);
 
     }
 
