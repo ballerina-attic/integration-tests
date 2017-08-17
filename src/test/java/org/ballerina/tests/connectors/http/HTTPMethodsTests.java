@@ -62,9 +62,26 @@ public class HTTPMethodsTests {
         assertEquals(statuscode, HttpStatus.SC_OK);
     }
 
+    @Test(description = "Doing a GET call and calling the BE with the same") public void testGetResourceWithSpecificMethod()
+            throws IOException {
+        String serviceURL = ballerinaURL + "/httpmethods/doget";
+        GetMethod get = new GetMethod(serviceURL);
+        int statuscode = client.executeMethod(get);
+        assertEquals(statuscode, HttpStatus.SC_OK);
+    }
+
     @Test(description = "") public void testPostResource() throws IOException {
 
         String serviceURL = ballerinaURL + "/httpmethods/post";
+        PostMethod post = new PostMethod(serviceURL);
+        int statuscode = client.executeMethod(post);
+        assertEquals(statuscode, HttpStatus.SC_OK);
+
+    }
+
+    @Test(description = "") public void testPostResourceWithSpecificMethod() throws IOException {
+
+        String serviceURL = ballerinaURL + "/httpmethods/dopost";
         PostMethod post = new PostMethod(serviceURL);
         int statuscode = client.executeMethod(post);
         assertEquals(statuscode, HttpStatus.SC_OK);
@@ -80,7 +97,21 @@ public class HTTPMethodsTests {
 
     }
 
-    @Test(description = "") public void testHeadResource() {
+    @Test(description = "") public void testPutResourceWithSpecificMethod() throws IOException {
+
+        String serviceURL = ballerinaURL + "/httpmethods/doput";
+        PutMethod put = new PutMethod(serviceURL);
+        int statuscode = client.executeMethod(put);
+        assertEquals(statuscode, HttpStatus.SC_OK);
+
+    }
+
+    @Test(description = "") public void testHeadResource() throws IOException {
+
+        String serviceURL = ballerinaURL + "/httpmethods/head";
+        HeadMethod delete = new HeadMethod(serviceURL);
+        int statuscode = client.executeMethod(delete);
+        assertEquals(statuscode, HttpStatus.SC_OK);
 
     }
 
