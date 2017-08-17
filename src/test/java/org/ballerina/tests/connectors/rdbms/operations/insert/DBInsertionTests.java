@@ -1,4 +1,4 @@
-package org.ballerina.tests.connectors.rdbms.insertoperations;
+package org.ballerina.tests.connectors.rdbms.operations.insert;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;

@@ -22,7 +22,7 @@
     <parameter name="useDefaultListeners" value="false"/>
     <test name="jms_tests" preserve-order="true" parallel="false">
         <classes>
-            <!--<class name="org.ballerina.tests.connectors.rdbms.insertoperations.RDBMSTransactions"/>-->
+            <!--<class name="RDBMSTransactions"/>-->
         </classes>
     </test>
 </suite>
