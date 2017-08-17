@@ -1,5 +1,4 @@
 package resources.services;
-import ballerina.lang.messages;
 
 import ballerina.net.http;
 import ballerina.lang.system;
@@ -12,10 +11,10 @@ service <http> HTTPMethodService {
 
     @http:resourceConfig {
         methods:["POST", "GET", "HEAD", "PUT", "DELETE"],
-        path:"/method/all"
+        path:"/all"
     }
     resource statusCodeResource (message m) {
-        string resourcePath = "/RESTfulService/mock/statusCodeService/";
+        string resourcePath = "/RESTfulService/mock/service/all";
         message response = {};
         string method = http:getMethod(m);
         string connection = system:getEnv("TOMCAT_HOST");
@@ -28,18 +27,55 @@ service <http> HTTPMethodService {
 
     @http:resourceConfig {
         methods:["GET"],
-        path:"/method/get/range"
+        path:"/get"
     }
-    resource statusCodeResource2 (message m) {
+    resource getResource1 (message m) {
+        string resourcePath = "/RESTfulService/mock/service/get";
         message response = {};
-        messages:setStringPayload(response, "abcdefghijklmnopqrstuvxyz");
+        string method = "GET";
+        string connection = system:getEnv("TOMCAT_HOST");
+
+        http:ClientConnector httpCheck = create http:ClientConnector(connection);
+        response = httpCheck.execute(method, resourcePath, m);
+
+        reply response;
+    }
+
+    @http:resourceConfig {
+        methods:["POST"],
+        path:"/post"
+    }
+    resource postResource1 (message m) {
+        string resourcePath = "/RESTfulService/mock/service/post";
+        message response = {};
+        string method = "POST";
+        string connection = system:getEnv("TOMCAT_HOST");
+
+        http:ClientConnector httpCheck = create http:ClientConnector(connection);
+        response = httpCheck.execute(method, resourcePath, m);
+
+        reply response;
+    }
+
+    @http:resourceConfig {
+        methods:["PUT"],
+        path:"/put"
+    }
+    resource putResource1 (message m) {
+        string resourcePath = "/RESTfulService/mock/service/put";
+        message response = {};
+        string method = "PUT";
+        string connection = system:getEnv("TOMCAT_HOST");
+
+        http:ClientConnector httpCheck = create http:ClientConnector(connection);
+        response = httpCheck.execute(method, resourcePath, m);
 
         reply response;
     }
 
     @http:resourceConfig {
         methods:["GET"],
-        path:"/gettopost1"
+        path:"/gettopost"
     }
     resource getResource (message m) {
         string resourcePath = "/RESTfulService/mock/service/post";
@@ -55,12 +91,28 @@ service <http> HTTPMethodService {
 
     @http:resourceConfig {
         methods:["POST"],
-        path:"/gettopost1"
+        path:"/posttoput"
     }
     resource postResource (message m) {
         string resourcePath = "/RESTfulService/mock/service/put";
         message response = {};
         string method = "PUT";
+        string connection = system:getEnv("TOMCAT_HOST");
+
+        http:ClientConnector httpCheck = create http:ClientConnector(connection);
+        response = httpCheck.execute(method, resourcePath, m);
+
+        reply response;
+    }
+
+    @http:resourceConfig {
+        methods:["PUT"],
+        path:"/puttopost"
+    }
+    resource putResource (message m) {
+        string resourcePath = "/RESTfulService/mock/service/post";
+        message response = {};
+        string method = "POST";
         string connection = system:getEnv("TOMCAT_HOST");
 
         http:ClientConnector httpCheck = create http:ClientConnector(connection);
