@@ -159,3 +159,4 @@ public class HTTPMethodsTests extends BallerinaBaseTest{
         assertEquals(new String(response), assertResponse);
     }
 }
+
