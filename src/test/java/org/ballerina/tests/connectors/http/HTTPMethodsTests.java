@@ -7,6 +7,7 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.HeadMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
+import org.ballerina.tests.base.BallerinaBaseTest;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -17,10 +18,9 @@ import static org.testng.Assert.assertEquals;
  * Tests HTTP Methods and related scenarios
  * Uses HTTPMethodService.bal service
  */
-public class HTTPMethodsTests {
+public class HTTPMethodsTests extends BallerinaBaseTest{
 
     HttpClient client;
-    String ballerinaURL = "http://localhost:9090";
 
     HTTPMethodsTests() {
         client = new HttpClient();
@@ -28,7 +28,8 @@ public class HTTPMethodsTests {
         client.getHttpConnectionManager().getParams().setSoTimeout(7000);
     }
 
-    @Test(description = "Test all methods in one server resource") public void testAllVerbsInOneResource()
+    @Test(description = "Test all methods in one server resource")
+    public void testAllVerbsInOneResource()
             throws IOException {
 
         String serviceURL = ballerinaURL + "/httpmethods/all";
@@ -54,7 +55,8 @@ public class HTTPMethodsTests {
         assertEquals(statuscode, HttpStatus.SC_OK);
     }
 
-    @Test(description = "Doing a GET call and calling the BE with the same") public void testGetResource()
+    @Test(description = "Doing a GET call and calling the BE with a GET using execute action")
+    public void testGetResource()
             throws IOException {
         String serviceURL = ballerinaURL + "/httpmethods/get";
         GetMethod get = new GetMethod(serviceURL);
@@ -62,7 +64,8 @@ public class HTTPMethodsTests {
         assertEquals(statuscode, HttpStatus.SC_OK);
     }
 
-    @Test(description = "Doing a GET call and calling the BE with the same") public void testGetResourceWithSpecificMethod()
+    @Test(description = "Doing a GET call and calling the BE with a GET using the get action")
+    public void testGetResourceWithSpecificMethod()
             throws IOException {
         String serviceURL = ballerinaURL + "/httpmethods/doget";
         GetMethod get = new GetMethod(serviceURL);
