@@ -18,7 +18,7 @@ import static org.testng.Assert.assertEquals;
  * Tests HTTP Methods and related scenarios
  * Uses HTTPMethodService.bal service
  */
-public class HTTPMethodsTests extends BallerinaBaseTest{
+public class HTTPMethodsTests extends BallerinaBaseTest {
 
     HttpClient client;
 
@@ -28,8 +28,7 @@ public class HTTPMethodsTests extends BallerinaBaseTest{
         client.getHttpConnectionManager().getParams().setSoTimeout(7000);
     }
 
-    @Test(description = "Test all methods in one server resource")
-    public void testAllVerbsInOneResource()
+    @Test(description = "Test all methods in one server resource") public void testAllVerbsInOneResource()
             throws IOException {
 
         String serviceURL = ballerinaURL + "/httpmethods/all";
@@ -65,8 +64,7 @@ public class HTTPMethodsTests extends BallerinaBaseTest{
     }
 
     @Test(description = "Doing a GET call and calling the BE with a GET using the get action")
-    public void testGetResourceWithSpecificMethod()
-            throws IOException {
+    public void testGetResourceWithSpecificMethod() throws IOException {
         String serviceURL = ballerinaURL + "/httpmethods/doget";
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
