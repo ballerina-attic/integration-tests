@@ -17,7 +17,7 @@
 cp -r ${current_location}/src/test/resources/Artifacts ${current_location}/src/test/resources/docker
 
 cd ${current_location}/src/test/resources/docker
-sudo docker build -t dockerhub.private.wso2.com/ballerina_integration_test_server:1.0 .
+sudo docker build --no-cache -t dockerhub.private.wso2.com/ballerina_integration_test_server:2.0 .
 
 # Pushing the docker image to registry
-sudo docker push dockerhub.private.wso2.com/ballerina_integration_test_server:1.0
+sudo docker push dockerhub.private.wso2.com/ballerina_integration_test_server:2.0

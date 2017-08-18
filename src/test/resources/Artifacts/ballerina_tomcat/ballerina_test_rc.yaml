@@ -30,7 +30,7 @@ spec:
       containers:
       -
         name: ballerina-service
-        image: dockerhub.private.wso2.com/ballerina_integration_test_server:1.0
+        image: dockerhub.private.wso2.com/ballerina_integration_test_server:2.0
         imagePullPolicy: Always
         env:
         -
