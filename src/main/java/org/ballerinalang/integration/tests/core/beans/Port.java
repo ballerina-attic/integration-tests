@@ -16,7 +16,7 @@
 *  under the License.
 */
 
-package org.ballerina.integration.tests.core.beans;
+package org.ballerinalang.integration.tests.core.beans;
 
 /**
  * Ports definitions

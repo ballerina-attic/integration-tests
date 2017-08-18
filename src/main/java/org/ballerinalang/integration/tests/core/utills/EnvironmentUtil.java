@@ -16,7 +16,7 @@
 *  under the License.
 */
 
-package org.ballerina.integration.tests.core.utills;
+package org.ballerinalang.integration.tests.core.utills;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

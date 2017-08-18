@@ -15,7 +15,7 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.ballerina.integration.tests.core.commons;
+package org.ballerinalang.integration.tests.core.commons;
 
 /**
  * Deployment Yaml Constants.

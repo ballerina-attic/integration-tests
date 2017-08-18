@@ -16,10 +16,10 @@
 *  under the License.
 */
 
-package org.ballerina.integration.tests.core.utills;
+package org.ballerinalang.integration.tests.core.utills;
 
-import org.ballerina.integration.tests.core.FrameworkConstants;
-import org.ballerina.integration.tests.core.exceptions.IntegrationTestException;
+import org.ballerinalang.integration.tests.core.FrameworkConstants;
+import org.ballerinalang.integration.tests.core.exceptions.IntegrationTestException;
 import org.ballerinalang.BLangCompiler;
 import org.ballerinalang.natives.connectors.BallerinaConnectorManager;
 import org.ballerinalang.services.MessageProcessor;

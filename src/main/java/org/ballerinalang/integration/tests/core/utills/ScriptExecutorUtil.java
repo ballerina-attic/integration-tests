@@ -16,13 +16,13 @@
 *  under the License.
 */
 
-package org.ballerina.integration.tests.core.utills;
+package org.ballerinalang.integration.tests.core.utills;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ballerina.integration.tests.core.FrameworkConstants;
-import org.ballerina.integration.tests.core.beans.Deployment;
-import org.ballerina.integration.tests.core.commons.DeploymentConfigurationReader;
+import org.ballerinalang.integration.tests.core.FrameworkConstants;
+import org.ballerinalang.integration.tests.core.beans.Deployment;
+import org.ballerinalang.integration.tests.core.commons.DeploymentConfigurationReader;
 
 import java.io.BufferedReader;
 import java.io.File;

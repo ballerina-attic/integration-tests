@@ -15,12 +15,12 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.ballerina.integration.tests.core.commons;
+package org.ballerinalang.integration.tests.core.commons;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ballerina.integration.tests.core.FrameworkConstants;
-import org.ballerina.integration.tests.core.beans.InstanceUrls;
+import org.ballerinalang.integration.tests.core.FrameworkConstants;
+import org.ballerinalang.integration.tests.core.beans.InstanceUrls;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.File;

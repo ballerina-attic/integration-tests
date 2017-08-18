@@ -18,8 +18,8 @@
 
 package org.ballerina.tests.testerina;
 
-import org.ballerina.integration.tests.core.utills.EnvironmentUtil;
-import org.ballerina.integration.tests.core.utills.TesterinaTestUtils;
+import org.ballerinalang.integration.tests.core.utills.EnvironmentUtil;
+import org.ballerinalang.integration.tests.core.utills.TesterinaTestUtils;
 import org.ballerina.tests.base.TesterinaTestBase;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

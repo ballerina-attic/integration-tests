@@ -16,41 +16,18 @@
 *  under the License.
 */
 
-package org.ballerina.integration.tests.core.beans;
-
-import java.util.List;
+package org.ballerinalang.integration.tests.core.exceptions;
 
 /**
- * Instance URL Bean, this will be populated based on deployment.json
+ * Integration Test Exception
  */
-
-public class InstanceUrls {
-
-    private String hostIP;
-    private String lable;
-    private List<Port> ports;
-
-    public String getHostIP() {
-        return hostIP;
-    }
-
-    public void setHostIP(String hostIP) {
-        this.hostIP = hostIP;
-    }
-
-    public List<Port> getPorts() {
-        return ports;
-    }
-
-    public void setPorts(List<Port> ports) {
-        this.ports = ports;
-    }
-
-    public String getLable() {
-        return lable;
-    }
-
-    public void setLable(String lable) {
-        this.lable = lable;
+public class IntegrationTestException extends Exception {
+    /**
+     * Constructs a new {@link IntegrationTestException} with the specified detail message.
+     *
+     * @param message Error Message
+     */
+    public IntegrationTestException(String message) {
+        super(message);
     }
 }

@@ -16,7 +16,7 @@
 *  under the License.
 */
 
-package org.ballerina.integration.tests.core;
+package org.ballerinalang.integration.tests.core;
 
 /**
  * Framework Constants

@@ -19,11 +19,11 @@ package org.ballerina.tests.base;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ballerina.integration.tests.core.beans.InstanceUrls;
-import org.ballerina.integration.tests.core.beans.Port;
-import org.ballerina.integration.tests.core.commons.DeploymentConfigurationReader;
-import org.ballerina.integration.tests.core.commons.DeploymentDataReader;
-import org.ballerina.integration.tests.core.utills.ScriptExecutorUtil;
+import org.ballerinalang.integration.tests.core.beans.InstanceUrls;
+import org.ballerinalang.integration.tests.core.beans.Port;
+import org.ballerinalang.integration.tests.core.commons.DeploymentConfigurationReader;
+import org.ballerinalang.integration.tests.core.commons.DeploymentDataReader;
+import org.ballerinalang.integration.tests.core.utills.ScriptExecutorUtil;
 
 import java.io.IOException;
 import java.util.HashMap;

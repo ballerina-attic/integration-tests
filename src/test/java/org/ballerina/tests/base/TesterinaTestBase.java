@@ -18,7 +18,7 @@
 
 package org.ballerina.tests.base;
 
-import org.ballerina.integration.tests.core.utills.TesterinaTestUtils;
+import org.ballerinalang.integration.tests.core.utills.TesterinaTestUtils;
 import org.ballerinalang.testerina.core.entity.TesterinaContext;
 import org.ballerinalang.testerina.core.entity.TesterinaFunction;
 import org.testng.annotations.DataProvider;
