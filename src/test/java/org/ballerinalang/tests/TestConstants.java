@@ -15,17 +15,13 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.ballerina.tests.base;
+
+package org.ballerinalang.tests;
 
 /**
- * Ballerina Test Contants
+ * Test Level Constants.
  */
-public class BallerinaConstants {
-
-    public static final String ENABLE_URL_REMAP = "ENABLE_REMAP";
-    public static final String POD_TAG_NAME = "ballerina";
-    public static final String BAL_PORT_NAME = "servlet-http";
-    public static final String POD_TAG_NAME_MYSQL = "mysql";
-    public static final String MYSQL_PORT_NAME = "mysql-port";
-
+public class TestConstants {
+    public static final String MYSQL_USERNAME = "baladmin";
+    public static final String MYSQL_PASSWORD = "baladmin";
 }

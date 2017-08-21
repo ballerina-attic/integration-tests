@@ -1,4 +1,4 @@
-package org.ballerina.tests.connectors.http;
+package org.ballerinalang.tests.connectors.http;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
@@ -7,7 +7,7 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.HeadMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
-import org.ballerina.tests.base.BallerinaBaseTest;
+import org.ballerinalang.tests.base.BallerinaBaseTest;
 import org.testng.annotations.Test;
 
 import java.io.IOException;

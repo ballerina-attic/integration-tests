@@ -22,7 +22,7 @@
     <parameter name="useDefaultListeners" value="false"/>
     <test name="jdbc_transactions_mysql" preserve-order="true" parallel="false">
         <classes>
-            <class name="org.ballerina.tests.connectors.rdbms.operations.insert.DBInsertionTests"/>
+            <class name="org.ballerinalang.tests.connectors.rdbms.operations.insert.DBInsertionTests"/>
         </classes>
     </test>
 </suite>
