@@ -18,9 +18,9 @@
 
 package org.ballerinalang.integration.tests.core.utills;
 
+import org.ballerinalang.BLangCompiler;
 import org.ballerinalang.integration.tests.core.FrameworkConstants;
 import org.ballerinalang.integration.tests.core.exceptions.IntegrationTestException;
-import org.ballerinalang.BLangCompiler;
 import org.ballerinalang.natives.connectors.BallerinaConnectorManager;
 import org.ballerinalang.services.MessageProcessor;
 import org.ballerinalang.testerina.core.entity.TesterinaContext;

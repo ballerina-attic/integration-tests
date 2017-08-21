@@ -16,28 +16,25 @@
 *  under the License.
 */
 
-package org.ballerina.tests.testerina;
+package org.ballerinalang.tests.testerina;
 
-import org.ballerinalang.integration.tests.core.utills.CryptoUtil;
 import org.ballerinalang.integration.tests.core.utills.EnvironmentUtil;
 import org.ballerinalang.integration.tests.core.utills.TesterinaTestUtils;
-import org.ballerina.tests.base.TesterinaTestBase;
+import org.ballerinalang.tests.base.TesterinaTestBase;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class AmazonS3ConnectorTest extends TesterinaTestBase {
-
-    AmazonS3ConnectorTest() {
-        super("AmazonS3_test.bal");
+/**
+ * Facebook connector tests
+ */
+public class FacebookConnectorTest extends TesterinaTestBase {
+    public FacebookConnectorTest() {
+        super("facebook_test.bal");
     }
 
-    @BeforeClass public void initializeTests() throws Exception {
-        CryptoUtil decrypter = new CryptoUtil();
-        EnvironmentUtil.setEnv("ACCESS_KEY", decrypter.decrypt("Ju3hHBJCaAtHI2epZh9cXbjGGhJPYkLz"));
-        EnvironmentUtil.setEnv("SECRET_ACCESS_KEY",
-                decrypter.decrypt("mfQ+z71RxiCvtFPyabbW0LzMZn64NIi3r8B0gjKEnARpmz7TUPwomeHuk08x5Zj2"));
-        EnvironmentUtil.setEnv("REGION", decrypter.decrypt("p4WW0s4aqQ2KR8zEqcBe7g=="));
+    @BeforeClass public void initializeTests() {
+        //        EnvironmentUtil.setEnv("FB_ACCESS_TOKEN", "XXXX");
     }
 
     @Test(dataProvider = "testFunctionProvider") public void testExecute(String function) throws Exception {
@@ -45,7 +42,7 @@ public class AmazonS3ConnectorTest extends TesterinaTestBase {
     }
 
     @AfterClass public void afterTest() {
-        String keys[] = { "ACCESS_KEY", "SECRET_ACCESS_KEY", "REGION" };
+        String keys[] = { "FB_ACCESS_TOKEN" };
         EnvironmentUtil.removeEnv(keys);
     }
 }
