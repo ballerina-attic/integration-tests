@@ -13,6 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Removing any dangling docker images
+sudo docker rmi -f $(docker images -qa -f "dangling=true")
+
 # Copying the Resources to docker directory since docker cannot read from other locations
 cp -r ${current_location}/src/test/resources/Artifacts ${current_location}/src/test/resources/docker
 
@@ -21,3 +24,7 @@ sudo docker build --no-cache -t dockerhub.private.wso2.com/ballerina_integration
 
 # Pushing the docker image to registry
 sudo docker push dockerhub.private.wso2.com/ballerina_integration_test_server:2.0
+
+# Deleting Extracted tools pack and Artifacts directory
+rm -rf ballerina-tools-*
+rm -rf Artifacts
