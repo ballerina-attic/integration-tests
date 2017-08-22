@@ -23,6 +23,7 @@
     <test name="jdbc_transactions_mysql" preserve-order="true" parallel="false">
         <classes>
             <class name="org.ballerinalang.tests.connectors.rdbms.operations.insert.DBInsertionTests"/>
+            <class name="org.ballerinalang.tests.connectors.rdbms.operations.insert.DBBatchInsertionTests"/>
         </classes>
     </test>
 </suite>
