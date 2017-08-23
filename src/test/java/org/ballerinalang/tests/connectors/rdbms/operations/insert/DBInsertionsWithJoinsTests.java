@@ -22,17 +22,17 @@ import java.util.ArrayList;
 
 import static org.testng.Assert.assertEquals;
 
-public class DBInsertionsWithJoins {
+public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
 
     private static final Log log = LogFactory.getLog(RDBMSTransactions.class);
     HttpClient client = new HttpClient();
     Connection conn = null;
     Statement stmt = null;
     Statement stmt2 = null;
-    String dbURL = "localhost:3306/baldb";
-    String ballerinaURL = "http://localhost:9090";
+    //String dbURL = "localhost:3306/baldb";
+    //String ballerinaURL = "http://localhost:9090";
 
-    DBInsertionsWithJoins() {
+    DBInsertionsWithJoinsTests() {
         client = new HttpClient();
         client.getHttpConnectionManager().getParams().setConnectionTimeout(5000);
         client.getHttpConnectionManager().getParams().setSoTimeout(8000);

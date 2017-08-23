@@ -24,7 +24,7 @@ deployments:
         tomcat : tomcat-rest-be
   -
     name: mysql_connector
-    enable: false
+    enable: true
     deployscripts: deploy.sh
     repository: N/A
     suite: pattern2

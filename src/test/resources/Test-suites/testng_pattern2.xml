@@ -24,6 +24,7 @@
         <classes>
             <class name="org.ballerinalang.tests.connectors.rdbms.operations.insert.DBInsertionTests"/>
             <class name="org.ballerinalang.tests.connectors.rdbms.operations.insert.DBBatchInsertionTests"/>
+            <class name="org.ballerinalang.tests.connectors.rdbms.operations.insert.DBInsertionsWithJoinsTests"/>
         </classes>
     </test>
 </suite>
