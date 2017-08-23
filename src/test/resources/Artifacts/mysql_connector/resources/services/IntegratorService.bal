@@ -276,4 +276,46 @@ service <http> IntegratorService {
 
         reply response;
     }
+
+    @http:resourceConfig {
+        methods:["POST"],
+        path:"/insert/rightjoin"
+    }
+    resource insertWithRightJoinResource (message m) {
+        message response = {};
+        errors:Error err;
+        string responsePayload;
+
+        var resultCount, err = insertRecordsWithRightJoin();
+        if (err == null){
+              responsePayload = <string>resultCount;
+              messages:setStringPayload(response, responsePayload);
+        }
+        else{
+              messages:setStringPayload(response, err.msg);
+        }
+
+        reply response;
+    }
+
+    @http:resourceConfig {
+        methods:["POST"],
+        path:"/insert/withoutcol"
+    }
+    resource insertWithoutColResource (message m) {
+        message response = {};
+        errors:Error err;
+        json payload = messages:getJsonPayload(m);
+        var resultCount, err = insertWithoutCol(payload);
+        if (err == null){
+              string responsePayload;
+              responsePayload = <string>resultCount;
+              messages:setStringPayload(response, responsePayload);
+        }
+        else{
+              messages:setStringPayload(response, err.msg);
+        }
+
+        reply response;
+    }
 }
