@@ -1,4 +1,4 @@
-package org.ballerina.tests.connectors.rdbms.operations.insert;
+package org.ballerinalang.tests.connectors.rdbms.operations.insert;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
@@ -6,8 +6,8 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ballerina.tests.TestConstants;
-import org.ballerina.tests.base.BallerinaBaseTest;
+import org.ballerinalang.tests.TestConstants;
+import org.ballerinalang.tests.base.BallerinaBaseTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
