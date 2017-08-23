@@ -64,6 +64,9 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
                 "values (102, 'SlonneC', 'Kelly', 2, 'active')";
         String insertToDeptMgr1 = "insert into deptmanagers (deptid, personid, bandid) values (1, 100, 7)";
         String insertToDeptMgr2 = "insert into deptmanagers (deptid, personid, bandid) values (2, 102, 7)";
+        String insertToDeptMgr3 = "insert into deptmanagers (deptid, personid, bandid) values (3, 105, 7)";
+        String insertToDeptMgr4 = "insert into deptmanagers (deptid, personid, bandid) values (4, 108, 7)";
+
 
         try {
             conn = DriverManager.getConnection(
@@ -82,6 +85,8 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
             stmt.executeUpdate(insertToEmployees3);
             stmt.executeUpdate(insertToDeptMgr1);
             stmt.executeUpdate(insertToDeptMgr2);
+            stmt.executeUpdate(insertToDeptMgr3);
+            stmt.executeUpdate(insertToDeptMgr4);
 
         } catch (SQLException ex) {
             log.error("SQLException: " + ex.getMessage());
@@ -139,7 +144,7 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
         }
     }
 
-    @Test(description = "This tests insert through select that uses an left join")
+    @Test(description = "This tests insert through select that uses a left join")
     public void insertWithLeftJoin() throws SQLException {
         String serviceURL = ballerinaURL + "/sql/insert/leftjoin";
         int i = 0;
@@ -186,6 +191,61 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
             //temp[2]
             assertEquals(lastnames.get(2), "SlonneC");
             assertEquals(firstnames.get(2), "Kelly");
+        } catch (IOException e) {
+            log.error("Error while calling the BE server : " + e.getMessage(), e);
+        }
+    }
+
+    @Test(description = "This tests insert through select that uses a right join")
+    public void insertWithRightJoin() throws SQLException {
+        String serviceURL = ballerinaURL + "/sql/insert/rightjoin";
+        int i = 0;
+        int noOfRows = 0;
+        ArrayList<String> lastnames = new ArrayList<String>();
+        ArrayList<String> firstnames = new ArrayList<String>();
+        String payload = "";
+        try {
+            //Reading response and status code from response
+            StringRequestEntity requestEntity = new StringRequestEntity(payload, "application/json", "UTF-8");
+            PostMethod post = new PostMethod(serviceURL);
+            post.setRequestEntity(requestEntity);
+            int statuscode = client.executeMethod(post);
+            String response = post.getResponseBodyAsString();
+
+            //Querying the database to obtain values
+            String query1 = "select count(*) as total from temp";
+            String query2 = "select * from temp";
+            ResultSet result1 = stmt.executeQuery(query1);
+            while (result1.next()) {
+                noOfRows = result1.getInt("total");
+            }
+            ResultSet result2 = stmt.executeQuery(query2);
+            while (result2.next()) {
+                lastnames.add(i, result2.getString("lastname"));
+                firstnames.add(i, result2.getString("firstname"));
+                i = i + 1;
+            }
+            String expectedValue = String.valueOf(noOfRows);
+            String endQuery = "delete from temp";
+            stmt.executeUpdate(endQuery);
+
+            // Asserting the Status code. Expected 200 OK
+            assertEquals(statuscode, HttpStatus.SC_OK);
+            // Asserting the Response Message.
+            assertEquals(response, expectedValue);
+            //Asserting values from database
+            //temp[0]
+            assertEquals(lastnames.get(0), "SlonneA");
+            assertEquals(firstnames.get(0), "Emma");
+            //temp[1]
+            assertEquals(lastnames.get(1), "SlonneC");
+            assertEquals(firstnames.get(1), "Kelly");
+            //temp[2]
+            assertEquals(lastnames.get(2), null);
+            assertEquals(firstnames.get(2), null);
+            //temp[3]
+            assertEquals(lastnames.get(3), null);
+            assertEquals(firstnames.get(3), null);
         } catch (IOException e) {
             log.error("Error while calling the BE server : " + e.getMessage(), e);
         }
