@@ -26,7 +26,7 @@ echo "Creating the MySQL RC and Service!"
 kubectl create -f $script_path/mysql_service.yaml
 kubectl create -f $script_path/mysql_rc.yaml
 
-sleep 10
+sleep 30
 
 echo "Creating the ballerina server RC and Service!"
 kubectl create -f $script_path/ballerina_server_service.yaml
@@ -52,7 +52,7 @@ sleep 10
 for number in {1..100}
 do
 echo $(date)" Waiting for server startup!"
- if [ "$server_response" == "$(curl --silent --get --fail --connect-timeout 5 --max-time 10 http://${host}:${ballerina_port}/hello)" ]
+ if [ "$server_response" == "$(curl --silent --get --fail --connect-timeout 5 --max-time 10 http://${host}:${ballerina_port}/ping)" ]
  then
   break
  fi

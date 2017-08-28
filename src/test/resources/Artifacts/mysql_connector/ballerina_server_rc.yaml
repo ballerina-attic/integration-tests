@@ -46,23 +46,20 @@ spec:
           name : ballerina_test_repo_name
           value : "integration-tests"
         -
-          name : JAVA_HOME
-          value : "/opt/java/jdk1.8.0_121"
-        -
           name: MYSQL_HOSTNAME
-          value: mysql-db
+          value: "mysql-db"
         -
           name: MYSQL_DATABASE
-          value: BAL_DB
+          value: "BAL_DB"
         -
           name: MYSQL_USER
-          value: ballerina
+          value: "ballerina"
         -
           name: MYSQL_PASSWORD
-          value: ballerina
+          value: "ballerina"
         -
           name: MYSQL_PORT
-          value: 3306
+          value: "3306"
 
         ports:
         -
