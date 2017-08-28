@@ -121,8 +121,8 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from people";
-            String query2 = "select * from people";
+            String query1 = "select count(*) as total from People";
+            String query2 = "select * from People";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -137,7 +137,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery1 = "delete from people";
+            String endQuery1 = "delete from People";
             stmt.executeUpdate(endQuery1);
 
             // Asserting the Status code. Expected 200 OK
@@ -227,8 +227,8 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from people";
-            String query2 = "select * from people";
+            String query1 = "select count(*) as total from People";
+            String query2 = "select * from People";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -243,7 +243,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery1 = "delete from people";
+            String endQuery1 = "delete from People";
             stmt.executeUpdate(endQuery1);
 
             // Asserting the Status code. Expected 200 OK
@@ -327,8 +327,8 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from people";
-            String query2 = "select * from people";
+            String query1 = "select count(*) as total from People";
+            String query2 = "select * from People";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -343,7 +343,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery1 = "delete from people";
+            String endQuery1 = "delete from People";
             stmt.executeUpdate(endQuery1);
 
             // Asserting the Status code. Expected 200 OK
@@ -433,8 +433,8 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from people";
-            String query2 = "select * from people";
+            String query1 = "select count(*) as total from People";
+            String query2 = "select * from People";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -449,7 +449,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery1 = "delete from people";
+            String endQuery1 = "delete from People";
             stmt.executeUpdate(endQuery1);
 
             // Asserting the Status code. Expected 200 OK
@@ -539,8 +539,8 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from people";
-            String query2 = "select * from people";
+            String query1 = "select count(*) as total from People";
+            String query2 = "select * from People";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -555,7 +555,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery1 = "delete from people";
+            String endQuery1 = "delete from People";
             stmt.executeUpdate(endQuery1);
 
             // Asserting the Status code. Expected 200 OK
@@ -645,8 +645,8 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from people";
-            String query2 = "select * from people";
+            String query1 = "select count(*) as total from People";
+            String query2 = "select * from People";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -661,7 +661,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery1 = "delete from people";
+            String endQuery1 = "delete from People";
             stmt.executeUpdate(endQuery1);
 
             // Asserting the Status code. Expected 200 OK
@@ -751,8 +751,8 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from people";
-            String query2 = "select * from people";
+            String query1 = "select count(*) as total from People";
+            String query2 = "select * from People";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -767,7 +767,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery1 = "delete from people";
+            String endQuery1 = "delete from People";
             stmt.executeUpdate(endQuery1);
 
             // Asserting the Status code. Expected 200 OK
@@ -857,8 +857,8 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from people";
-            String query2 = "select * from people";
+            String query1 = "select count(*) as total from People";
+            String query2 = "select * from People";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -873,7 +873,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery1 = "delete from people";
+            String endQuery1 = "delete from People";
             stmt.executeUpdate(endQuery1);
 
             // Asserting the Status code. Expected 200 OK
@@ -963,8 +963,8 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from people";
-            String query2 = "select * from people";
+            String query1 = "select count(*) as total from People";
+            String query2 = "select * from People";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -979,7 +979,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery1 = "delete from people";
+            String endQuery1 = "delete from People";
             stmt.executeUpdate(endQuery1);
 
             // Asserting the Status code. Expected 200 OK
@@ -1163,8 +1163,8 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from people";
-            String query2 = "select * from people";
+            String query1 = "select count(*) as total from People";
+            String query2 = "select * from People";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -1179,7 +1179,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery1 = "delete from people";
+            String endQuery1 = "delete from People";
             stmt.executeUpdate(endQuery1);
 
             // Asserting the Status code. Expected 200 OK
@@ -1262,8 +1262,8 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from people";
-            String query2 = "select * from people";
+            String query1 = "select count(*) as total from People";
+            String query2 = "select * from People";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -1278,7 +1278,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery1 = "delete from people";
+            String endQuery1 = "delete from People";
             stmt.executeUpdate(endQuery1);
 
             // Asserting the Status code. Expected 200 OK
@@ -1367,8 +1367,8 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from people";
-            String query2 = "select * from people";
+            String query1 = "select count(*) as total from People";
+            String query2 = "select * from People";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -1383,7 +1383,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery1 = "delete from people";
+            String endQuery1 = "delete from People";
             stmt.executeUpdate(endQuery1);
 
             // Asserting the Status code. Expected 200 OK
@@ -1472,8 +1472,8 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from people";
-            String query2 = "select * from people";
+            String query1 = "select count(*) as total from People";
+            String query2 = "select * from People";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -1488,7 +1488,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery1 = "delete from people";
+            String endQuery1 = "delete from People";
             stmt.executeUpdate(endQuery1);
 
             // Asserting the Status code. Expected 200 OK
@@ -1528,9 +1528,9 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @AfterClass(alwaysRun = true)
     public void afterTest() {
-        String dropPeople = "drop table people";
-        String dropEmployees = "drop table employees";
-        String dropDepartments = "drop table departments";
+        String dropPeople = "drop table People";
+        String dropEmployees = "drop table EmployeesSL";
+        String dropDepartments = "drop table Departments";
         try {
             stmt.executeUpdate(dropPeople);
             stmt.executeUpdate(dropEmployees);

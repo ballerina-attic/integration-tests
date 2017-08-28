@@ -103,14 +103,14 @@ public class DBInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query = "select personid from persons";
+            String query = "select personid from Persons";
             ResultSet result = stmt.executeQuery(query);
             while (result.next()) {
                 keys.add(i, String.valueOf(result.getInt("PersonID")));
                 i = i + 1;
             }
             String expectedValue = keys.get(0) + keys.get(1) + "insertedRowCount:2";
-            String endQuery = "delete from persons";
+            String endQuery = "delete from Persons";
             stmt.executeUpdate(endQuery);
 
             // Asserting the Status code. Expected 200 OK
@@ -155,14 +155,14 @@ public class DBInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query = "select id from employees";
+            String query = "select id from Employees";
             ResultSet result = stmt.executeQuery(query);
             while (result.next()) {
                 keys.add(i, String.valueOf(result.getInt("ID")));
                 i = i + 1;
             }
             String expectedValue = keys.get(0) + keys.get(1) + "insertedRowCount:2";
-            String endQuery = "delete from employees";
+            String endQuery = "delete from Employees";
             stmt.executeUpdate(endQuery);
 
             // Asserting the Status code. Expected 200 OK
@@ -340,7 +340,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query = "select id from employees";
+            String query = "select id from Employees";
             ResultSet result = stmt.executeQuery(query);
             while (result.next()) {
                 keys.add(i, String.valueOf(result.getInt("ID")));
@@ -348,7 +348,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             }
             String expectedValue = keys.get(0) + keys.get(1)
                     + keys.get(2) + "insertedRowCount:3";
-            String endQuery = "delete from employees";
+            String endQuery = "delete from Employees";
             stmt.executeUpdate(endQuery);
 
             // Asserting the Status code. Expected 200 OK
@@ -431,7 +431,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query = "select id from employees";
+            String query = "select id from Employees";
             ResultSet result = stmt.executeQuery(query);
             while (result.next()) {
                 keys.add(i, String.valueOf(result.getInt("ID")));
@@ -439,7 +439,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             }
             String expectedValue = keys.get(0) + keys.get(1)
                     + "insertedRowCount:2";
-            String endQuery = "delete from employees";
+            String endQuery = "delete from Employees";
             stmt.executeUpdate(endQuery);
 
             // Asserting the Status code. Expected 200 OK
@@ -521,7 +521,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query = "select id from employees";
+            String query = "select id from Employees";
             ResultSet result = stmt.executeQuery(query);
             while (result.next()) {
                 keys.add(i, String.valueOf(result.getInt("ID")));
@@ -529,7 +529,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             }
             String expectedValue = keys.get(0) + keys.get(1)
                     + "insertedRowCount:2";
-            String endQuery = "delete from employees";
+            String endQuery = "delete from Employees";
             stmt.executeUpdate(endQuery);
 
             // Asserting the Status code. Expected 200 OK
@@ -663,9 +663,9 @@ public class DBInsertionTests extends BallerinaBaseTest {
 
     @AfterClass(alwaysRun = true)
     public void afterTest() {
-        String dropOrders = "drop table orders";
-        String dropPersons = "drop table persons";
-        String dropEmployees = "drop table employees";
+        String dropOrders = "drop table Orders";
+        String dropPersons = "drop table Persons";
+        String dropEmployees = "drop table Employees";
         String dropSamplePersons = "drop table Samplepersons";
 
         try {
