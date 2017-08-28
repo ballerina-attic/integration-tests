@@ -24,14 +24,12 @@ import static org.testng.Assert.assertEquals;
 
 public class DBBatchInsertionTests extends BallerinaBaseTest {
 
-    private static final Log log = LogFactory.getLog(RDBMSTransactions.class);
+    private static final Log log = LogFactory.getLog(DBBatchInsertionTests.class);
     HttpClient client = new HttpClient();
     Connection conn = null;
     Statement stmt = null;
     Statement stmt2 = null;
-    //String dbURL = "localhost:3306/baldb";
-    //String ballerinaURL = "http://localhost:9090";
-
+    
     DBBatchInsertionTests() {
         client = new HttpClient();
         client.getHttpConnectionManager().getParams().setConnectionTimeout(5000);
@@ -49,7 +47,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
                 + "     FOREIGN KEY (DeptID) REFERENCES Departments(DeptID)\n" + ");";
         String createDepartments = "CREATE TABLE IF NOT EXISTS Departments (\n" + "    DeptID int NOT NULL,\n"
                 + "    Name varchar(155) NOT NULL,\n" + "    PRIMARY KEY (DeptID)\n" + ");";
-        String insertToDepartments = "insert into departments (deptid, name) values (1, 'Finance')";
+        String insertToDepartments = "insert into Departments (deptid, name) values (1, 'Finance')";
 
         try {
             conn = DriverManager.getConnection(
