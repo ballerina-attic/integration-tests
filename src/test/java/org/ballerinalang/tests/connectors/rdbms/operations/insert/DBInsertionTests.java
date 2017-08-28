@@ -1,4 +1,4 @@
-package org.ballerina.tests.connectors.rdbms.operations.insert;
+package org.ballerinalang.tests.connectors.rdbms.operations.insert;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
@@ -6,8 +6,8 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.ballerina.tests.TestConstants;
-import org.ballerina.tests.base.BallerinaBaseTest;
+import org.ballerinalang.tests.TestConstants;
+import org.ballerinalang.tests.base.BallerinaBaseTest;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -24,13 +24,12 @@ import static org.testng.Assert.assertEquals;
 
 public class DBInsertionTests extends BallerinaBaseTest {
 
-    private static final Log log = LogFactory.getLog(RDBMSTransactions.class);
+    private static final Log log = LogFactory.getLog(DBInsertionTests.class);
     HttpClient client = new HttpClient();
     Connection conn = null;
     Statement stmt = null;
     Statement stmt2 = null;
-    //String dbURL = "localhost:3306/baldb";
-    //private String ballerinaURL = "http://localhost:9090";
+
     DBInsertionTests() {
         client = new HttpClient();
         client.getHttpConnectionManager().getParams().setConnectionTimeout(5000);
@@ -49,6 +48,11 @@ public class DBInsertionTests extends BallerinaBaseTest {
         String createOrders = "CREATE TABLE IF NOT EXISTS Orders (\n" + "    OrderID int NOT NULL,\n"
                 + "    OrderNumber int NOT NULL,\n" + "    PersonID int,\n"
                 + "    PRIMARY KEY (OrderID),\n" + "    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)\n" + ");";
+        String createSampleTable = "CREATE TABLE IF NOT EXISTS Samplepersons (\n" + "    PersonID int NOT NULL,\n"
+                + "    LastName varchar(255),\n" + "    FirstName varchar(255),\n"
+                + "    Age int,\n"
+                + "    Status varchar(10),\n"
+                + "    PRIMARY KEY (PersonID)\n" + ");";
 
         try {
             conn = DriverManager.getConnection(
@@ -59,6 +63,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             stmt.executeUpdate(createPersons);
             stmt.executeUpdate(createEmployees);
             stmt.executeUpdate(createOrders);
+            stmt.executeUpdate(createSampleTable);
 
         } catch (SQLException ex) {
             log.error("SQLException: " + ex.getMessage());
@@ -96,14 +101,14 @@ public class DBInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query = "select personid from persons";
+            String query = "select personid from Persons";
             ResultSet result = stmt.executeQuery(query);
             while (result.next()) {
                 keys.add(i, String.valueOf(result.getInt("PersonID")));
                 i = i + 1;
             }
             String expectedValue = keys.get(0) + keys.get(1) + "insertedRowCount:2";
-            String endQuery = "delete from persons";
+            String endQuery = "delete from Persons";
             stmt.executeUpdate(endQuery);
 
             // Asserting the Status code. Expected 200 OK
@@ -148,14 +153,14 @@ public class DBInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query = "select id from employees";
+            String query = "select id from Employees";
             ResultSet result = stmt.executeQuery(query);
             while (result.next()) {
                 keys.add(i, String.valueOf(result.getInt("ID")));
                 i = i + 1;
             }
             String expectedValue = keys.get(0) + keys.get(1) + "insertedRowCount:2";
-            String endQuery = "delete from employees";
+            String endQuery = "delete from Employees";
             stmt.executeUpdate(endQuery);
 
             // Asserting the Status code. Expected 200 OK
@@ -333,7 +338,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query = "select id from employees";
+            String query = "select id from Employees";
             ResultSet result = stmt.executeQuery(query);
             while (result.next()) {
                 keys.add(i, String.valueOf(result.getInt("ID")));
@@ -341,7 +346,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             }
             String expectedValue = keys.get(0) + keys.get(1)
                     + keys.get(2) + "insertedRowCount:3";
-            String endQuery = "delete from employees";
+            String endQuery = "delete from Employees";
             stmt.executeUpdate(endQuery);
 
             // Asserting the Status code. Expected 200 OK
@@ -424,7 +429,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query = "select id from employees";
+            String query = "select id from Employees";
             ResultSet result = stmt.executeQuery(query);
             while (result.next()) {
                 keys.add(i, String.valueOf(result.getInt("ID")));
@@ -432,7 +437,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             }
             String expectedValue = keys.get(0) + keys.get(1)
                     + "insertedRowCount:2";
-            String endQuery = "delete from employees";
+            String endQuery = "delete from Employees";
             stmt.executeUpdate(endQuery);
 
             // Asserting the Status code. Expected 200 OK
@@ -514,7 +519,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query = "select id from employees";
+            String query = "select id from Employees";
             ResultSet result = stmt.executeQuery(query);
             while (result.next()) {
                 keys.add(i, String.valueOf(result.getInt("ID")));
@@ -522,7 +527,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             }
             String expectedValue = keys.get(0) + keys.get(1)
                     + "insertedRowCount:2";
-            String endQuery = "delete from employees";
+            String endQuery = "delete from Employees";
             stmt.executeUpdate(endQuery);
 
             // Asserting the Status code. Expected 200 OK
@@ -574,15 +579,98 @@ public class DBInsertionTests extends BallerinaBaseTest {
         }
     }
 
+    @Test
+    public void insertWithoutCol() throws SQLException {
+        String serviceURL = ballerinaURL + "/sql/insert/withoutcol";
+        int i = 0;
+        int noOfRows = 0;
+        ArrayList<String> ids = new ArrayList<String>();
+        ArrayList<String> lastnames = new ArrayList<String>();
+        ArrayList<String> firstnames = new ArrayList<String>();
+        ArrayList<String> ages = new ArrayList<String>();
+        ArrayList<String> status = new ArrayList<String>();
+        String payload = "{  \n" +
+                "   \"persons\":[  \n" +
+                "      {  \n" +
+                "    \t \"id\":1,\n" +
+                "         \"lastname\":\"EmmaD\",\n" +
+                "         \"firstname\":\"SloaneD\",\n" +
+                "         \"age\":25,\n" +
+                "\t \"status\":\"active\"\t\n" +
+                "      },\n" +
+                "      {\n" +
+                "        \"id\":2,\n" +
+                "    \t\"lastname\":\"HarryA\",\n" +
+                "         \"firstname\":\"SloaneB\",\n" +
+                "         \"age\":15,\n" +
+                "         \"status\":\"active\"\n" +
+                "      }\n" +
+                "   ]\n" +
+                "}";
+        try {
+            //Reading response and status code from response
+            StringRequestEntity requestEntity = new StringRequestEntity(payload, "application/json", "UTF-8");
+            PostMethod post = new PostMethod(serviceURL);
+            post.setRequestEntity(requestEntity);
+            int statuscode = client.executeMethod(post);
+            String response = post.getResponseBodyAsString();
+
+            //Querying the database to obtain values
+            String query1 = "select count(*) as total from Samplepersons";
+            String query2 = "select * from Samplepersons";
+            ResultSet result1 = stmt.executeQuery(query1);
+            while (result1.next()) {
+                noOfRows = result1.getInt("total");
+            }
+            ResultSet result2 = stmt.executeQuery(query2);
+            while (result2.next()) {
+                ids.add(i, result2.getString("PersonID"));
+                lastnames.add(i, result2.getString("lastname"));
+                firstnames.add(i, result2.getString("firstname"));
+                ages.add(i, result2.getString("Age"));
+                status.add(i, result2.getString("Status"));
+                i = i + 1;
+            }
+            String expectedValue = String.valueOf(noOfRows);
+            String endQuery = "delete from Samplepersons";
+            stmt.executeUpdate(endQuery);
+
+            // Asserting the Status code. Expected 200 OK
+            assertEquals(statuscode, HttpStatus.SC_OK);
+            // Asserting the Response Message.
+            assertEquals(response, expectedValue);
+            //Asserting values from database
+            //temp[0]
+            assertEquals(ids.get(0), "1");
+            assertEquals(lastnames.get(0), "EmmaD");
+            assertEquals(firstnames.get(0), "SloaneD");
+            assertEquals(ages.get(0), "25");
+            assertEquals(status.get(0), "active");
+            //temp[1]
+            assertEquals(ids.get(1), "2");
+            assertEquals(lastnames.get(1), "HarryA");
+            assertEquals(firstnames.get(1), "SloaneB");
+            assertEquals(ages.get(1), "15");
+            assertEquals(status.get(1), "active");
+
+
+        } catch (IOException e) {
+            log.error("Error while calling the BE server : " + e.getMessage(), e);
+        }
+    }
+
     @AfterClass(alwaysRun = true)
     public void afterTest() {
-        String dropOrders = "drop table orders";
-        String dropPersons = "drop table persons";
-        String dropEmployees = "drop table employees";
+        String dropOrders = "drop table Orders";
+        String dropPersons = "drop table Persons";
+        String dropEmployees = "drop table Employees";
+        String dropSamplePersons = "drop table Samplepersons";
+
         try {
             stmt.executeUpdate(dropOrders);
             stmt.executeUpdate(dropPersons);
             stmt.executeUpdate(dropEmployees);
+            stmt.executeUpdate(dropSamplePersons);
         } catch (SQLException e) {
             log.error("SQLException: " + e.getMessage());
             log.error("SQLState: " + e.getSQLState());
