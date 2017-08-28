@@ -54,18 +54,18 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
                 + "    ID int NOT NULL AUTO_INCREMENT PRIMARY KEY,\n"
                 + "    LastName varchar(255),\n"
                 + "    FirstName varchar(255)\n" + ");";
-        String insertToDepartments1 = "insert into departments (deptid, name) values (1, 'Finance')";
-        String insertToDepartments2 = "insert into departments (deptid, name) values (2, 'Marketing')";
-        String insertToEmployees1 = "insert into employeessl (personid, lastname, firstname, deptid, status) " +
+        String insertToDepartments1 = "insert into Departments (deptid, name) values (1, 'Finance')";
+        String insertToDepartments2 = "insert into Departments (deptid, name) values (2, 'Marketing')";
+        String insertToEmployees1 = "insert into EmployeesSL (personid, lastname, firstname, deptid, status) " +
                 "values (100, 'SlonneA', 'Emma', 1, 'active')";
-        String insertToEmployees2 = "insert into employeessl (personid, lastname, firstname, deptid, status) " +
+        String insertToEmployees2 = "insert into EmployeesSL (personid, lastname, firstname, deptid, status) " +
                 "values (101, 'SlonneB', 'Henry', 1, 'active');";
-        String insertToEmployees3 = "insert into employeessl (personid, lastname, firstname, deptid, status) " +
+        String insertToEmployees3 = "insert into EmployeesSL (personid, lastname, firstname, deptid, status) " +
                 "values (102, 'SlonneC', 'Kelly', 2, 'active')";
-        String insertToDeptMgr1 = "insert into deptmanagers (deptid, personid, bandid) values (1, 100, 7)";
-        String insertToDeptMgr2 = "insert into deptmanagers (deptid, personid, bandid) values (2, 102, 7)";
-        String insertToDeptMgr3 = "insert into deptmanagers (deptid, personid, bandid) values (3, 105, 7)";
-        String insertToDeptMgr4 = "insert into deptmanagers (deptid, personid, bandid) values (4, 108, 7)";
+        String insertToDeptMgr1 = "insert into DeptManagers (deptid, personid, bandid) values (1, 100, 7)";
+        String insertToDeptMgr2 = "insert into DeptManagers (deptid, personid, bandid) values (2, 102, 7)";
+        String insertToDeptMgr3 = "insert into DeptManagers (deptid, personid, bandid) values (3, 105, 7)";
+        String insertToDeptMgr4 = "insert into DeptManagers (deptid, personid, bandid) values (4, 108, 7)";
 
 
         try {
@@ -112,8 +112,8 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from temp";
-            String query2 = "select * from temp";
+            String query1 = "select count(*) as total from Temp";
+            String query2 = "select * from Temp";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -125,7 +125,7 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery = "delete from temp";
+            String endQuery = "delete from Temp";
             stmt.executeUpdate(endQuery);
 
             // Asserting the Status code. Expected 200 OK
@@ -161,8 +161,8 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from temp";
-            String query2 = "select * from temp";
+            String query1 = "select count(*) as total from Temp";
+            String query2 = "select * from Temp";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -174,7 +174,7 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery = "delete from temp";
+            String endQuery = "delete from Temp";
             stmt.executeUpdate(endQuery);
 
             // Asserting the Status code. Expected 200 OK
@@ -213,8 +213,8 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query1 = "select count(*) as total from temp";
-            String query2 = "select * from temp";
+            String query1 = "select count(*) as total from Temp";
+            String query2 = "select * from Temp";
             ResultSet result1 = stmt.executeQuery(query1);
             while (result1.next()) {
                 noOfRows = result1.getInt("total");
@@ -226,7 +226,7 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
                 i = i + 1;
             }
             String expectedValue = String.valueOf(noOfRows);
-            String endQuery = "delete from temp";
+            String endQuery = "delete from Temp";
             stmt.executeUpdate(endQuery);
 
             // Asserting the Status code. Expected 200 OK
@@ -254,7 +254,7 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
     @AfterClass(alwaysRun = true)
     public void afterTest() {
         String dropEmployees = "drop table EmployeesSL";
-        String dropDepartments = "drop table departments";
+        String dropDepartments = "drop table Departments";
         String dropDeptManagers = "drop table DeptManagers";
         String dropTemp = "drop table Temp";
         try {
