@@ -24,7 +24,7 @@ import static org.testng.Assert.assertEquals;
 
 public class DBInsertionTests extends BallerinaBaseTest {
 
-    private static final Log log = LogFactory.getLog(RDBMSTransactions.class);
+    private static final Log log = LogFactory.getLog(DBInsertionTests.class);
     HttpClient client = new HttpClient();
     Connection conn = null;
     Statement stmt = null;
