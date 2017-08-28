@@ -49,17 +49,20 @@ spec:
           name : JAVA_HOME
           value : "/opt/java/jdk1.8.0_121"
         -
-          name: JDBC_URL
-          value: jdbc:mysql://mysql-db:3306/BAL_DB
+          name: MYSQL_HOSTNAME
+          value: mysql-db
         -
           name: MYSQL_DATABASE
           value: BAL_DB
         -
-          name: MYSQL_USERNAME
+          name: MYSQL_USER
           value: ballerina
         -
           name: MYSQL_PASSWORD
           value: ballerina
+        -
+          name: MYSQL_PORT
+          value: 3306
 
         ports:
         -
