@@ -24,13 +24,11 @@ import static org.testng.Assert.assertEquals;
 
 public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
 
-    private static final Log log = LogFactory.getLog(RDBMSTransactions.class);
+    private static final Log log = LogFactory.getLog(DBInsertionsWithJoinsTests.class);
     HttpClient client = new HttpClient();
     Connection conn = null;
     Statement stmt = null;
     Statement stmt2 = null;
-    //String dbURL = "localhost:3306/baldb";
-    //String ballerinaURL = "http://localhost:9090";
 
     DBInsertionsWithJoinsTests() {
         client = new HttpClient();
