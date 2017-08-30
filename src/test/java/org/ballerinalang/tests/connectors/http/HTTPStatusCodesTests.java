@@ -113,8 +113,9 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     /**
      * Test Pass through Scenario for a HEAD request, that receives HTTP 2XX Status code
      * Client (HEAD) --> Ballerina --> BE | BE (HTTP 200 OK) --> Ballerina --> Client
+     * Disabled due to a bug
      */
-    @Test(dataProvider = "2xxStatusCodes", enabled = true) public void headHTTP2XX(String code) throws IOException {
+    @Test(dataProvider = "2xxStatusCodes", enabled = false) public void headHTTP2XX(String code) throws IOException {
 
         //http://localhost:9090/statuscode/code/201?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/" + code;
@@ -147,8 +148,9 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     /**
      * Test Pass through Scenario for a HEAD request, that receives HTTP 204 Status code
      * Client (HEAD) --> Ballerina --> BE | BE (HTTP 204) --> Ballerina --> Client
+     * disabled due to a bug
      */
-    @Test(enabled = true) public void headHTTP204() throws IOException {
+    @Test(enabled = false) public void headHTTP204() throws IOException {
 
         //http://localhost:9090/statuscode/code/202
         String serviceURL = ballerinaURL + "/statuscode/code/204";
@@ -166,8 +168,9 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * Test Pass through Scenario for a POST request, that receives HTTP 205 Status code without a message body
      * HTTP 205 doesn't allow to send a payload
      * Client (POST) --> Ballerina --> BE | BE (HTTP 205) --> Ballerina --> Client
+     * disabled due to a bug
      */
-    @Test public void postHTTP205() throws IOException {
+    @Test (enabled = false) public void postHTTP205() throws IOException {
 
         //http://localhost:9090/statuscode/code/205?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/205?withbody=false";
