@@ -16,12 +16,12 @@
 *  under the License.
 */
 
-package org.ballerina.tests;
+package org.ballerinalang.tests;
 
 /**
  * Test Level Constants.
  */
 public class TestConstants {
-    public static final String MYSQL_USERNAME = "baladmin";
-    public static final String MYSQL_PASSWORD = "baladmin";
+    public static final String MYSQL_USERNAME = "ballerina";
+    public static final String MYSQL_PASSWORD = "ballerina";
 }

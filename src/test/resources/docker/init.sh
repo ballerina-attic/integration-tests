@@ -16,8 +16,9 @@
 # Docker init script, this is the Entry Point of the Docker image
 
 cd /opt
+dependency_path='/opt/Artifacts/'${pattern}'/resources/bre/lib'
 # Check if the dependency folder exists, If exists copy the dependencies
-if [ -d '/opt/Artifacts/${pattern}/resources/bre/lib' ]; then
+if [ -d ${dependency_path} ]; then
   echo "Copying Ballerina Dependencies for Pattern : " ${pattern}
   cp -r /opt/Artifacts/${pattern}/resources/bre/lib/*.jar /opt/distribution/bre/lib
 fi

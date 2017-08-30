@@ -19,6 +19,10 @@ current_location=${WORKSPACE}
 echo "Current location is set to : " ${current_location}
 cd ${current_location}/src/test/resources/docker
 
+# Deleting any leftovers from the previous builds
+rm -rf ballerina-tools-*
+rm -rf Artifacts
+
 echo "Downloading the Ballerina Distribution!"
 source ${current_location}/src/test/resources/docker/get-latest-distribution.sh
 

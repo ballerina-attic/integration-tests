@@ -20,7 +20,7 @@
 <suite name="testerina_tests">
     <test name="ballerina-tests">
         <classes>
-            <class name="org.ballerina.tests.testerina.AmazonS3ConnectorTest"/>
+            <class name="org.ballerinalang.tests.testerina.AmazonS3ConnectorTest"/>
             <!--<class name="org.ballerina.tests.testerina.ETCDConnectorTest"/>-->
             <!--<class name="org.ballerina.tests.testerina.AmazonLanmdaTest"/>-->
             <!--<class name="org.ballerina.tests.testerina.FacebookConnectorTest"/>-->

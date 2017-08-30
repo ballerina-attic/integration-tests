@@ -15,12 +15,12 @@
 *  specific language governing permissions and limitations
 *  under the License.
 */
-package org.ballerina.tests.routing;
+package org.ballerinalang.tests.routing;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
-import org.ballerina.tests.base.BallerinaBaseTest;
+import org.ballerinalang.tests.base.BallerinaBaseTest;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;

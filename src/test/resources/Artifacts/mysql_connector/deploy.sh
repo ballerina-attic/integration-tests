@@ -26,7 +26,7 @@ echo "Creating the MySQL RC and Service!"
 kubectl create -f $script_path/mysql_service.yaml
 kubectl create -f $script_path/mysql_rc.yaml
 
-sleep 10
+sleep 30
 
 echo "Creating the ballerina server RC and Service!"
 kubectl create -f $script_path/ballerina_server_service.yaml
@@ -48,11 +48,11 @@ host=$(getKubeNodeIP "${kube_nodes[0]}")
 echo "Waiting Ballerina to launch on http://${host}:${ballerina_port}"
 sleep 10
 
-# The loop is used as a global timer. Current loop timer is 3*100 Sec.
-for number in {1..100}
+# The loop is used as a global timer. Current loop timer is 3*50 Sec.
+for number in {1..50}
 do
 echo $(date)" Waiting for server startup!"
- if [ "$server_response" == "$(curl --silent --get --fail --connect-timeout 5 --max-time 10 http://${host}:${ballerina_port}/hello)" ]
+ if [ "$server_response" == "$(curl --silent --get --fail --connect-timeout 5 --max-time 10 http://${host}:${ballerina_port}/ping)" ]
  then
   break
  fi

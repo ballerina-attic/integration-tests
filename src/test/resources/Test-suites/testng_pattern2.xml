@@ -20,9 +20,11 @@
 
 <suite name="mysql_connector">
     <parameter name="useDefaultListeners" value="false"/>
-    <test name="jdbc_transactions_mysql" preserve-order="true" parallel="false">
+    <test name="mysql_connector" preserve-order="true" parallel="false">
         <classes>
-            <class name="org.ballerina.tests.connectors.rdbms.operations.insert.DBInsertionTests"/>
+            <class name="org.ballerinalang.tests.connectors.rdbms.operations.insert.DBInsertionTests"/>
+            <class name="org.ballerinalang.tests.connectors.rdbms.operations.insert.DBBatchInsertionTests"/>
+            <class name="org.ballerinalang.tests.connectors.rdbms.operations.insert.DBInsertionsWithJoinsTests"/>
         </classes>
     </test>
 </suite>

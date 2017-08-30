@@ -16,7 +16,7 @@
 *  under the License.
 */
 
-package org.ballerina.tests.base;
+package org.ballerinalang.tests.base;
 
 import org.ballerinalang.integration.tests.core.utills.TesterinaTestUtils;
 import org.ballerinalang.testerina.core.entity.TesterinaContext;
