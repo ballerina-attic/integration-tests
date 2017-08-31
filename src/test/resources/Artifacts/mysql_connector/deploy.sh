@@ -46,7 +46,7 @@ kube_nodes=($(kubectl get nodes | awk '{if (NR!=1) print $1}'))
 host=$(getKubeNodeIP "${kube_nodes[0]}")
 
 echo "Waiting Ballerina to launch on http://${host}:${ballerina_port}"
-sleep 10
+sleep 30
 
 # The loop is used as a global timer. Current loop timer is 3*50 Sec.
 for number in {1..50}
