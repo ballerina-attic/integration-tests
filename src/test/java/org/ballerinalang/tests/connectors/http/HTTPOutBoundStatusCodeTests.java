@@ -366,7 +366,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(locationHeader);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound205ForGet() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/reset";
 
@@ -380,7 +380,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(contentLength, 0);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound205ForPost() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/reset";
 
@@ -394,7 +394,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(contentLength, 0);
     }
 
-    @Test
+    @Test (enabled = false)
     public void testOutbound205ForPut() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/reset";
 
@@ -408,7 +408,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(contentLength, 0);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound205ForDelete() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/reset";
 
@@ -422,7 +422,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(contentLength, 0);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound205ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/reset";
 
@@ -457,7 +457,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(locationHeader);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound301ForGet() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/301";
 
@@ -478,7 +478,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(locationHeader);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound302ForGet() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/302";
 
@@ -499,7 +499,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(locationHeader);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound303ForGet() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/303";
 
@@ -541,7 +541,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(locationHeader);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound307ForGet() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/307";
 
@@ -961,7 +961,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(locationHeader);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound301ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/301";
 
@@ -982,7 +982,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(locationHeader);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound302ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/302";
 
@@ -1003,7 +1003,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(locationHeader);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound303ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/303";
 
@@ -1045,7 +1045,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(locationHeader);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound307ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/307";
 
@@ -1066,7 +1066,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(locationHeader);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound400ForPost() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/order/ee1a9ec2-c8a5-4afe-8585-74df591f9990";
 
@@ -1081,7 +1081,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_BAD_REQUEST);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound400ForPut() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/order/ee1a9ec2-c8a5-4afe-8585-74df591f9990";
 
@@ -1096,7 +1096,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_BAD_REQUEST);
     }
 
-    @Test
+    @Test()
     public void testOutbound403ForGet() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/order/ee1a9ec2-c8a5-4afe-8585-74df591f9990";
 
@@ -1275,7 +1275,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(new String(response), "Resource Gone. Please try again");
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound410ForPost() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/order/123ab";
 
@@ -1293,7 +1293,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(new String(response), "Resource Gone. Please try again");
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound410ForPut() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/order/123ab";
 

@@ -155,7 +155,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query = "select id from Employees";
+            String query = "select ID from Employees";
             ResultSet result = stmt.executeQuery(query);
             while (result.next()) {
                 keys.add(i, String.valueOf(result.getInt("ID")));
@@ -340,7 +340,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
             String response = post.getResponseBodyAsString();
 
             //Querying the database to obtain values
-            String query = "select id from Employees";
+            String query = "select ID from Employees";
             ResultSet result = stmt.executeQuery(query);
             while (result.next()) {
                 keys.add(i, String.valueOf(result.getInt("ID")));
