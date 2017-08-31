@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-//import java.sql.ResultSet;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -101,7 +101,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests creation of a procedure through ballerina")
     public void createProcedure() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/create";
+        String serviceURL = ballerinaURL + "/sql/create";
         String resultFromDb = null;
         String payload = "CREATE PROCEDURE get_order_by_cust(\n" +
                 " IN cust_no INT,\n" +
@@ -165,7 +165,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
             int statuscode = client.executeMethod(post);
             String response = post.getResponseBodyAsString();
 
-           /* //Querying the database to check actual creation of procedure
+            //Querying the database to check actual creation of procedure
             String query = "show create procedure get_order_by_cust";
             boolean status = stmt.execute(query);
             if (status) {
@@ -178,7 +178,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
                 }
             } else {
                 resultFromDb = "Error in procedure check";
-            }*/
+            }
 
             // Asserting the Status code. Expected 200 OK
             assertEquals(statuscode, HttpStatus.SC_OK);
@@ -193,7 +193,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests return of all out parameters")
     public void invokeProcedureWithAllParams() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/callsucces/parameter?custNo=1";
+        String serviceURL = ballerinaURL + "/sql/callsucces/parameter?custNo=1";
 
         try {
             //Reading response and status code from response
@@ -212,7 +212,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests direction change of a in parameter to out")
     public void invokeProcWithDirInToOutParams() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/directionchange?custNo=1&status=intoout";
+        String serviceURL = ballerinaURL + "/sql/call/directionchange?custNo=1&status=intoout";
 
         try {
             //Reading response and status code from response
@@ -231,7 +231,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests direction change of an in parameter to inout")
     public void invokeProcWithDirInToInOutParams() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/directionchange?custNo=1&status=intoinout";
+        String serviceURL = ballerinaURL + "/sql/call/directionchange?custNo=1&status=intoinout";
 
         try {
             //Reading response and status code from response
@@ -250,7 +250,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests direction change of an out parameter to in")
     public void invokeProcWithDirOutToInParams() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/directionchange?custNo=1&status=outtoin";
+        String serviceURL = ballerinaURL + "/sql/call/directionchange?custNo=1&status=outtoin";
 
         try {
             //Reading response and status code from response
@@ -269,7 +269,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests direction change of an out parameter to inout")
     public void invokeProcWithDirOutToInOutParams() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/directionchange?custNo=1&status=outtoinout";
+        String serviceURL = ballerinaURL + "/sql/call/directionchange?custNo=1&status=outtoinout";
 
         try {
             //Reading response and status code from response
@@ -288,7 +288,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests direction change of an inout parameter to in")
     public void invokeProcWithDirInOutToInParams() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/directionchange?custNo=1&status=inouttoin";
+        String serviceURL = ballerinaURL + "/sql/call/directionchange?custNo=1&status=inouttoin";
 
         try {
             //Reading response and status code from response
@@ -307,7 +307,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests direction change of an inout parameter to out")
     public void invokeProcWithDirInOutToOutParams() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/directionchange?custNo=1&status=inouttoout";
+        String serviceURL = ballerinaURL + "/sql/call/directionchange?custNo=1&status=inouttoout";
 
         try {
             //Reading response and status code from response
@@ -326,7 +326,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests invoking the procedure with less params for in, where param is used in select")
     public void invokeProcWithLessParamsInSelect() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/lessparamter/in?custNo=1&status=select";
+        String serviceURL = ballerinaURL + "/sql/call/lessparamter/in?custNo=1&status=select";
 
         try {
             //Reading response and status code from response
@@ -345,7 +345,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests invoking the procedure with less params for in, where param is used in operation")
     public void invokeProcWithLessParamsInOperation() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/lessparamter/in?custNo=1&status=op";
+        String serviceURL = ballerinaURL + "/sql/call/lessparamter/in?custNo=1&status=op";
 
         try {
             //Reading response and status code from response
@@ -364,7 +364,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests invoking the procedure with less params for out")
     public void invokeProcWithLessParamsOut() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/lessparamter/out";
+        String serviceURL = ballerinaURL + "/sql/call/lessparamter/out";
 
         try {
             //Reading response and status code from response
@@ -383,7 +383,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests invoking the procedure with less params for inout")
     public void invokeProcWithLessParamsInOut() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/lessparamter/inout";
+        String serviceURL = ballerinaURL + "/sql/call/lessparamter/inout";
 
         try {
             //Reading response and status code from response
@@ -402,7 +402,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests invoking the procedure with mismatching data type for in, with value not changed")
     public void invokeProcWithMismatchTypeForInOne() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=invaluenotchanged";
+        String serviceURL = ballerinaURL + "/sql/call/mismatchdatatype?custNo=1&status=invaluenotchanged";
 
         try {
             //Reading response and status code from response
@@ -421,7 +421,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests invoking the procedure with mismatching data type for in, with value changed")
     public void invokeProcWithMismatchTypeForInTwo() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=invaluechanged";
+        String serviceURL = ballerinaURL + "/sql/call/mismatchdatatype?custNo=1&status=invaluechanged";
 
         try {
             //Reading response and status code from response
@@ -440,7 +440,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests calling the procedure with mismatching data type for in, with only value changed")
     public void invokeProcWithMismatchTypeForInThree() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=inonlyvaluechanged";
+        String serviceURL = ballerinaURL + "/sql/call/mismatchdatatype?custNo=1&status=inonlyvaluechanged";
 
         try {
             //Reading response and status code from response
@@ -459,7 +459,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests calling the procedure with mismatching data type for out")
     public void invokeProcWithMismatchTypeForOut() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=out";
+        String serviceURL = ballerinaURL + "/sql/call/mismatchdatatype?custNo=1&status=out";
 
         try {
             //Reading response and status code from response
@@ -478,7 +478,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests calling the procedure with mismatching data type for inout, values not changed")
     public void invokeProcWithMismatchTypeForInOutOne() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=inoutvaluenotchanged";
+        String serviceURL = ballerinaURL + "/sql/call/mismatchdatatype?custNo=1&status=inoutvaluenotchanged";
 
         try {
             //Reading response and status code from response
@@ -497,7 +497,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests calling the procedure with mismatching data type for inout, values changed")
     public void invokeProcWithMismatchTypeForInOutTwo() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=inoutvaluechanged";
+        String serviceURL = ballerinaURL + "/sql/call/mismatchdatatype?custNo=1&status=inoutvaluechanged";
 
         try {
             //Reading response and status code from response
@@ -516,7 +516,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
 
     @Test(description = "This tests calling the procedure with mismatching data type for inout, only values changed")
     public void invokeProcWithMismatchTypeForInOutThree() throws SQLException {
-        String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=inoutonlyvaluechanged";
+        String serviceURL = ballerinaURL + "/sql/call/mismatchdatatype?custNo=1&status=inoutonlyvaluechanged";
 
         try {
             //Reading response and status code from response
