@@ -175,7 +175,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         }
     }
 
-    @Test(description = "Tests batch insert with primary key violation in single insertion")
+    @Test(enabled = false, description = "Tests batch insert with primary key violation in single insertion")
     public void insertBatchPrimaryKeyViolation() throws SQLException {
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
@@ -699,7 +699,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         }
     }
 
-    @Test(description = "Tests batch insert with null value for nullable column")
+    @Test(enabled = false, description = "Tests batch insert with null value for nullable column")
     public void insertBatchNullForNullCol() throws SQLException {
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
@@ -805,7 +805,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         }
     }
 
-    @Test(description = "Tests batch insert with null value integer column")
+    @Test(enabled = false, description = "Tests batch insert with null value integer column")
     public void insertBatchNullForIntCol() throws SQLException {
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
@@ -911,7 +911,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         }
     }
 
-    @Test(description = "Tests batch insert with null value for non nullable column")
+    @Test(enabled = false, description = "Tests batch insert with null value for non nullable column")
     public void insertBatchNullForNotNullCol() throws SQLException {
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
@@ -1011,7 +1011,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         }
     }
 
-    @Test(description = "Tests batch insert with foreign key violation in one record")
+    @Test(enabled = false, description = "Tests batch insert with foreign key violation in one record")
     public void insertBatchForeignKeyViolation() throws SQLException {
         String serviceURL = ballerinaURL + "/sql/insert/batchupdateforeign";
         int i = 0;
@@ -1111,7 +1111,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         }
     }
 
-    @Test(description = "Tests batch insert with data size exceed")
+    @Test(enabled = false, description = "Tests batch insert with data size exceed")
     public void insertBatchDataSizeExceed() throws SQLException {
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
@@ -1211,7 +1211,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         }
     }
 
-    @Test(description = "Tests missing parameter in payload for non nullable column")
+    @Test(enabled = false, description = "Tests missing parameter in payload for non nullable column")
     public void insertBatchMissingParamNotNullCol() throws SQLException {
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
@@ -1316,7 +1316,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         }
     }
 
-    @Test(description = "Tests missing parameter in payload for nullable column")
+    @Test(enabled = false, description = "Tests missing parameter in payload for nullable column")
     public void insertBatchMissingParamNullCol() throws SQLException {
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
@@ -1421,7 +1421,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         }
     }
 
-    @Test(description = "Tests missing parameter in payload for integer column")
+    @Test(enabled = false, description = "Tests missing parameter in payload for integer column")
     public void insertBatchMissingParamIntCol() throws SQLException {
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
