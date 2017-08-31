@@ -162,7 +162,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
             post.setRequestEntity(requestEntity);
             int statuscode = client.executeMethod(post);
             String response = post.getResponseBodyAsString();
-
+            Thread.sleep(2000);
             //Querying the database to check actual creation of procedure
             String query = "show create procedure get_order_by_cust";
             boolean status = stmt.execute(query);
@@ -186,6 +186,8 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
             assertEquals(resultFromDb, "get_order_by_cust");
         } catch (IOException e) {
             log.error("Error while calling the BE server : " + e.getMessage(), e);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
