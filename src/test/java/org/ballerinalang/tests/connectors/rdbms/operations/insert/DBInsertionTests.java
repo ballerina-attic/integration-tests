@@ -30,7 +30,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
     Statement stmt = null;
     Statement stmt2 = null;
     //String dbURL = "localhost:3306/baldb";
-   // private String ballerinaURL = "http://localhost:9090";
+    //private String ballerinaURL = "http://localhost:9090";
 
     DBInsertionTests() {
         client = new HttpClient();
@@ -400,7 +400,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
         }
     }
 
-    @Test
+    @Test (enabled = false)
     public void insertWithNullForStringNullCol() throws SQLException {
         String serviceURL = ballerinaURL + "/sql/insert/nonkey";
         int i = 0;
@@ -491,7 +491,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
         }
     }
 
-     @Test
+    @Test(enabled = false)
     public void insertWithNullForNumericNullCol() throws SQLException {
         String serviceURL = ballerinaURL + "/sql/insert/nonkey";
         int i = 0;
@@ -542,7 +542,7 @@ public class DBInsertionTests extends BallerinaBaseTest {
         }
     }
 
-     @Test
+    @Test
     public void insertWithPrimaryKeyViolation() throws SQLException {
         String serviceURL = ballerinaURL + "/sql/insert/nonkey";
         int i = 0;
