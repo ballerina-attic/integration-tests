@@ -187,7 +187,7 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
         } catch (IOException e) {
             log.error("Error while calling the BE server : " + e.getMessage(), e);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.error("Error while while thread sleep : " + e.getMessage(), e);
         }
     }
 
