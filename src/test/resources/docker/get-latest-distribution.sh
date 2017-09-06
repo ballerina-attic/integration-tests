@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-get_distribution_from_location=true
+get_distribution_from_location=fasle
 custom_distribution_location="http://10.100.5.112:8000/ballerina-tools-0.93.1-SNAPSHOT.zip"
 
 if [ "$get_distribution_from_location" = true ]; then
