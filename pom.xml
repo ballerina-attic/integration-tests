@@ -163,26 +163,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.con.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.ballerinalang</groupId>
-            <artifactId>ballerina-core</artifactId>
-            <version>${ballerina.core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ballerinalang</groupId>
-            <artifactId>ballerina-native</artifactId>
-            <version>${ballerina.core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ballerinalang</groupId>
-            <artifactId>testerina-core</artifactId>
-            <version>${ballerina.core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.ballerina.connectors</groupId>
-            <artifactId>connectors</artifactId>
-            <version>${ballerina.core.version}</version>
-        </dependency>
     </dependencies>
     <properties>
         <testng.version>6.9.10</testng.version>
@@ -193,6 +173,5 @@
         <codehaus.jackson.version>1.9.13</codehaus.jackson.version>
         <org.snakeyaml.version>1.16.0.wso2v1</org.snakeyaml.version>
         <mysql.con.version>6.0.5</mysql.con.version>
-        <ballerina.core.version>0.93.1-SNAPSHOT</ballerina.core.version>
     </properties>
 </project>
