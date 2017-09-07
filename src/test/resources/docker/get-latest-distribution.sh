@@ -13,6 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+get_distribution_from_location=fasle
+custom_distribution_location="http://10.100.5.112:8000/ballerina-tools-0.93.1-SNAPSHOT.zip"
+
+if [ "$get_distribution_from_location" = true ]; then
+
+echo "Downloding the distribution from custom location : " $custom_distribution_location
+wget $custom_distribution_location
+
+else
 
 # This is triggered from fetch-artifacts.sh  
 jenkins_base_url="https://wso2.org/jenkins/job/ballerinalang/job/tools-distribution"
@@ -32,3 +41,6 @@ downloadable_url=$(echo $dirtribution_url | sed -n 's:.*<relativePath>\(.*\)</re
 
 echo "Downloadable URL : " $latest_successfull_build_url"org.ballerinalang.tools\$ballerina-tools/artifact/"$downloadable_url
 wget $latest_successfull_build_url"org.ballerinalang.tools\$ballerina-tools/artifact/"$downloadable_url
+
+fi
+
