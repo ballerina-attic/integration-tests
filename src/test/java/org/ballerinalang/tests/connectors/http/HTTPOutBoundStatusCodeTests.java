@@ -58,7 +58,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(headers);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound200ForPost() throws Exception {
         String serviceURL = ballerinaURL + "/http/call";
 
@@ -1211,7 +1211,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(new String(response), "Resource conflicted. Please try again");
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound409ForPost() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/order/123xy";
 
