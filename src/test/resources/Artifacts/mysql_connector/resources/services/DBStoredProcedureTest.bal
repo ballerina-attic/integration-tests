@@ -40,7 +40,7 @@ function callProcedureSuccess(int customerNo)(any, any, any, any, any, errors:Er
     sql:Parameter paraResolved;
     sql:Parameter paraDisputed;
 
-     try {
+    try {
         paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
         paraInc = {sqlType:"integer", value:inc, direction:0};
         paraCount = {sqlType:"integer", value:count, direction:2};
@@ -50,7 +50,7 @@ function callProcedureSuccess(int customerNo)(any, any, any, any, any, errors:Er
         paraDisputed = {sqlType:"integer", direction:1};
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         connectorInstance.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
-      } catch (errors:Error e) {
+    } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
         err = e;
@@ -72,7 +72,7 @@ function callProcedureWithWrongDirectionForParams(int customerNo, string status)
     sql:Parameter paraResolved;
     sql:Parameter paraDisputed;
 
-     try {
+    try {
         if (strings:equalsIgnoreCase(status, "intoout")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"integer", value:inc, direction:1};
@@ -138,7 +138,7 @@ function callProcedureWithWrongDirectionForParams(int customerNo, string status)
         }
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         connectorInstance.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
-     } catch (errors:Error e) {
+    } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
         err = e;
@@ -161,7 +161,7 @@ function callProcedureWithLessInParams(int customerNo, string status)(any, any, 
     sql:Parameter paraDisputed;
     sql:Parameter test;
 
-     try {
+    try {
         paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
         paraInc = {sqlType:"integer", value:inc, direction:0};
         paraCount = {sqlType:"integer", value:count, direction:2};
@@ -177,7 +177,7 @@ function callProcedureWithLessInParams(int customerNo, string status)(any, any, 
             parameters = [paraCustomerNo, test,  paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         }
         connectorInstance.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
-     } catch (errors:Error e) {
+    } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
         err = e;
@@ -200,7 +200,7 @@ function callProcedureWithLessOutParams(int customerNo)(any, any, any, any, any,
     sql:Parameter paraDisputed;
     sql:Parameter test;
 
-     try {
+    try {
         paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
         paraInc = {sqlType:"integer", value:inc, direction:0};
         paraCount = {sqlType:"integer", value:count, direction:2};
@@ -210,7 +210,7 @@ function callProcedureWithLessOutParams(int customerNo)(any, any, any, any, any,
         paraDisputed = {sqlType:"integer", direction:1};
         parameters = [paraCustomerNo, paraInc,  test, paraCanceled, paraResolved, paraDisputed, paraCount];
         connectorInstance.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
-     } catch (errors:Error e) {
+    } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
         err = e;
@@ -233,7 +233,7 @@ function callProcedureWithLessInOutParams(int customerNo)(any, any, any, any, an
     sql:Parameter paraDisputed;
     sql:Parameter test;
 
-     try {
+    try {
         paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
         paraInc = {sqlType:"integer", value:inc, direction:0};
         paraCount = {sqlType:"integer", value:count, direction:2};
@@ -265,7 +265,7 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
     sql:Parameter paraResolved;
     sql:Parameter paraDisputed;
 
-     try {
+    try {
         if (strings:equalsIgnoreCase(status, "invaluenotchanged")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"varchar", value:inc, direction:0};
@@ -320,7 +320,7 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
             paraResolved = {sqlType:"integer", direction:1};
             paraDisputed = {sqlType:"integer", direction:1};
         }
-         else if (strings:equalsIgnoreCase(status, "inoutonlyvaluechanged")){
+        else if (strings:equalsIgnoreCase(status, "inoutonlyvaluechanged")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"integer", value:inc, direction:0};
             paraCount = {sqlType:"integer", value:"test", direction:2};
@@ -340,10 +340,47 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
         }
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         connectorInstance.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
-   } catch (errors:Error e) {
+    } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
         err = e;
     }
-   return paraShipped.value, paraCanceled.value, paraResolved.value, paraDisputed.value, paraCount.value, err;
+    return paraShipped.value, paraCanceled.value, paraResolved.value, paraDisputed.value, paraCount.value, err;
 }
+
+function callProcedureToGetResultSet(int customerNo)(json, errors:Error){
+
+    sql:Parameter[] parameters = [];
+    errors:Error err;
+    errors:TypeCastError typeErr;
+    int inc = 5;
+    int count = 0;
+    sql:Parameter paraCustomerNo;
+    sql:Parameter paraInc;
+    sql:Parameter paraCount;
+    sql:Parameter paraShipped;
+    sql:Parameter paraCanceled;
+    sql:Parameter paraResolved;
+    sql:Parameter paraDisputed;
+    datatable dt;
+    json result;
+
+    try {
+        paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
+        paraInc = {sqlType:"integer", value:inc, direction:0};
+        paraCount = {sqlType:"integer", value:count, direction:2};
+        paraShipped = {sqlType:"integer", direction:1};
+        paraCanceled = {sqlType:"integer", direction:1};
+        paraResolved = {sqlType:"integer", direction:1};
+        paraDisputed = {sqlType:"integer", direction:1};
+        parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
+        dt = connectorInstance.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        result, _ = <json>dt;
+    } catch (errors:Error e) {
+        string msg = "Error in procedure call. Please retry";
+        e = {msg:msg};
+        err = e;
+    }
+    return result, err;
+}
+
