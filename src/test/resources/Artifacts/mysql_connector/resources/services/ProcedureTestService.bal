@@ -178,4 +178,22 @@ service <http> ProcedureTestService {
         }
         reply response;
     }
+
+     @http:resourceConfig {
+        methods:["GET"],
+        path:"/callsucces/resultset"
+    }
+    resource callProcedureSuccessWithResultSetResource (message m, @http:QueryParam {value:"custNo"} string custNo) {
+        message response = {};
+        errors:Error err;
+        var temp, _ = <int>custNo;
+        var result, err = callProcedureToGetResultSet(temp);
+        if (err == null){
+              messages:setJsonPayload(response, result);
+        }
+        else{
+              messages:setStringPayload(response, err.msg);
+        }
+        reply response;
+    }
 }

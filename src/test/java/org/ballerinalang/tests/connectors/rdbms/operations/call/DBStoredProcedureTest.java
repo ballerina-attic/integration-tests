@@ -533,6 +533,37 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
         }
     }
 
+    @Test(description = "This tests calling the procedure to obtain resultset in json")
+    public void invokeProcToGetResultInJson() throws SQLException {
+        String serviceURL = ballerinaURL + "/procedure/callsucces/resultset?custNo=1";
+        String expectedResult = "[{\"customerNumber\":1,\"status\":\"Shipped\",\"location\":\"srilanka\"}" +
+                ",{\"customerNumber\":2,\"status\":\"Shipped\",\"location\":\"srilanka\"}" +
+                ",{\"customerNumber\":3,\"status\":\"Shipped\",\"location\":\"us\"}" +
+                ",{\"customerNumber\":1,\"status\":\"Canceled\",\"location\":\"srilanka\"}" +
+                ",{\"customerNumber\":2,\"status\":\"Canceled\",\"location\":\"srilanka\"}" +
+                ",{\"customerNumber\":3,\"status\":\"Canceled\",\"location\":\"us\"}" +
+                ",{\"customerNumber\":1,\"status\":\"Resolved\",\"location\":\"srilanka\"}" +
+                ",{\"customerNumber\":2,\"status\":\"Resolved\",\"location\":\"srilanka\"}" +
+                ",{\"customerNumber\":3,\"status\":\"Resolved\",\"location\":\"us\"}" +
+                ",{\"customerNumber\":1,\"status\":\"Disputed\",\"location\":\"srilanka\"}" +
+                ",{\"customerNumber\":2,\"status\":\"Disputed\",\"location\":\"srilanka\"}" +
+                ",{\"customerNumber\":3,\"status\":\"Disputed\",\"location\":\"us\"}]";
+
+        try {
+            //Reading response and status code from response
+            GetMethod get = new GetMethod(serviceURL);
+            int statuscode = client.executeMethod(get);
+            String response = get.getResponseBodyAsString();
+
+            // Asserting the Status code. Expected 200 OK
+            assertEquals(statuscode, HttpStatus.SC_OK);
+            // Asserting the Response Message.
+            assertEquals(response, expectedResult);
+        } catch (IOException e) {
+            log.error("Error while calling the BE server : " + e.getMessage(), e);
+        }
+    }
+
     @AfterClass(alwaysRun = true)
     public void afterTest() {
         String dropOrders = "drop table orders";
