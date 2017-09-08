@@ -139,3 +139,21 @@ function selectWithExists (string query) (json, errors:Error){
     }
     return data, err;
 }
+
+function selectWithComplexSql () (json, errors:Error){
+
+    sql:Parameter[] parameters = [];
+    errors:Error err;
+    json data;
+
+    try {
+        sql:Parameter para1 = {sqlType:"integer", value:3, direction:0};
+        sql:Parameter para2 = {sqlType:"integer", value:0, direction:0};
+        parameters = [para1, para2];
+        datatable dt = connectorInstance.select ("select Country, TRUNCATE(MAX(LoyaltyPoints/TotalPurchases), ?) as MaxBuyingRatio from Customers where TotalPurchases > ? group by Country", parameters);
+        data, _ = <json>dt;
+    } catch (errors:Error e) {
+        err = e;
+    }
+    return data, err;
+}

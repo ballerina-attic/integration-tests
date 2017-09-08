@@ -133,4 +133,21 @@ service <http> SelectTestService {
          }
         reply response;
     }
+
+     @http:resourceConfig {
+        methods:["POST"],
+        path:"/general/complexsql"
+    }
+    resource selectWithComplexSqlResource (message m) {
+        message response = {};
+        errors:Error err;
+        var result, err = selectWithComplexSql();
+        if(err == null){
+              messages:setJsonPayload(response, result);
+         }
+         else{
+              messages:setStringPayload(response, err.msg);
+         }
+        reply response;
+    }
 }

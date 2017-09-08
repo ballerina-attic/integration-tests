@@ -651,6 +651,32 @@ public class DBSelectTest extends BallerinaBaseTest {
         }
     }
 
+    @Test(description = "Tests select with a complex sql that uses several functions and operators")
+    public void selectWithComplexSql() throws SQLException {
+        String serviceURL = ballerinaURL + "/select/general/complexsql";
+        String payload = "";
+        String expectedValue = "[{\"Country\":\"Germany\",\"MaxBuyingRatio\":0.004}" +
+                ",{\"Country\":\"India\",\"MaxBuyingRatio\":0.0},{\"Country\":\"Mexico\",\"MaxBuyingRatio\":0.007}" +
+                ",{\"Country\":\"Sri Lanka\",\"MaxBuyingRatio\":0.012}" +
+                ",{\"Country\":\"Sweden\",\"MaxBuyingRatio\":0.012},{\"Country\":\"UK\",\"MaxBuyingRatio\":0.001}]";
+
+        try {
+            //Reading response and status code from response
+            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+            PostMethod post = new PostMethod(serviceURL);
+            post.setRequestEntity(requestEntity);
+            int statuscode = client.executeMethod(post);
+            String response = post.getResponseBodyAsString();
+
+            // Asserting the Status code. Expected 200 OK
+            assertEquals(statuscode, HttpStatus.SC_OK);
+            // Asserting the Response Message.
+            assertEquals(response, expectedValue);
+        } catch (IOException e) {
+            log.error("Error while calling the BE server : " + e.getMessage(), e);
+        }
+    }
+
     @AfterClass(alwaysRun = true)
     public void afterTest() {
         String dropCustomers = "drop table Customers";
