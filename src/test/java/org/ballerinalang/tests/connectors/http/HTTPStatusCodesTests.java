@@ -43,7 +43,7 @@ import static org.testng.Assert.assertNull;
 public class HTTPStatusCodesTests extends BallerinaBaseTest {
 
     HttpClient client;
-    private static final Log log = LogFactory.getLog(HTTPOutBoundStatusCodeTests.class);
+    private static final Log log = LogFactory.getLog(HTTPStatusCodesTests.class);
 
     HTTPStatusCodesTests() {
         client = new HttpClient();
