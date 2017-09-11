@@ -22,6 +22,11 @@ import java.util.ArrayList;
 
 import static org.testng.Assert.assertEquals;
 
+/**
+ * Tests Database Insertions with select that carries join statements
+ * Uses IntegratorService.bal service and DBInsertTest.bal
+ */
+
 public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
 
     private static final Log log = LogFactory.getLog(DBInsertionsWithJoinsTests.class);
@@ -97,6 +102,7 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
 
     @Test(description = "This tests insert through select that uses an inner join")
     public void insertWithInnerJoin() throws SQLException {
+        log.info("Executing:insertWithInnerJoin");
         String serviceURL = ballerinaURL + "/sql/insert/innerjoin";
         int i = 0;
         int noOfRows = 0;
@@ -146,6 +152,7 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
 
     @Test(description = "This tests insert through select that uses a left join")
     public void insertWithLeftJoin() throws SQLException {
+        log.info("Executing:insertWithLeftJoin");
         String serviceURL = ballerinaURL + "/sql/insert/leftjoin";
         int i = 0;
         int noOfRows = 0;
@@ -198,6 +205,7 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
 
     @Test(description = "This tests insert through select that uses a right join")
     public void insertWithRightJoin() throws SQLException {
+        log.info("Executing:insertWithRightJoin");
         String serviceURL = ballerinaURL + "/sql/insert/rightjoin";
         int i = 0;
         int noOfRows = 0;

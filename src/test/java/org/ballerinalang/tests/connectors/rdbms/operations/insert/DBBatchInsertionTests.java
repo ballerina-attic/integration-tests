@@ -22,6 +22,11 @@ import java.util.ArrayList;
 
 import static org.testng.Assert.assertEquals;
 
+/**
+ * Tests Database batch insertions
+ * Uses IntegratorService.bal service and DBInsertTest.bal
+ */
+
 public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     private static final Log log = LogFactory.getLog(DBBatchInsertionTests.class);
@@ -71,6 +76,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(description = "Tests successful batch insert")
     public void insertBatchSuccess() throws SQLException {
+        log.info("Executing:insertBatchSuccess");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
         int noOfRows = 0;
@@ -177,6 +183,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(enabled = false, description = "Tests batch insert with primary key violation in single insertion")
     public void insertBatchPrimaryKeyViolation() throws SQLException {
+        log.info("Executing:insertBatchPrimaryKeyViolation");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
         int noOfRows = 0;
@@ -277,6 +284,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(description = "Tests batch insert with int data in place of string")
     public void insertBatchDataMismatchString() throws SQLException {
+        log.info("Executing:insertBatchDataMismatchString");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
         int noOfRows = 0;
@@ -383,6 +391,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(description = "Tests batch insert with string data in place of int")
     public void insertBatchDataMismatchInt() throws SQLException {
+        log.info("Executing:insertBatchDataMismatchInt");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
         int noOfRows = 0;
@@ -489,6 +498,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(description = "Tests batch insert with empty string for varchar field")
     public void insertBatchEmptyString() throws SQLException {
+        log.info("Executing:insertBatchEmptyString");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
         int noOfRows = 0;
@@ -595,6 +605,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(description = "Tests batch insert with empty string for integer field")
     public void insertBatchEmptyStringForInt() throws SQLException {
+        log.info("Executing:insertBatchEmptyStringForInt");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
         int noOfRows = 0;
@@ -701,6 +712,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(enabled = false, description = "Tests batch insert with null value for nullable column")
     public void insertBatchNullForNullCol() throws SQLException {
+        log.info("Executing:insertBatchNullForNullCol");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
         int noOfRows = 0;
@@ -807,6 +819,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(enabled = false, description = "Tests batch insert with null value integer column")
     public void insertBatchNullForIntCol() throws SQLException {
+        log.info("Executing:insertBatchNullForIntCol");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
         int noOfRows = 0;
@@ -913,6 +926,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(enabled = false, description = "Tests batch insert with null value for non nullable column")
     public void insertBatchNullForNotNullCol() throws SQLException {
+        log.info("Executing:insertBatchNullForNotNullCol");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
         int noOfRows = 0;
@@ -1013,6 +1027,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(enabled = false, description = "Tests batch insert with foreign key violation in one record")
     public void insertBatchForeignKeyViolation() throws SQLException {
+        log.info("Executing:insertBatchForeignKeyViolation");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdateforeign";
         int i = 0;
         int noOfRows = 0;
@@ -1113,6 +1128,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(enabled = false, description = "Tests batch insert with data size exceed")
     public void insertBatchDataSizeExceed() throws SQLException {
+        log.info("Executing:insertBatchDataSizeExceed");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
         int noOfRows = 0;
@@ -1213,6 +1229,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(enabled = false, description = "Tests missing parameter in payload for non nullable column")
     public void insertBatchMissingParamNotNullCol() throws SQLException {
+        log.info("Executing:insertBatchMissingParamNotNullCol");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
         int noOfRows = 0;
@@ -1318,6 +1335,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(enabled = false, description = "Tests missing parameter in payload for nullable column")
     public void insertBatchMissingParamNullCol() throws SQLException {
+        log.info("Executing:insertBatchMissingParamNullCol");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
         int noOfRows = 0;
@@ -1423,6 +1441,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
 
     @Test(enabled = false, description = "Tests missing parameter in payload for integer column")
     public void insertBatchMissingParamIntCol() throws SQLException {
+        log.info("Executing:insertBatchMissingParamIntCol");
         String serviceURL = ballerinaURL + "/sql/insert/batchupdatesuccess";
         int i = 0;
         int noOfRows = 0;

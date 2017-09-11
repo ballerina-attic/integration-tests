@@ -20,6 +20,11 @@ import java.sql.Statement;
 
 import static org.testng.Assert.assertEquals;
 
+/**
+ * Tests database select operations and its variations
+ * Uses SelectTestService.bal service and DBSelectTest.bal
+ */
+
 public class DBSelectTest extends BallerinaBaseTest {
 
     private static final Log log = LogFactory.getLog(DBSelectTest.class);
@@ -117,6 +122,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select distinct")
     public void selectWithDistinct() throws SQLException {
+        log.info("Executing:selectWithDistinct");
         String serviceURL = ballerinaURL + "/select/general/distinct";
         String payload = "SELECT DISTINCT Country FROM Customers;";
         String expectedValue = "[{\"Country\":\"Germany\"},{\"Country\":\"Mexico\"},{\"Country\":\"UK\"}" +
@@ -141,6 +147,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select distinct with count")
     public void selectWithDistinctCount() throws SQLException {
+        log.info("Executing:selectWithDistinctCount");
         String serviceURL = ballerinaURL + "/select/general/distinctwithcount";
         String payload = "SELECT COUNT(DISTINCT Country) FROM Customers;";
         String expectedValue = "[{\"COUNT(DISTINCT Country)\":7}]";
@@ -163,6 +170,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with where equality")
     public void selectWithWhereEqual() throws SQLException {
+        log.info("Executing:selectWithWhereEqual");
         String serviceURL = ballerinaURL + "/select/general/where";
         String payload = "SELECT CustomerID FROM Customers WHERE Country = 'Sri Lanka';";
         String expectedValue = "[{\"CustomerID\":6}]";
@@ -185,6 +193,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with where not equal")
     public void selectWithWhereNotEqual() throws SQLException {
+        log.info("Executing:selectWithWhereNotEqual");
         String serviceURL = ballerinaURL + "/select/general/where";
         String payload = "SELECT CustomerID FROM Customers WHERE Country <> 'Mexico';";
         String expectedValue = "[{\"CustomerID\":1},{\"CustomerID\":4},{\"CustomerID\":5}" +
@@ -208,6 +217,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with where greater than")
     public void selectWithWhereGreaterThan() throws SQLException {
+        log.info("Executing:selectWithWhereGreaterThan");
         String serviceURL = ballerinaURL + "/select/general/where";
         String payload = "SELECT CustomerID FROM Customers WHERE LoyaltyPoints > 100;";
         String expectedValue = "[{\"CustomerID\":3}]";
@@ -230,6 +240,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with where less than")
     public void selectWithWhereLessThan() throws SQLException {
+        log.info("Executing:selectWithWhereLessThan");
         String serviceURL = ballerinaURL + "/select/general/where";
         String payload = "SELECT CustomerID FROM Customers WHERE LoyaltyPoints < 3;";
         String expectedValue = "[{\"CustomerID\":4},{\"CustomerID\":7},{\"CustomerID\":8}]";
@@ -252,6 +263,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with where greater than or equal")
     public void selectWithWhereGreaterThanOrEqual() throws SQLException {
+        log.info("Executing:selectWithWhereGreaterThanOrEqual");
         String serviceURL = ballerinaURL + "/select/general/where";
         String payload = "SELECT CustomerID FROM Customers WHERE LoyaltyPoints >= 85;";
         String expectedValue = "[{\"CustomerID\":3},{\"CustomerID\":6}]";
@@ -274,6 +286,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with where less than or equal")
     public void selectWithWhereLessThanOrEqual() throws SQLException {
+        log.info("Executing:selectWithWhereLessThanOrEqual");
         String serviceURL = ballerinaURL + "/select/general/where";
         String payload = "SELECT CustomerID FROM Customers WHERE LoyaltyPoints <= 2;";
         String expectedValue = "[{\"CustomerID\":4},{\"CustomerID\":7},{\"CustomerID\":8}]";
@@ -296,6 +309,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with where between")
     public void selectWithWhereBetween() throws SQLException {
+        log.info("Executing:selectWithWhereBetween");
         String serviceURL = ballerinaURL + "/select/general/between";
         String payload = "SELECT CustomerID FROM Customers WHERE TotalPurchases BETWEEN ? and ?";
         String expectedValue = "[{\"CustomerID\":5},{\"CustomerID\":6}]";
@@ -318,6 +332,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with where like")
     public void selectWithWhereLike() throws SQLException {
+        log.info("Executing:selectWithWhereLike");
         String serviceURL = ballerinaURL + "/select/general/like";
         String payload = "SELECT CustomerID FROM Customers WHERE CustomerName LIKE ?;";
         String expectedValue = "[{\"CustomerID\":3},{\"CustomerID\":4}]";
@@ -340,6 +355,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(enabled = false, description = "Tests select with where in")
     public void selectWithWhereIn() throws SQLException {
+        log.info("Executing:selectWithWhereIn");
         String serviceURL = ballerinaURL + "/select/general/in";
         String payload = "SELECT CustomerID FROM Customers WHERE Country IN (?)";
         String expectedValue = "[{\"CustomerID\":1},{\"CustomerID\":4}]";
@@ -362,6 +378,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(enabled = false, description = "Tests select with where not in")
     public void selectWithWhereNotIn() throws SQLException {
+        log.info("Executing:selectWithWhereNotIn");
         String serviceURL = ballerinaURL + "/select/general/in";
         String payload = "SELECT CustomerID FROM Customers WHERE Country NOT IN (?)";
         String expectedValue = "[{\"CustomerID\":2},{\"CustomerID\":3},{\"CustomerID\":5}" +
@@ -385,6 +402,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with where and or")
     public void selectWithWhereAndOr() throws SQLException {
+        log.info("Executing:selectWithWhereAndOr");
         String serviceURL = ballerinaURL + "/select/general/andor";
         String payload = "SELECT CustomerID FROM Customers WHERE Country=? AND (City=? OR City=?)";
         String expectedValue = "[{\"CustomerID\":1}]";
@@ -407,6 +425,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with where order by desc, asec")
     public void selectWithWhereOrderBy() throws SQLException {
+        log.info("Executing:selectWithWhereOrderBy");
         String serviceURL = ballerinaURL + "/select/general/orderby";
         String payload = "SELECT CustomerID FROM Customers ORDER BY Country ASC, CustomerName DESC";
         String expectedValue = "[{\"CustomerID\":1},{\"CustomerID\":7},{\"CustomerID\":3},{\"CustomerID\":2}" +
@@ -430,6 +449,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with where is null")
     public void selectWithWhereIsNull() throws SQLException {
+        log.info("Executing:selectWithWhereIsNull");
         String serviceURL = ballerinaURL + "/select/general/isnull";
         String payload = "SELECT CustomerID FROM Customers WHERE Address IS NULL";
         String expectedValue = "[{\"CustomerID\":7},{\"CustomerID\":8}]";
@@ -453,6 +473,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with where is not null")
     public void selectWithWhereIsNotNull() throws SQLException {
+        log.info("Executing:selectWithWhereIsNotNull");
         String serviceURL = ballerinaURL + "/select/general/isnotnull";
         String payload = "SELECT CustomerID FROM Customers WHERE Address IS NOT NULL";
         String expectedValue = "[{\"CustomerID\":1},{\"CustomerID\":2},{\"CustomerID\":3}" +
@@ -477,6 +498,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(enabled = false, description = "Tests select with where limit")
     public void selectWithWhereLimit() throws SQLException {
+        log.info("Executing:selectWithWhereLimit");
         String serviceURL = ballerinaURL + "/select/general/limit";
         String payload = "";
         String expectedValue = "[{\"CustomerName\":\"Antonio Moreno Taquería\"}" +
@@ -502,6 +524,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with minimum value")
     public void selectWithMinimum() throws SQLException {
+        log.info("Executing:selectWithMinimum");
         String serviceURL = ballerinaURL + "/select/general/min";
         String payload = "SELECT MIN(TotalPurchases) AS SmallestPurchase FROM Customers;";
         String expectedValue = "[{\"SmallestPurchase\":0.0}]";
@@ -525,6 +548,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with maximum value")
     public void selectWithMaximum() throws SQLException {
+        log.info("Executing:selectWithMaximum");
         String serviceURL = ballerinaURL + "/select/general/max";
         String payload = "SELECT MAX(TotalPurchases) AS LargestPurchase FROM Customers";
         String expectedValue = "[{\"LargestPurchase\":50550.25}]";
@@ -548,6 +572,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with average and sum")
     public void selectWithAverageSum() throws SQLException {
+        log.info("Executing:selectWithAverageSum");
         String serviceURL = ballerinaURL + "/select/general/sumavg";
         String payload = "SELECT SUM(TotalPurchases) as SumOfPurchases" +
                 ", AVG(TotalPurchases) as AvgOfPurchases FROM Customers;";
@@ -573,6 +598,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with having clause")
     public void selectWithHaving() throws SQLException {
+        log.info("Executing:selectWithHaving");
         String serviceURL = ballerinaURL + "/select/general/having";
         String payload = "SELECT COUNT(CustomerID) as CustomerIDCount" +
                 ", Country FROM Customers GROUP BY Country HAVING COUNT(CustomerID) < 3 ";
@@ -601,6 +627,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with exists")
     public void selectWithExists() throws SQLException {
+        log.info("Executing:selectWithExists");
         String serviceURL = ballerinaURL + "/select/general/exists";
         String payload = "SELECT CustomerName FROM Customers WHERE EXISTS" +
                 " (SELECT ProductName FROM Products WHERE CustomerID = Customers.CustomerID AND Price < ?)";
@@ -625,6 +652,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with not exists")
     public void selectWithNotExists() throws SQLException {
+        log.info("Executing:selectWithNotExists");
         String serviceURL = ballerinaURL + "/select/general/exists";
         String payload = "SELECT CustomerName FROM Customers WHERE NOT EXISTS " +
                 "(SELECT ProductName FROM Products WHERE CustomerID = Customers.CustomerID AND Price < ?)";
@@ -653,6 +681,7 @@ public class DBSelectTest extends BallerinaBaseTest {
 
     @Test(description = "Tests select with a complex sql that uses several functions and operators")
     public void selectWithComplexSql() throws SQLException {
+        log.info("Executing:selectWithComplexSql");
         String serviceURL = ballerinaURL + "/select/general/complexsql";
         String payload = "";
         String expectedValue = "[{\"Country\":\"Germany\",\"MaxBuyingRatio\":0.004}" +
