@@ -26,7 +26,16 @@ echo "Creating the MySQL RC and Service!"
 kubectl create -f $script_path/mysql_service.yaml
 kubectl create -f $script_path/mysql_rc.yaml
 
-sleep 30
+# Waiting for mysql to run. Current loop timer is 100*50 Sec.
+for number in {1..100}
+do
+echo $(date)" Waiting for mysql to start!"
+ if [ "Running" == "$(kubectl get po | grep mysql | awk '{print $3}')" ]
+ then
+  break
+ fi
+sleep 3
+done
 
 echo "Creating the ballerina server RC and Service!"
 kubectl create -f $script_path/ballerina_server_service.yaml
