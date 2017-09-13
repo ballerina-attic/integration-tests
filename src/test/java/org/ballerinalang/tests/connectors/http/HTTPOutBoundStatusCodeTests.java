@@ -9,8 +9,13 @@ import org.apache.commons.httpclient.methods.HeadMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.PutMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.ballerinalang.tests.base.BallerinaBaseTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.lang.reflect.Method;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
@@ -19,6 +24,7 @@ import static org.testng.Assert.assertNull;
 public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
     HttpClient client;
+    private static final Log log = LogFactory.getLog(HTTPOutBoundStatusCodeTests.class);
 
     HTTPOutBoundStatusCodeTests() {
         client = new HttpClient();
@@ -26,8 +32,19 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         client.getHttpConnectionManager().getParams().setSoTimeout(8000);
     }
 
+    /**
+     *
+     * @param method
+     * This method is used to log the method names of the tests before execution
+     */
+    @BeforeMethod
+    public void nameBefore(Method method) {
+        log.info("Executing Test Method : " + method.getName());
+    }
+
     @Test
     public void testOutbound200ForGet() throws Exception {
+
         String serviceURL = ballerinaURL + "/http/call";
 
         GetMethod get = new GetMethod(serviceURL);
@@ -44,6 +61,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
     @Test
     public void testOutbound200ForHead() throws Exception {
+
         String serviceURL = ballerinaURL + "/http/call";
 
         HeadMethod head = new HeadMethod(serviceURL);
@@ -60,6 +78,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
     @Test(enabled = false)
     public void testOutbound200ForPost() throws Exception {
+
         String serviceURL = ballerinaURL + "/http/call";
 
         PostMethod post = new PostMethod(serviceURL);
@@ -76,6 +95,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
     @Test
     public void testOutbound200ForPut() throws Exception {
+
         String serviceURL = ballerinaURL + "/http/call";
 
         PutMethod put = new PutMethod(serviceURL);
@@ -92,6 +112,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
     @Test
     public void testOutbound200ForDelete() throws Exception {
+
         String serviceURL = ballerinaURL + "/http/call";
 
         DeleteMethod delete = new DeleteMethod(serviceURL);
@@ -108,6 +129,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
     @Test
     public void testOutbound202ForGet() throws Exception {
+
         String serviceURL = ballerinaURL + "/http/call/batch";
 
         GetMethod get = new GetMethod(serviceURL);
@@ -124,6 +146,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
     @Test
     public void testOutbound202ForHead() throws Exception {
+
         String serviceURL = ballerinaURL + "/http/call/batch";
 
         HeadMethod head = new HeadMethod(serviceURL);
@@ -140,6 +163,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
 
     @Test
     public void testOutbound202ForPost() throws Exception {
+
         String serviceURL = ballerinaURL + "/http/call/batch";
 
         PostMethod post = new PostMethod(serviceURL);
