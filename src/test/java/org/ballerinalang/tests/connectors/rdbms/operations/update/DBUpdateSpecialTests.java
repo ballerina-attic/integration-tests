@@ -183,6 +183,41 @@ public class DBUpdateSpecialTests extends BallerinaBaseTest {
         }
     }
 
+    @Test(description = "Tests updating by using data from a subquery")
+    public void updateDataUsingSubQuery() throws SQLException {
+        log.info("Executing:updateDataUsingSubQuery");
+        String serviceURL = ballerinaURL + "/update/withParam/false";
+        String payload = "UPDATE Products SET Products.Price=0.0 " +
+                "WHERE Products.CustomerID IN (SELECT CustomerID from Customers WHERE Country='South Korea')";
+        String expectedValue = "1";
+        String actualChangedPrice = null;
+
+        try {
+            //Reading response and status code from response
+            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+            PostMethod post = new PostMethod(serviceURL);
+            post.setRequestEntity(requestEntity);
+            int statuscode = client.executeMethod(post);
+            String response = post.getResponseBodyAsString();
+
+            //Querying the database to obtain the updated values
+            String query = "SELECT Price from Products WHERE CustomerID=8";
+            ResultSet result = stmt.executeQuery(query);
+            while (result.next()) {
+                actualChangedPrice = String.valueOf(result.getDouble("Price"));
+            }
+
+            // Asserting the Status code. Expected 200 OK
+            assertEquals(statuscode, HttpStatus.SC_OK);
+            // Asserting the Response Message.
+            assertEquals(response, expectedValue);
+            //Asserting against actual database values
+            assertEquals(actualChangedPrice, "0.0");
+        } catch (IOException e) {
+            log.error("Error while calling the BE server : " + e.getMessage(), e);
+        }
+    }
+
     @AfterClass(alwaysRun = true)
     public void afterTest() {
         String dropCustomers = "drop table Customers";
