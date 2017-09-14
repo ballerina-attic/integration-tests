@@ -1,4 +1,4 @@
-package org.ballerinalang.tests.connectors.rdbms.operations.delete;
+package org.ballerinalang.tests.connectors.rdbms.operations.update;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpStatus;
@@ -15,19 +15,15 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import static org.testng.Assert.assertEquals;
 
-/**
- * Tests database delete operations and its variations
- * Uses DeleteTestService.bal service and DBDeleteTest.bal
- */
+public class DBUpdateTests extends BallerinaBaseTest {
 
-public class DBDeleteTest extends BallerinaBaseTest {
-
-    private static final Log log = LogFactory.getLog(DBDeleteTest.class);
+    private static final Log log = LogFactory.getLog(DBUpdateTests.class);
     HttpClient client = new HttpClient();
     Connection conn = null;
     Statement stmt = null;
@@ -35,7 +31,7 @@ public class DBDeleteTest extends BallerinaBaseTest {
     //String dbURL = "localhost:3306/baldb";
     //private String ballerinaURL = "http://localhost:9090";
 
-    DBDeleteTest() {
+    DBUpdateTests() {
         client = new HttpClient();
         client.getHttpConnectionManager().getParams().setConnectionTimeout(5000);
         client.getHttpConnectionManager().getParams().setSoTimeout(8000);
@@ -49,10 +45,6 @@ public class DBDeleteTest extends BallerinaBaseTest {
                 + "    Country varchar(30),\n" + "    TotalPurchases double,\n" + "    LoyaltyPoints int,\n"
                 + "    RecordTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n"
                 + "    PRIMARY KEY (CustomerID)\n" + ");";
-        String createProducts = "CREATE TABLE IF NOT EXISTS Products (\n" + "    ProductID int NOT NULL,\n"
-                + "    ProductName varchar(255) NOT NULL,\n" + "    CustomerID int,\n"
-                + "    CategoryID int,\n" + "    Unit varchar(255),\n" + "    Price double,\n"
-                + "    PRIMARY KEY (ProductID)\n" + ");";
         String insertDataOne = "insert into Customers " +
                 "(CustomerID, CustomerName, ContactName, Address, City, PostalCode" +
                 ", Country, TotalPurchases, LoyaltyPoints) " +
@@ -82,8 +74,8 @@ public class DBDeleteTest extends BallerinaBaseTest {
                 ", 'Gangam', 'xr567', 'South Korea', 0, 0);";
         String insertDataNine = "\n" +
                 "insert into Customers (CustomerID, CustomerName, ContactName, Address, City, PostalCode, Country" +
-                ", TotalPurchases, LoyaltyPoints) values (9, 'Kenau Reeves', 'Maria Anders', 'Obere Str. 60'" +
-                ", 'Berlin', '12209', 'Germany', 14000.50, 60)";
+                ", TotalPurchases, LoyaltyPoints) values (9, 'Kenau Reeves', 'Maria Anders', 'Tail Man 60'" +
+                ", 'Gangam', '12209', 'South Korea', 14000.50, 60)";
         String insertDataTen = "\n" +
                 "insert into Customers (CustomerID, CustomerName, ContactName, Address, City, PostalCode, Country" +
                 ", TotalPurchases, LoyaltyPoints) values (10, 'Mac Grath', 'Maria Anders', 'Obere Str. 62'" +
@@ -92,21 +84,6 @@ public class DBDeleteTest extends BallerinaBaseTest {
                 "insert into Customers (CustomerID, CustomerName, ContactName, Address, City, PostalCode, Country" +
                 ", TotalPurchases, LoyaltyPoints) values (11, 'Abel Merrywheather', 'Maria Anders', 'Obere Str. 65'" +
                 ", 'Berlin', '12209', 'Germany', 14000.50, 60)";
-        String insertProductOne = "insert into Products " +
-                "(ProductID, ProductName, CustomerID, CategoryID, Unit, Price) " +
-                "values (1, 'Chais', 6, 1, '10 boxes x 20 bags', 18.25);";
-        String insertProductTwo = "insert into Products " +
-                "(ProductID, ProductName, CustomerID, CategoryID, Unit, Price) " +
-                "values (2, 'Chang', 2, 1, '24 - 12 oz bottles', 19.50);";
-        String insertProductThree = "insert into Products " +
-                "(ProductID, ProductName, CustomerID, CategoryID, Unit, Price) " +
-                "values (3, 'Aniseed Syrup', 7, 2, '12 - 550 ml bottles', 10.0);";
-        String insertProductFour = "insert into Products " +
-                "(ProductID, ProductName, CustomerID, CategoryID, Unit, Price)" +
-                " values (4, 'Chef Antons Cajun Seasoning', 15, 2, '48 - 6 oz jars', 22.75);";
-        String insertProductFive = "insert into Products " +
-                "(ProductID, ProductName, CustomerID, CategoryID, Unit, Price)" +
-                " values (5, 'Chili Paste', 16, 2, '48 - 6 oz jars', 26.75);";
 
         try {
             conn = DriverManager.getConnection(
@@ -115,7 +92,6 @@ public class DBDeleteTest extends BallerinaBaseTest {
 
             stmt = conn.createStatement();
             stmt.executeUpdate(createCustomers);
-            stmt.executeUpdate(createProducts);
             stmt.executeUpdate(insertDataOne);
             stmt.executeUpdate(insertDataTwo);
             stmt.executeUpdate(insertDataThree);
@@ -127,11 +103,6 @@ public class DBDeleteTest extends BallerinaBaseTest {
             stmt.executeUpdate(insertDataNine);
             stmt.executeUpdate(insertDataTen);
             stmt.executeUpdate(insertDataEleven);
-            stmt.executeUpdate(insertProductOne);
-            stmt.executeUpdate(insertProductTwo);
-            stmt.executeUpdate(insertProductThree);
-            stmt.executeUpdate(insertProductFour);
-            stmt.executeUpdate(insertProductFive);
 
         } catch (SQLException ex) {
             log.error("SQLException: " + ex.getMessage());
@@ -140,12 +111,87 @@ public class DBDeleteTest extends BallerinaBaseTest {
         }
     }
 
-    @Test(description = "Tests deleting a record aided by a where clause")
-    public void deleteWithWhereClause() throws SQLException {
-        log.info("Executing:deleteWithWhereClause");
-        String serviceURL = ballerinaURL + "/delete/withParam/where?value=Around%20the%20Horn";
-        String payload = "DELETE FROM Customers WHERE CustomerName=?";
+    @Test(description = "Tests updating a single record in single table")
+    public void updateSingleRecordSingleTable() throws SQLException {
+        log.info("Executing:updateSingleRecordSingleTable");
+        String serviceURL = ballerinaURL + "/update/withParam/simple?value1=Obere%20Str.%2053&value2=14500.25";
+        String payload = "UPDATE Customers SET Address=?, TotalPurchases=? WHERE CustomerID=2";
         String expectedValue = "1";
+        String actualChangedAddress = null;
+        String actualChangedTotalPurchase = null;
+
+        try {
+            //Reading response and status code from response
+            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+            PostMethod post = new PostMethod(serviceURL);
+            post.setRequestEntity(requestEntity);
+            int statuscode = client.executeMethod(post);
+            String response = post.getResponseBodyAsString();
+
+            //Querying the database to obtain the updated values
+            String query = "SELECT Address, TotalPurchases from Customers WHERE CustomerID=2";
+            ResultSet result = stmt.executeQuery(query);
+            while (result.next()) {
+                actualChangedAddress = result.getString("Address");
+                actualChangedTotalPurchase = String.valueOf(result.getDouble("TotalPurchases"));
+            }
+
+            // Asserting the Status code. Expected 200 OK
+            assertEquals(statuscode, HttpStatus.SC_OK);
+            // Asserting the Response Message.
+            assertEquals(response, expectedValue);
+            //Asserting against actual database values
+            assertEquals(actualChangedAddress, "Obere Str. 53");
+            assertEquals(actualChangedTotalPurchase, "14500.25");
+        } catch (IOException e) {
+            log.error("Error while calling the BE server : " + e.getMessage(), e);
+        }
+    }
+
+    @Test(description = "Tests updating multiple records in single table")
+    public void updateMulRecordsSingleTable() throws SQLException {
+        log.info("Executing:updateMulRecordsSingleTable");
+        String serviceURL = ballerinaURL + "/update/withParam/simple?value1=hidden&value2=0.0";
+        String payload = "UPDATE Customers SET Address=?, TotalPurchases=? WHERE Country='South Korea'";
+        String expectedValue = "2";
+        String actualChangedAddress = null;
+        String actualChangedTotalPurchase = null;
+
+        try {
+            //Reading response and status code from response
+            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+            PostMethod post = new PostMethod(serviceURL);
+            post.setRequestEntity(requestEntity);
+            int statuscode = client.executeMethod(post);
+            String response = post.getResponseBodyAsString();
+
+            //Querying the database to obtain the updated values
+            String query = "SELECT Address, TotalPurchases from Customers WHERE Country='South Korea'";
+            ResultSet result = stmt.executeQuery(query);
+            while (result.next()) {
+                actualChangedAddress = result.getString("Address");
+                actualChangedTotalPurchase = String.valueOf(result.getDouble("TotalPurchases"));
+            }
+
+            // Asserting the Status code. Expected 200 OK
+            assertEquals(statuscode, HttpStatus.SC_OK);
+            // Asserting the Response Message.
+            assertEquals(response, expectedValue);
+            //Asserting against actual database values
+            assertEquals(actualChangedAddress, "hidden");
+            assertEquals(actualChangedTotalPurchase, "0.0");
+        } catch (IOException e) {
+            log.error("Error while calling the BE server : " + e.getMessage(), e);
+        }
+    }
+
+    @Test(description = "Tests updating records with lesser params")
+    public void updateRecordsLesserParams() throws SQLException {
+        log.info("Executing:updateRecordsLesserParams");
+        String serviceURL = ballerinaURL + "/update/withParam/missing?value1=hidden";
+        String payload = "UPDATE Customers SET Address=?, TotalPurchases=? WHERE Country='South Korea'";
+        String expectedValue = "Error in database update. Please retry";
+
         try {
             //Reading response and status code from response
             StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
@@ -158,17 +204,19 @@ public class DBDeleteTest extends BallerinaBaseTest {
             assertEquals(statuscode, HttpStatus.SC_OK);
             // Asserting the Response Message.
             assertEquals(response, expectedValue);
+
         } catch (IOException e) {
             log.error("Error while calling the BE server : " + e.getMessage(), e);
         }
     }
 
-    @Test(description = "Tests deleting already deleted row", dependsOnMethods = {"deleteWithWhereClause"})
-    public void deleteAlreadyDeletedRow() throws SQLException {
-        log.info("Executing:deleteAlreadyDeletedRow");
-        String serviceURL = ballerinaURL + "/delete/withParam/where?value=Around%20the%20Horn";
-        String payload = "DELETE FROM Customers WHERE CustomerName=?";
-        String expectedValue = "0";
+    @Test(description = "Tests updating records with more params")
+    public void updateRecordsMoreParams() throws SQLException {
+        log.info("Executing:updateRecordsMoreParams");
+        String serviceURL = ballerinaURL + "/update/withParam/missing?value1=hidden&value2=4.0";
+        String payload = "UPDATE Customers SET Address='hidden', TotalPurchases=9.0 WHERE Country='South Korea'";
+        String expectedValue = "Error in database update. Please retry";
+
         try {
             //Reading response and status code from response
             StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
@@ -182,19 +230,18 @@ public class DBDeleteTest extends BallerinaBaseTest {
             // Asserting the Response Message.
             assertEquals(response, expectedValue);
 
-            //Re inserting deleted record to be used in latter test cases
-
         } catch (IOException e) {
             log.error("Error while calling the BE server : " + e.getMessage(), e);
         }
     }
 
-    @Test(description = "Tests deleting a record aided by both where and group by clause")
-    public void deleteWithGroupByClause() throws SQLException {
-        log.info("Executing:deleteWithGroupByClause");
-        String serviceURL = ballerinaURL + "/delete/withParam/orderby?value=Germany";
-        String payload = "DELETE FROM Customers WHERE Country=? Order By RecordTime Limit 1";
-        String expectedValue = "1";
+    @Test(description = "Tests updating records with invalid column name")
+    public void updateRecordWInvalidColName() throws SQLException {
+        log.info("Executing:updateRecordWInvalidColName");
+        String serviceURL = ballerinaURL + "/update/withParam/missing?value1=hidden&value2=0.0";
+        String payload = "UPDATE Customers SET Address=?, TotalPurchases1=? WHERE Country='South Korea'";
+        String expectedValue = "Error in database update. Please retry";
+
         try {
             //Reading response and status code from response
             StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
@@ -207,43 +254,19 @@ public class DBDeleteTest extends BallerinaBaseTest {
             assertEquals(statuscode, HttpStatus.SC_OK);
             // Asserting the Response Message.
             assertEquals(response, expectedValue);
+
         } catch (IOException e) {
             log.error("Error while calling the BE server : " + e.getMessage(), e);
         }
     }
 
-    @Test(description = "Tests deleting a records from multiple tables")
-    public void deleteFromMultipleTables() throws SQLException {
-        log.info("Executing:deleteFromMultipleTables");
-        String serviceURL = ballerinaURL + "/delete/general/innerjoin";
-        String payload = "DELETE FROM Customers USING Customers INNER JOIN " +
-                "Products WHERE Customers.CustomerID=Products.CustomerID";
-        String expectedValue = "3";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
-
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
-    }
 
     @AfterClass(alwaysRun = true)
     public void afterTest() {
         String dropCustomers = "drop table Customers";
-        String dropProducts = "drop table Products";
 
         try {
             stmt.executeUpdate(dropCustomers);
-            stmt.executeUpdate(dropProducts);
         } catch (SQLException e) {
             log.error("SQLException: " + e.getMessage());
             log.error("SQLState: " + e.getSQLState());
