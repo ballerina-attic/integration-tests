@@ -706,6 +706,84 @@ public class DBSelectTest extends BallerinaBaseTest {
         }
     }
 
+    @Test(description = "Tests select with results converted to xml")
+    public void selectDataAsXml() throws SQLException {
+        log.info("Executing:selectDataAsXml");
+        String serviceURL = ballerinaURL + "/select/general/xml";
+        String payload = "select CustomerID from Customers";
+        String expectedValue = "<results><result><CustomerID>1</CustomerID></result>" +
+                "<result><CustomerID>2</CustomerID></result><result><CustomerID>3</CustomerID></result>" +
+                "<result><CustomerID>4</CustomerID></result><result><CustomerID>5</CustomerID></result>" +
+                "<result><CustomerID>6</CustomerID></result><result><CustomerID>7</CustomerID></result>" +
+                "<result><CustomerID>8</CustomerID></result></results>";
+
+        try {
+            //Reading response and status code from response
+            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+            PostMethod post = new PostMethod(serviceURL);
+            post.setRequestEntity(requestEntity);
+            int statuscode = client.executeMethod(post);
+            String response = post.getResponseBodyAsString();
+
+            // Asserting the Status code. Expected 200 OK
+            assertEquals(statuscode, HttpStatus.SC_OK);
+            // Asserting the Response Message.
+            assertEquals(response, expectedValue);
+        } catch (IOException e) {
+            log.error("Error while calling the BE server : " + e.getMessage(), e);
+        }
+    }
+
+    @Test(description = "Tests select returning a null value as json")
+    public void selectWithNullJson() throws SQLException {
+        log.info("Executing:selectWithNullJson");
+        String serviceURL = ballerinaURL + "/select/general/nulljson";
+        String payload = "SELECT Address from Customers where CustomerID=7";
+        String expectedValue = "[{\"Address\":null}]";
+
+        try {
+            //Reading response and status code from response
+            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+            PostMethod post = new PostMethod(serviceURL);
+            post.setRequestEntity(requestEntity);
+            int statuscode = client.executeMethod(post);
+            String response = post.getResponseBodyAsString();
+
+            // Asserting the Status code. Expected 200 OK
+            assertEquals(statuscode, HttpStatus.SC_OK);
+            // Asserting the Response Message.
+            assertEquals(response, expectedValue);
+        } catch (IOException e) {
+            log.error("Error while calling the BE server : " + e.getMessage(), e);
+        }
+    }
+
+    @Test(description = "Tests select returning a null value as xml")
+    public void selectWithNullXml() throws SQLException {
+        log.info("Executing:selectWithNullXml");
+        String serviceURL = ballerinaURL + "/select/general/xml";
+        String payload = "SELECT Address from Customers where CustomerID=7";
+        String expectedValue = "<results>" +
+                "<result><Address xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/></result>" +
+                "</results>";
+
+        try {
+            //Reading response and status code from response
+            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+            PostMethod post = new PostMethod(serviceURL);
+            post.setRequestEntity(requestEntity);
+            int statuscode = client.executeMethod(post);
+            String response = post.getResponseBodyAsString();
+
+            // Asserting the Status code. Expected 200 OK
+            assertEquals(statuscode, HttpStatus.SC_OK);
+            // Asserting the Response Message.
+            assertEquals(response, expectedValue);
+        } catch (IOException e) {
+            log.error("Error while calling the BE server : " + e.getMessage(), e);
+        }
+    }
+
     @AfterClass(alwaysRun = true)
     public void afterTest() {
         String dropCustomers = "drop table Customers";
