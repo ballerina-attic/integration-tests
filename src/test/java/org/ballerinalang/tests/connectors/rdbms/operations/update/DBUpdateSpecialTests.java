@@ -21,6 +21,11 @@ import java.sql.Statement;
 
 import static org.testng.Assert.assertEquals;
 
+/**
+ * Tests database update operations and its variations
+ * Uses UpdateTestService.bal service and DBUpdateTest.bal
+ */
+
 public class DBUpdateSpecialTests extends BallerinaBaseTest {
 
     private static final Log log = LogFactory.getLog(DBUpdateSpecialTests.class);

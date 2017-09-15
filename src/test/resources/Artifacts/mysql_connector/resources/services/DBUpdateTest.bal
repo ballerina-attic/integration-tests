@@ -47,8 +47,7 @@ function updateWithoutParams (string query) (int, errors:Error){
     try {
         noOfRows = connectorInstance.update (query, parameters);
     } catch (errors:Error e) {
-        string msg = "Error in database update. Please retry";
-        err = {msg:msg};
+        err = e;
     }
     return noOfRows, err;
 }
