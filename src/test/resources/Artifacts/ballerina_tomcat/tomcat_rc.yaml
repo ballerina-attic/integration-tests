@@ -32,7 +32,10 @@ spec:
         name: tomcat-rest-be
         image: dockerhub.private.wso2.com/ballerina_tomcat_server:1.0
         imagePullPolicy: Always
-
+        env:
+        -
+          name : JAVA_OPTS
+          value : "-Djava.security.egd=file:/dev/./urandom"
         ports:
         -
           containerPort: 8080
