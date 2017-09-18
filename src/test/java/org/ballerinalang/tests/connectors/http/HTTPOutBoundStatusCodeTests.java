@@ -59,7 +59,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(headers);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound200ForHead() throws Exception {
 
         String serviceURL = ballerinaURL + "/http/call";
@@ -144,7 +144,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(headers);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound202ForHead() throws Exception {
 
         String serviceURL = ballerinaURL + "/http/call/batch";
@@ -226,7 +226,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(headers);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound203ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/changed";
 
@@ -964,7 +964,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(locationHeader);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound300ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/300";
 
@@ -1048,7 +1048,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertNotNull(locationHeader);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound305ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/batch/305";
 
@@ -1157,7 +1157,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_FORBIDDEN);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound403ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/order/ee1a9ec2-c8a5-4afe-8585-74df591f9990";
 
@@ -1207,7 +1207,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_NOT_ACCEPTABLE);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound406ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/order/123x";
 
@@ -1271,7 +1271,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(new String(response), "Resource conflicted. Please try again");
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound409ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/order/123xy";
 
@@ -1335,7 +1335,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(new String(response), "Resource Gone. Please try again");
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound410ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/order/123ab";
 
@@ -1495,7 +1495,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_NOT_FOUND);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound404ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/error";
 
@@ -1584,7 +1584,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_INTERNAL_SERVER_ERROR);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound500ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/new";
 
@@ -1649,7 +1649,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_NOT_IMPLEMENTED);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound501ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/notimplemented";
 
@@ -1714,7 +1714,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_SERVICE_UNAVAILABLE);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound503ForHead() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/unavailable";
 
