@@ -89,10 +89,10 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     }
 
     /**
-     * Test Pass through Scenario for a GET request, that receives HTTP 2XX Status code with/without a message body
+     * Test Pass through Scenario for a GET request, that receives HTTP 2XX Status code with a message body
      * Client (GET) --> Ballerina --> BE | BE (HTTP 200 OK) --> Ballerina --> Client
      */
-    @Test(dataProvider = "2xxStatusCodes") public void getHTTP2XX(String code) throws IOException {
+    @Test(dataProvider = "2xxStatusCodes") public void getHTTP2XXWithBody(String code) throws IOException {
 
         log.info("Executing Test Method : getHTTP2XX for status code : " + code);
         //http://localhost:9090/statuscode/code/201?withbody=false
@@ -106,12 +106,26 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
         // Asserting the Response Message.
         assertEquals(new String(response), code + " with Body as the respose!");
 
-        serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=false";
-        GetMethod nobodyGet = new GetMethod(serviceURL);
-        int statuscode2 = client.executeMethod(nobodyGet);
-        assertEquals(String.valueOf(statuscode2), code);
-        byte[] respose2 = nobodyGet.getResponseBody();
-        assertEquals(new String(respose2), "");
+    }
+
+
+    /**
+     * Test Pass through Scenario for a GET request, that receives HTTP 2XX Status code without a message body
+     * Client (GET) --> Ballerina --> BE | BE (HTTP 200 OK) --> Ballerina --> Client
+     */
+    @Test(dataProvider = "2xxStatusCodes") public void getHTTP2XXWithoutBody(String code) throws IOException {
+
+        log.info("Executing Test Method : getHTTP2XX for status code : " + code);
+        //http://localhost:9090/statuscode/code/201?withbody=false
+        String serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=false";
+        GetMethod get = new GetMethod(serviceURL);
+        int statuscode = client.executeMethod(get);
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(String.valueOf(statuscode), code);
+        byte[] response = get.getResponseBody();
+        // Asserting the Response Message.
+        assertEquals(new String(response), "");
     }
 
     /**
