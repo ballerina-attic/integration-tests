@@ -121,383 +121,349 @@ public class DBSelectTest extends BallerinaBaseTest {
     }
 
     @Test(description = "Tests select distinct")
-    public void selectWithDistinct() throws SQLException {
+    public void selectWithDistinct() throws SQLException, IOException {
         log.info("Executing:selectWithDistinct");
         String serviceURL = ballerinaURL + "/select/general/distinct";
         String payload = "SELECT DISTINCT Country FROM Customers;";
         String expectedValue = "[{\"Country\":\"Germany\"},{\"Country\":\"Mexico\"},{\"Country\":\"UK\"}" +
                 ",{\"Country\":\"Sweden\"},{\"Country\":\"Sri Lanka\"}" +
                 ",{\"Country\":\"India\"},{\"Country\":\"South Korea\"}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select distinct with count")
-    public void selectWithDistinctCount() throws SQLException {
+    public void selectWithDistinctCount() throws SQLException, IOException {
         log.info("Executing:selectWithDistinctCount");
         String serviceURL = ballerinaURL + "/select/general/distinctwithcount";
         String payload = "SELECT COUNT(DISTINCT Country) FROM Customers;";
         String expectedValue = "[{\"COUNT(DISTINCT Country)\":7}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with where equality")
-    public void selectWithWhereEqual() throws SQLException {
+    public void selectWithWhereEqual() throws SQLException, IOException {
         log.info("Executing:selectWithWhereEqual");
         String serviceURL = ballerinaURL + "/select/general/where";
         String payload = "SELECT CustomerID FROM Customers WHERE Country = 'Sri Lanka';";
         String expectedValue = "[{\"CustomerID\":6}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with where not equal")
-    public void selectWithWhereNotEqual() throws SQLException {
+    public void selectWithWhereNotEqual() throws SQLException, IOException {
         log.info("Executing:selectWithWhereNotEqual");
         String serviceURL = ballerinaURL + "/select/general/where";
         String payload = "SELECT CustomerID FROM Customers WHERE Country <> 'Mexico';";
         String expectedValue = "[{\"CustomerID\":1},{\"CustomerID\":4},{\"CustomerID\":5}" +
                 ",{\"CustomerID\":6},{\"CustomerID\":7},{\"CustomerID\":8}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with where greater than")
-    public void selectWithWhereGreaterThan() throws SQLException {
+    public void selectWithWhereGreaterThan() throws SQLException, IOException {
         log.info("Executing:selectWithWhereGreaterThan");
         String serviceURL = ballerinaURL + "/select/general/where";
         String payload = "SELECT CustomerID FROM Customers WHERE LoyaltyPoints > 100;";
         String expectedValue = "[{\"CustomerID\":3}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with where less than")
-    public void selectWithWhereLessThan() throws SQLException {
+    public void selectWithWhereLessThan() throws SQLException, IOException {
         log.info("Executing:selectWithWhereLessThan");
         String serviceURL = ballerinaURL + "/select/general/where";
         String payload = "SELECT CustomerID FROM Customers WHERE LoyaltyPoints < 3;";
         String expectedValue = "[{\"CustomerID\":4},{\"CustomerID\":7},{\"CustomerID\":8}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with where greater than or equal")
-    public void selectWithWhereGreaterThanOrEqual() throws SQLException {
+    public void selectWithWhereGreaterThanOrEqual() throws SQLException, IOException {
         log.info("Executing:selectWithWhereGreaterThanOrEqual");
         String serviceURL = ballerinaURL + "/select/general/where";
         String payload = "SELECT CustomerID FROM Customers WHERE LoyaltyPoints >= 85;";
         String expectedValue = "[{\"CustomerID\":3},{\"CustomerID\":6}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with where less than or equal")
-    public void selectWithWhereLessThanOrEqual() throws SQLException {
+    public void selectWithWhereLessThanOrEqual() throws SQLException, IOException {
         log.info("Executing:selectWithWhereLessThanOrEqual");
         String serviceURL = ballerinaURL + "/select/general/where";
         String payload = "SELECT CustomerID FROM Customers WHERE LoyaltyPoints <= 2;";
         String expectedValue = "[{\"CustomerID\":4},{\"CustomerID\":7},{\"CustomerID\":8}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with where between")
-    public void selectWithWhereBetween() throws SQLException {
+    public void selectWithWhereBetween() throws SQLException, IOException {
         log.info("Executing:selectWithWhereBetween");
         String serviceURL = ballerinaURL + "/select/general/between";
         String payload = "SELECT CustomerID FROM Customers WHERE TotalPurchases BETWEEN ? and ?";
         String expectedValue = "[{\"CustomerID\":5},{\"CustomerID\":6}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with where like")
-    public void selectWithWhereLike() throws SQLException {
+    public void selectWithWhereLike() throws SQLException, IOException {
         log.info("Executing:selectWithWhereLike");
         String serviceURL = ballerinaURL + "/select/general/like";
         String payload = "SELECT CustomerID FROM Customers WHERE CustomerName LIKE ?;";
         String expectedValue = "[{\"CustomerID\":3},{\"CustomerID\":4}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(enabled = false, description = "Tests select with where in")
-    public void selectWithWhereIn() throws SQLException {
+    public void selectWithWhereIn() throws SQLException, IOException {
         log.info("Executing:selectWithWhereIn");
         String serviceURL = ballerinaURL + "/select/general/in";
         String payload = "SELECT CustomerID FROM Customers WHERE Country IN (?)";
         String expectedValue = "[{\"CustomerID\":1},{\"CustomerID\":4}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(enabled = false, description = "Tests select with where not in")
-    public void selectWithWhereNotIn() throws SQLException {
+    public void selectWithWhereNotIn() throws SQLException, IOException {
         log.info("Executing:selectWithWhereNotIn");
         String serviceURL = ballerinaURL + "/select/general/in";
         String payload = "SELECT CustomerID FROM Customers WHERE Country NOT IN (?)";
         String expectedValue = "[{\"CustomerID\":2},{\"CustomerID\":3},{\"CustomerID\":5}" +
                 ",{\"CustomerID\":6},{\"CustomerID\":7},{\"CustomerID\":8}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with where and or")
-    public void selectWithWhereAndOr() throws SQLException {
+    public void selectWithWhereAndOr() throws SQLException, IOException {
         log.info("Executing:selectWithWhereAndOr");
         String serviceURL = ballerinaURL + "/select/general/andor";
         String payload = "SELECT CustomerID FROM Customers WHERE Country=? AND (City=? OR City=?)";
         String expectedValue = "[{\"CustomerID\":1}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with where order by desc, asec")
-    public void selectWithWhereOrderBy() throws SQLException {
+    public void selectWithWhereOrderBy() throws SQLException, IOException {
         log.info("Executing:selectWithWhereOrderBy");
         String serviceURL = ballerinaURL + "/select/general/orderby";
         String payload = "SELECT CustomerID FROM Customers ORDER BY Country ASC, CustomerName DESC";
         String expectedValue = "[{\"CustomerID\":1},{\"CustomerID\":7},{\"CustomerID\":3},{\"CustomerID\":2}" +
                 ",{\"CustomerID\":8},{\"CustomerID\":6},{\"CustomerID\":5},{\"CustomerID\":4}]";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with where is null")
-    public void selectWithWhereIsNull() throws SQLException {
+    public void selectWithWhereIsNull() throws SQLException, IOException {
         log.info("Executing:selectWithWhereIsNull");
         String serviceURL = ballerinaURL + "/select/general/isnull";
         String payload = "SELECT CustomerID FROM Customers WHERE Address IS NULL";
         String expectedValue = "[{\"CustomerID\":7},{\"CustomerID\":8}]";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with where is not null")
-    public void selectWithWhereIsNotNull() throws SQLException {
+    public void selectWithWhereIsNotNull() throws SQLException, IOException {
         log.info("Executing:selectWithWhereIsNotNull");
         String serviceURL = ballerinaURL + "/select/general/isnotnull";
         String payload = "SELECT CustomerID FROM Customers WHERE Address IS NOT NULL";
         String expectedValue = "[{\"CustomerID\":1},{\"CustomerID\":2},{\"CustomerID\":3}" +
                 ",{\"CustomerID\":4},{\"CustomerID\":5},{\"CustomerID\":6}]";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(enabled = false, description = "Tests select with where limit")
-    public void selectWithWhereLimit() throws SQLException {
+    public void selectWithWhereLimit() throws SQLException, IOException {
         log.info("Executing:selectWithWhereLimit");
         String serviceURL = ballerinaURL + "/select/general/limit";
         String payload = "";
@@ -505,73 +471,66 @@ public class DBSelectTest extends BallerinaBaseTest {
                 ",{\"CustomerName\":\"Alfreds Futterkiste\"},{\"CustomerName\":\"Padmasiri Samarapala\"}" +
                 ",{\"CustomerName\":\"Berglunds snabbköp\"}]";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with minimum value")
-    public void selectWithMinimum() throws SQLException {
+    public void selectWithMinimum() throws SQLException, IOException {
         log.info("Executing:selectWithMinimum");
         String serviceURL = ballerinaURL + "/select/general/min";
         String payload = "SELECT MIN(TotalPurchases) AS SmallestPurchase FROM Customers;";
         String expectedValue = "[{\"SmallestPurchase\":0.0}]";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with maximum value")
-    public void selectWithMaximum() throws SQLException {
+    public void selectWithMaximum() throws SQLException, IOException {
         log.info("Executing:selectWithMaximum");
         String serviceURL = ballerinaURL + "/select/general/max";
         String payload = "SELECT MAX(TotalPurchases) AS LargestPurchase FROM Customers";
         String expectedValue = "[{\"LargestPurchase\":50550.25}]";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with average and sum")
-    public void selectWithAverageSum() throws SQLException {
+    public void selectWithAverageSum() throws SQLException, IOException {
         log.info("Executing:selectWithAverageSum");
         String serviceURL = ballerinaURL + "/select/general/sumavg";
         String payload = "SELECT SUM(TotalPurchases) as SumOfPurchases" +
@@ -579,25 +538,23 @@ public class DBSelectTest extends BallerinaBaseTest {
         String expectedValue = "[{\"SumOfPurchases\":81950.55000000002" +
                 ",\"AvgOfPurchases\":10243.818750000002}]";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with having clause")
-    public void selectWithHaving() throws SQLException {
+    public void selectWithHaving() throws SQLException, IOException {
         log.info("Executing:selectWithHaving");
         String serviceURL = ballerinaURL + "/select/general/having";
         String payload = "SELECT COUNT(CustomerID) as CustomerIDCount" +
@@ -608,50 +565,46 @@ public class DBSelectTest extends BallerinaBaseTest {
                 ",{\"CustomerIDCount\":1,\"Country\":\"Sri Lanka\"}" +
                 ",{\"CustomerIDCount\":1,\"Country\":\"Sweden\"},{\"CustomerIDCount\":1,\"Country\":\"UK\"}]";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with exists")
-    public void selectWithExists() throws SQLException {
+    public void selectWithExists() throws SQLException, IOException {
         log.info("Executing:selectWithExists");
         String serviceURL = ballerinaURL + "/select/general/exists";
         String payload = "SELECT CustomerName FROM Customers WHERE EXISTS" +
                 " (SELECT ProductName FROM Products WHERE CustomerID = Customers.CustomerID AND Price < ?)";
         String expectedValue = "[{\"CustomerName\":\"Alfreds Futterkiste\"}]";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with not exists")
-    public void selectWithNotExists() throws SQLException {
+    public void selectWithNotExists() throws SQLException, IOException {
         log.info("Executing:selectWithNotExists");
         String serviceURL = ballerinaURL + "/select/general/exists";
         String payload = "SELECT CustomerName FROM Customers WHERE NOT EXISTS " +
@@ -662,25 +615,22 @@ public class DBSelectTest extends BallerinaBaseTest {
                 ",{\"CustomerName\":\"Padmasiri Samarapala\"},{\"CustomerName\":\"Jani Kethak\"}" +
                 ",{\"CustomerName\":\"Jae Peter\"}]";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with a complex sql that uses several functions and operators")
-    public void selectWithComplexSql() throws SQLException {
+    public void selectWithComplexSql() throws SQLException, IOException {
         log.info("Executing:selectWithComplexSql");
         String serviceURL = ballerinaURL + "/select/general/complexsql";
         String payload = "";
@@ -689,25 +639,22 @@ public class DBSelectTest extends BallerinaBaseTest {
                 ",{\"Country\":\"Sri Lanka\",\"MaxBuyingRatio\":0.012}" +
                 ",{\"Country\":\"Sweden\",\"MaxBuyingRatio\":0.012},{\"Country\":\"UK\",\"MaxBuyingRatio\":0.001}]";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select with results converted to xml")
-    public void selectDataAsXml() throws SQLException {
+    public void selectDataAsXml() throws SQLException, IOException {
         log.info("Executing:selectDataAsXml");
         String serviceURL = ballerinaURL + "/select/general/xml";
         String payload = "select CustomerID from Customers";
@@ -717,49 +664,44 @@ public class DBSelectTest extends BallerinaBaseTest {
                 "<result><CustomerID>6</CustomerID></result><result><CustomerID>7</CustomerID></result>" +
                 "<result><CustomerID>8</CustomerID></result></results>";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select returning a null value as json")
-    public void selectWithNullJson() throws SQLException {
+    public void selectWithNullJson() throws SQLException, IOException {
         log.info("Executing:selectWithNullJson");
         String serviceURL = ballerinaURL + "/select/general/nulljson";
         String payload = "SELECT Address from Customers where CustomerID=7";
         String expectedValue = "[{\"Address\":null}]";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests select returning a null value as xml")
-    public void selectWithNullXml() throws SQLException {
+    public void selectWithNullXml() throws SQLException, IOException {
         log.info("Executing:selectWithNullXml");
         String serviceURL = ballerinaURL + "/select/general/xml";
         String payload = "SELECT Address from Customers where CustomerID=7";
@@ -767,21 +709,18 @@ public class DBSelectTest extends BallerinaBaseTest {
                 "<result><Address xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/></result>" +
                 "</results>";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @AfterClass(alwaysRun = true)

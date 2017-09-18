@@ -117,7 +117,7 @@ public class DBUpdateTests extends BallerinaBaseTest {
     }
 
     @Test(description = "Tests updating a single record in single table")
-    public void updateSingleRecordSingleTable() throws SQLException {
+    public void updateSingleRecordSingleTable() throws SQLException, IOException {
         log.info("Executing:updateSingleRecordSingleTable");
         String serviceURL = ballerinaURL + "/update/withParam/simple?value1=Obere%20Str.%2053&value2=14500.25";
         String payload = "UPDATE Customers SET Address=?, TotalPurchases=? WHERE CustomerID=2";
@@ -125,36 +125,34 @@ public class DBUpdateTests extends BallerinaBaseTest {
         String actualChangedAddress = null;
         String actualChangedTotalPurchase = null;
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            //Querying the database to obtain the updated values
-            String query = "SELECT Address, TotalPurchases from Customers WHERE CustomerID=2";
-            ResultSet result = stmt.executeQuery(query);
-            while (result.next()) {
-                actualChangedAddress = result.getString("Address");
-                actualChangedTotalPurchase = String.valueOf(result.getDouble("TotalPurchases"));
-            }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-            //Asserting against actual database values
-            assertEquals(actualChangedAddress, "Obere Str. 53");
-            assertEquals(actualChangedTotalPurchase, "14500.25");
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
+        //Querying the database to obtain the updated values
+        String query = "SELECT Address, TotalPurchases from Customers WHERE CustomerID=2";
+        ResultSet result = stmt.executeQuery(query);
+        while (result.next()) {
+            actualChangedAddress = result.getString("Address");
+            actualChangedTotalPurchase = String.valueOf(result.getDouble("TotalPurchases"));
         }
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+        //Asserting against actual database values
+        assertEquals(actualChangedAddress, "Obere Str. 53");
+        assertEquals(actualChangedTotalPurchase, "14500.25");
+
     }
 
     @Test(description = "Tests updating multiple records in single table")
-    public void updateMulRecordsSingleTable() throws SQLException {
+    public void updateMulRecordsSingleTable() throws SQLException, IOException {
         log.info("Executing:updateMulRecordsSingleTable");
         String serviceURL = ballerinaURL + "/update/withParam/simple?value1=hidden&value2=0.0";
         String payload = "UPDATE Customers SET Address=?, TotalPurchases=? WHERE Country='South Korea'";
@@ -162,107 +160,96 @@ public class DBUpdateTests extends BallerinaBaseTest {
         String actualChangedAddress = null;
         String actualChangedTotalPurchase = null;
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            //Querying the database to obtain the updated values
-            String query = "SELECT Address, TotalPurchases from Customers WHERE Country='South Korea'";
-            ResultSet result = stmt.executeQuery(query);
-            while (result.next()) {
-                actualChangedAddress = result.getString("Address");
-                actualChangedTotalPurchase = String.valueOf(result.getDouble("TotalPurchases"));
-            }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-            //Asserting against actual database values
-            assertEquals(actualChangedAddress, "hidden");
-            assertEquals(actualChangedTotalPurchase, "0.0");
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
+        //Querying the database to obtain the updated values
+        String query = "SELECT Address, TotalPurchases from Customers WHERE Country='South Korea'";
+        ResultSet result = stmt.executeQuery(query);
+        while (result.next()) {
+            actualChangedAddress = result.getString("Address");
+            actualChangedTotalPurchase = String.valueOf(result.getDouble("TotalPurchases"));
         }
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+        //Asserting against actual database values
+        assertEquals(actualChangedAddress, "hidden");
+        assertEquals(actualChangedTotalPurchase, "0.0");
+
     }
 
     @Test(description = "Tests updating records with lesser params")
-    public void updateRecordsLesserParams() throws SQLException {
+    public void updateRecordsLesserParams() throws SQLException, IOException {
         log.info("Executing:updateRecordsLesserParams");
         String serviceURL = ballerinaURL + "/update/withParam/missing?value1=hidden";
         String payload = "UPDATE Customers SET Address=?, TotalPurchases=? WHERE Country='South Korea'";
         String expectedValue = "Error in database update. Please retry";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
 
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests updating records with more params")
-    public void updateRecordsMoreParams() throws SQLException {
+    public void updateRecordsMoreParams() throws SQLException, IOException {
         log.info("Executing:updateRecordsMoreParams");
         String serviceURL = ballerinaURL + "/update/withParam/missing?value1=hidden&value2=4.0";
         String payload = "UPDATE Customers SET Address='hidden', TotalPurchases=9.0 WHERE Country='South Korea'";
         String expectedValue = "Error in database update. Please retry";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
 
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests updating records with invalid column name")
-    public void updateRecordWInvalidColName() throws SQLException {
+    public void updateRecordWInvalidColName() throws SQLException, IOException {
         log.info("Executing:updateRecordWInvalidColName");
         String serviceURL = ballerinaURL + "/update/withParam/missing?value1=hidden&value2=0.0";
         String payload = "UPDATE Customers SET Address=?, TotalPurchases1=? WHERE Country='South Korea'";
         String expectedValue = "Error in database update. Please retry";
 
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
 
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
 
