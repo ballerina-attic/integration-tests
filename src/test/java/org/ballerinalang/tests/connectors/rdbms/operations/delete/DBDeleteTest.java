@@ -141,99 +141,90 @@ public class DBDeleteTest extends BallerinaBaseTest {
     }
 
     @Test(description = "Tests deleting a record aided by a where clause")
-    public void deleteWithWhereClause() throws SQLException {
+    public void deleteWithWhereClause() throws SQLException, IOException {
         log.info("Executing:deleteWithWhereClause");
         String serviceURL = ballerinaURL + "/delete/withParam/where?value=Around%20the%20Horn";
         String payload = "DELETE FROM Customers WHERE CustomerName=?";
         String expectedValue = "1";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests deleting already deleted row", dependsOnMethods = {"deleteWithWhereClause"})
-    public void deleteAlreadyDeletedRow() throws SQLException {
+    public void deleteAlreadyDeletedRow() throws SQLException, IOException {
         log.info("Executing:deleteAlreadyDeletedRow");
         String serviceURL = ballerinaURL + "/delete/withParam/where?value=Around%20the%20Horn";
         String payload = "DELETE FROM Customers WHERE CustomerName=?";
         String expectedValue = "0";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
 
-            //Re inserting deleted record to be used in latter test cases
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
 
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Re inserting deleted record to be used in latter test cases
+
     }
 
     @Test(description = "Tests deleting a record aided by both where and group by clause")
-    public void deleteWithGroupByClause() throws SQLException {
+    public void deleteWithGroupByClause() throws SQLException, IOException {
         log.info("Executing:deleteWithGroupByClause");
         String serviceURL = ballerinaURL + "/delete/withParam/orderby?value=Germany";
         String payload = "DELETE FROM Customers WHERE Country=? Order By RecordTime Limit 1";
         String expectedValue = "1";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @Test(description = "Tests deleting a records from multiple tables")
-    public void deleteFromMultipleTables() throws SQLException {
+    public void deleteFromMultipleTables() throws SQLException, IOException {
         log.info("Executing:deleteFromMultipleTables");
         String serviceURL = ballerinaURL + "/delete/general/innerjoin";
         String payload = "DELETE FROM Customers USING Customers INNER JOIN " +
                 "Products WHERE Customers.CustomerID=Products.CustomerID";
         String expectedValue = "3";
-        try {
-            //Reading response and status code from response
-            StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
-            PostMethod post = new PostMethod(serviceURL);
-            post.setRequestEntity(requestEntity);
-            int statuscode = client.executeMethod(post);
-            String response = post.getResponseBodyAsString();
 
-            // Asserting the Status code. Expected 200 OK
-            assertEquals(statuscode, HttpStatus.SC_OK);
-            // Asserting the Response Message.
-            assertEquals(response, expectedValue);
-        } catch (IOException e) {
-            log.error("Error while calling the BE server : " + e.getMessage(), e);
-        }
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
+
     }
 
     @AfterClass(alwaysRun = true)
