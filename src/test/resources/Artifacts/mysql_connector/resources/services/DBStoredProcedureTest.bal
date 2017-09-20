@@ -3,6 +3,9 @@ package resources.services;
 import ballerina.lang.errors;
 import ballerina.data.sql;
 import ballerina.lang.strings;
+import resources.connectorInit as conn;
+
+sql:ClientConnector connectorInstanceCall = conn:init();
 
 struct ResultOrders{
     int customerNumber;
@@ -17,7 +20,7 @@ function createStoredProcedure(string procedure) (int, errors:Error){
     errors:Error err;
 
     try {
-        insertedRowCount = connectorInstance.update(procedure, parameters);
+        insertedRowCount = connectorInstanceCall.update(procedure, parameters);
     } catch (errors:Error e) {
         string msg = "Error in procedure creation. Please retry";
         e = {msg:msg};
@@ -49,7 +52,7 @@ function callProcedureSuccess(int customerNo)(any, any, any, any, any, errors:Er
         paraResolved = {sqlType:"integer", direction:1};
         paraDisputed = {sqlType:"integer", direction:1};
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
-        connectorInstance.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
     } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -137,7 +140,7 @@ function callProcedureWithWrongDirectionForParams(int customerNo, string status)
             paraDisputed = {sqlType:"integer", direction:1};
         }
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
-        connectorInstance.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
     } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -176,7 +179,7 @@ function callProcedureWithLessInParams(int customerNo, string status)(any, any, 
         else{
             parameters = [paraCustomerNo, test,  paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         }
-        connectorInstance.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
     } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -209,7 +212,7 @@ function callProcedureWithLessOutParams(int customerNo)(any, any, any, any, any,
         paraResolved = {sqlType:"integer", direction:1};
         paraDisputed = {sqlType:"integer", direction:1};
         parameters = [paraCustomerNo, paraInc,  test, paraCanceled, paraResolved, paraDisputed, paraCount];
-        connectorInstance.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
     } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -242,7 +245,7 @@ function callProcedureWithLessInOutParams(int customerNo)(any, any, any, any, an
         paraResolved = {sqlType:"integer", direction:1};
         paraDisputed = {sqlType:"integer", direction:1};
         parameters = [paraCustomerNo, paraInc,  paraShipped, paraCanceled, paraResolved, paraDisputed, test];
-        connectorInstance.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
     } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -339,7 +342,7 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
             paraDisputed = {sqlType:"integer", direction:1};
         }
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
-        connectorInstance.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
     } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -374,7 +377,7 @@ function callProcedureToGetResultSet(int customerNo)(json, errors:Error){
         paraResolved = {sqlType:"integer", direction:1};
         paraDisputed = {sqlType:"integer", direction:1};
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
-        dt = connectorInstance.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        dt = connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
         result, _ = <json>dt;
     } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";

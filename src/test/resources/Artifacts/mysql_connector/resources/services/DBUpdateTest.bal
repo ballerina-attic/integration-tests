@@ -2,6 +2,9 @@ package resources.services;
 
 import ballerina.lang.errors;
 import ballerina.data.sql;
+import resources.connectorInit as conn;
+
+sql:ClientConnector connectorInstanceUpdate = conn:init();
 
 function updateWithParams (string query, string value1, float value2) (int, errors:Error){
 
@@ -13,7 +16,7 @@ function updateWithParams (string query, string value1, float value2) (int, erro
         sql:Parameter para1 = {sqlType:"varchar", value:value1, direction:0};
         sql:Parameter para2 = {sqlType:"double", value:value2, direction:0};
         parameters = [para1, para2];
-        noOfRows = connectorInstance.update (query, parameters);
+        noOfRows = connectorInstanceUpdate.update (query, parameters);
     } catch (errors:Error e) {
         string msg = "Error in database update. Please retry";
         err = {msg:msg};
@@ -30,7 +33,7 @@ function updateWithMissingParams (string query, string value1, float value2) (in
     try {
         sql:Parameter para1 = {sqlType:"varchar", value:value1, direction:0};
         parameters = [para1];
-        noOfRows = connectorInstance.update (query, parameters);
+        noOfRows = connectorInstanceUpdate.update (query, parameters);
     } catch (errors:Error e) {
         string msg = "Error in database update. Please retry";
         err = {msg:msg};
@@ -45,7 +48,7 @@ function updateWithoutParams (string query) (int, errors:Error){
     int noOfRows;
 
     try {
-        noOfRows = connectorInstance.update (query, parameters);
+        noOfRows = connectorInstanceUpdate.update (query, parameters);
     } catch (errors:Error e) {
         err = e;
     }
