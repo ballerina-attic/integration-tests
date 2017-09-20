@@ -20,10 +20,10 @@ sudo docker rmi -f $(docker images -qa -f "dangling=true")
 cp -r ${current_location}/src/test/resources/Artifacts ${current_location}/src/test/resources/docker
 
 cd ${current_location}/src/test/resources/docker
-sudo docker build --no-cache -t dockerhub.private.wso2.com/ballerina_integration_test_server:2.0 .
+sudo docker build --no-cache -t dockerhub.private.wso2.com/chathurikad-ballerina_integration_test_server:2.0 .
 
 # Pushing the docker image to registry
-sudo docker push dockerhub.private.wso2.com/ballerina_integration_test_server:2.0
+# sudo docker push dockerhub.private.wso2.com/chathurikad-ballerina_integration_test_server:2.0
 
 # Deleting Extracted tools pack and Artifacts directory
 rm -rf ballerina-tools-*
