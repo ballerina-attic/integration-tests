@@ -51,3 +51,6 @@ spec:
         -
           containerPort: 3306
           protocol: "TCP"
+
+      imagePullSecrets:
+             - name: registrykey
