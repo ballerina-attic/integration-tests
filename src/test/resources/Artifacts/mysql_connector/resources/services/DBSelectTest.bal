@@ -159,3 +159,18 @@ function selectWithComplexSql () (json, errors:Error){
     }
     return data, err;
 }
+
+function selectGeneralToXml (string query) (xml, errors:Error){
+
+    sql:Parameter[] parameters = [];
+    errors:Error err;
+    xml data;
+
+    try {
+        datatable dt = connectorInstance.select (query, parameters);
+        data, _ = <xml>dt;
+    } catch (errors:Error e) {
+        err = e;
+    }
+    return data, err;
+}
