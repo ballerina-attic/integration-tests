@@ -1,9 +1,6 @@
 package org.ballerinalang.tests.connectors.rdbms.operations.delete;
 
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ballerinalang.tests.TestConstants;
@@ -17,8 +14,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import static org.testng.Assert.assertEquals;
 
 public class DBDeleteDupTest extends BallerinaBaseTest {
 
