@@ -40,10 +40,10 @@ spec:
           value: BAL_OTHER_DB
         -
           name: MYSQL_USER
-          value: ballerinaOther
+          value: ballerinaother
         -
           name: MYSQL_PASSWORD
-          value: ballerinaOther
+          value: ballerinaother
         -
           name: JDBC_URL
           value: jdbc:mysql://mysql-db:3306/BAL_OTHER_DB

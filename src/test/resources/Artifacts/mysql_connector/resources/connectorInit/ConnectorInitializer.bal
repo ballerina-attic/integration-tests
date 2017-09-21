@@ -16,3 +16,4 @@ function init () (sql:ClientConnector connection){
                                  sql:MYSQL, mysqlHostName, mysqlPort, mysqlDatabase, mysqlUserName, mysqlPassword, properties);
     return;
 }
+
