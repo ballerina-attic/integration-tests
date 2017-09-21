@@ -33,19 +33,19 @@ spec:
         image: dockerhub.private.wso2.com/ballerina_mysql:5.7
         env:
         -
-          name: MYSQL_OTHER_ROOT_PASSWORD
+          name: MYSQL_ROOT_PASSWORD
           value: root
         -
-          name: MYSQL_OTHER_DATABASE
+          name: MYSQL_DATABASE
           value: BAL_OTHER_DB
         -
-          name: MYSQL_OTHER_USER
+          name: MYSQL_USER
           value: ballerinaOther
         -
-          name: MYSQL_OTHER_PASSWORD
+          name: MYSQL_PASSWORD
           value: ballerinaOther
         -
-          name: JDBC_OTHER_URL
+          name: JDBC_URL
           value: jdbc:mysql://mysql-db:3306/BAL_OTHER_DB
         ports:
         -
