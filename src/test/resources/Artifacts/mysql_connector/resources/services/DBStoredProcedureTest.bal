@@ -3,6 +3,7 @@ package resources.services;
 import ballerina.lang.errors;
 import ballerina.data.sql;
 import ballerina.lang.strings;
+import ballerina.lang.datatables;
 import resources.connectorInit as conn;
 
 sql:ClientConnector connectorInstanceCall = conn:init();
@@ -52,7 +53,8 @@ function callProcedureSuccess(int customerNo)(any, any, any, any, any, errors:Er
         paraResolved = {sqlType:"integer", direction:1};
         paraDisputed = {sqlType:"integer", direction:1};
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
-        connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        datatable dt = connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        datatables:close(dt);
     } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -140,7 +142,8 @@ function callProcedureWithWrongDirectionForParams(int customerNo, string status)
             paraDisputed = {sqlType:"integer", direction:1};
         }
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
-        connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        datatable dt = connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        datatables:close(dt);
     } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -179,7 +182,8 @@ function callProcedureWithLessInParams(int customerNo, string status)(any, any, 
         else{
             parameters = [paraCustomerNo, test,  paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         }
-        connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        datatable dt = connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        datatables:close(dt);
     } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -212,7 +216,8 @@ function callProcedureWithLessOutParams(int customerNo)(any, any, any, any, any,
         paraResolved = {sqlType:"integer", direction:1};
         paraDisputed = {sqlType:"integer", direction:1};
         parameters = [paraCustomerNo, paraInc,  test, paraCanceled, paraResolved, paraDisputed, paraCount];
-        connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        datatable dt = connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        datatables:close(dt);
     } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -245,7 +250,8 @@ function callProcedureWithLessInOutParams(int customerNo)(any, any, any, any, an
         paraResolved = {sqlType:"integer", direction:1};
         paraDisputed = {sqlType:"integer", direction:1};
         parameters = [paraCustomerNo, paraInc,  paraShipped, paraCanceled, paraResolved, paraDisputed, test];
-        connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        datatable dt = connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        datatables:close(dt);
     } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -342,7 +348,8 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
             paraDisputed = {sqlType:"integer", direction:1};
         }
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
-        connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        datatable dt = connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
+        datatables:close(dt);
     } catch (errors:Error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
