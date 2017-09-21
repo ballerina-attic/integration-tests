@@ -150,4 +150,22 @@ service <http> SelectTestService {
          }
         reply response;
     }
+
+    @http:resourceConfig {
+        methods:["POST"],
+        path:"/general/xml"
+    }
+    resource selectGeneralXmlResource (message m) {
+        message response = {};
+        errors:Error err;
+        string payload = messages:getStringPayload(m);
+        var result, err = selectGeneralToXml(payload);
+        if(err == null){
+              messages:setXmlPayload(response, result);
+         }
+         else{
+              messages:setStringPayload(response, err.msg);
+         }
+        reply response;
+    }
 }

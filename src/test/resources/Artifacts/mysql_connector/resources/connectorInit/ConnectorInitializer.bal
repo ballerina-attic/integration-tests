@@ -11,7 +11,7 @@ function init () (sql:ClientConnector connection){
     string mysqlUserName = system:getEnv("MYSQL_USER");
     string mysqlPassword = system:getEnv("MYSQL_PASSWORD");
 
-    sql:ConnectionProperties properties = {maximumPoolSize:100, connectionTimeout:300000};
+    sql:ConnectionProperties properties = {maximumPoolSize:2, connectionTimeout:300000};
     connection = create sql:ClientConnector(
                                  sql:MYSQL, mysqlHostName, mysqlPort, mysqlDatabase, mysqlUserName, mysqlPassword, properties);
     return;
