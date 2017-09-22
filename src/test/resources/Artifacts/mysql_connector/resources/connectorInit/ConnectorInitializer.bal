@@ -17,3 +17,12 @@ function init () (sql:ClientConnector connection){
     return;
 }
 
+function initOther () (sql:ClientConnector connectionOther){
+    string mysqlHostNameOther = system:getEnv("MYSQL_HOSTNAME");
+    var mysqlPortOther, _ = <int>system:getEnv("MYSQL_PORT");
+
+    sql:ConnectionProperties properties = {maximumPoolSize:2, connectionTimeout:300000};
+    connectionOther = create sql:ClientConnector(
+                                 sql:MYSQL, mysqlHostNameOther, mysqlPortOther, "BAL_OTHER_DB", "ballerinaother", "ballerinaother", properties);
+    return;
+}

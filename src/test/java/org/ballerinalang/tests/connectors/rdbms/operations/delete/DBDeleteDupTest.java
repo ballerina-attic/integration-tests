@@ -1,6 +1,9 @@
 package org.ballerinalang.tests.connectors.rdbms.operations.delete;
 
 import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.ballerinalang.tests.TestConstants;
@@ -15,6 +18,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class DBDeleteDupTest extends BallerinaBaseTest {
@@ -133,7 +137,21 @@ public class DBDeleteDupTest extends BallerinaBaseTest {
     @Test(description = "Tests deleting a record aided by a where clause duplicate")
     public void deleteWithWhereDupClause() throws SQLException, IOException {
         log.info("Executing:deleteWithWhereDupClause");
-        assertTrue(true);
+        String serviceURL = ballerinaURL + "/deletedup/withParam/where?value=Around%20the%20Horn";
+        String payload = "DELETE FROM Customers WHERE CustomerName=?";
+        String expectedValue = "1";
+
+        //Reading response and status code from response
+        StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
+        PostMethod post = new PostMethod(serviceURL);
+        post.setRequestEntity(requestEntity);
+        int statuscode = client.executeMethod(post);
+        String response = post.getResponseBodyAsString();
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, expectedValue);
 
     }
 
