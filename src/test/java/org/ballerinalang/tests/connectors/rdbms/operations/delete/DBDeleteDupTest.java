@@ -27,6 +27,8 @@ public class DBDeleteDupTest extends BallerinaBaseTest {
     Connection conn = null;
     Statement stmt = null;
     Statement stmt2 = null;
+    //String otherDbURL = "localhost:3306/BAL_OTHER_DB";
+    //private String ballerinaURL = "http://localhost:9090";
 
     DBDeleteDupTest() {
         client = new HttpClient();

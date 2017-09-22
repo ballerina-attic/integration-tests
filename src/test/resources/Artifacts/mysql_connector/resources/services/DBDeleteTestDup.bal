@@ -15,7 +15,7 @@ function deleteWithParamsOther (string query1, string valueToBeDeleted1) (int, e
     try {
         sql:Parameter para = {sqlType:"varchar", value:valueToBeDeleted1, direction:0};
         parameters = [para];
-        noOfRows = connectorInstanceDelete.update (query1, parameters);
+        noOfRows = connectorInstanceOtherDelete.update (query1, parameters);
     } catch (errors:Error e) {
         err = e;
     }

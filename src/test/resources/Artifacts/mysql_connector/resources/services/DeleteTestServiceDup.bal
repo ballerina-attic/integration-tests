@@ -17,7 +17,7 @@ service <http> DeleteDupTestService {
         message response = {};
         errors:Error err;
         string payload = messages:getStringPayload(m);
-        var result, err = deleteWithParams(payload, valueToBeDeleted);
+        var result, err = deleteWithParamsOther(payload, valueToBeDeleted);
         if(err == null){
               string valueToReturn = <string>result;
               messages:setStringPayload(response, valueToReturn);
