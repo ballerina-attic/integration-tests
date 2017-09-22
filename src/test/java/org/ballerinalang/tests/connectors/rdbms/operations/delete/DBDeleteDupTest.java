@@ -143,8 +143,10 @@ public class DBDeleteDupTest extends BallerinaBaseTest {
         String dropProducts = "drop table Products";
 
         try {
-            stmt.executeUpdate(dropCustomers);
-            stmt.executeUpdate(dropProducts);
+            if (stmt != null) {
+                stmt.executeUpdate(dropCustomers);
+                stmt.executeUpdate(dropProducts);
+            }
         } catch (SQLException e) {
             log.error("SQLException: " + e.getMessage());
             log.error("SQLState: " + e.getSQLState());

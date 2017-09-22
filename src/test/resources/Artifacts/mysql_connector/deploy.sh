@@ -28,11 +28,22 @@ kubectl create -f $script_path/mysql_rc.yaml
 kubectl create -f $script_path/mysql_other_service.yaml
 kubectl create -f $script_path/mysql_other_rc.yaml
 
-# Waiting for mysql to run. Current loop timer is 100*50 Sec.
+# Waiting for mysql-db to run. Current loop timer is 100*50 Sec.
 for number in {1..100}
 do
 echo $(date)" Waiting for mysql to start!"
- if [ "Running" == "$(kubectl get po | grep mysql | awk '{print $3}')" ]
+ if [ "Running" == "$(kubectl get po | grep mysql-db | awk '{print $3}')" ]
+ then
+  break
+ fi
+sleep 3
+done
+
+# Waiting for mysql-other to run. Current loop timer is 100*50 Sec.
+for number in {1..100}
+do
+echo $(date)" Waiting for mysql to start!"
+ if [ "Running" == "$(kubectl get po | grep mysql-other | awk '{print $3}')" ]
  then
   break
  fi
