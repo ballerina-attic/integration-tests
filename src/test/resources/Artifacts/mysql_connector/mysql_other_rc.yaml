@@ -46,7 +46,7 @@ spec:
           value: ballerinaother
         -
           name: JDBC_URL
-          value: jdbc:mysql://mysql-db:3306/BAL_OTHER_DB
+          value: jdbc:mysql://mysql-other-db:3306/BAL_OTHER_DB
         ports:
         -
           containerPort: 3306
