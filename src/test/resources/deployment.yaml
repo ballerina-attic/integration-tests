@@ -34,6 +34,7 @@ deployments:
     -
       ballerina : ballerina-server
       mysql : mysql-db
+      mysql_other : mysql-other-db
   -
     name: jms_activemq
     enable: false
