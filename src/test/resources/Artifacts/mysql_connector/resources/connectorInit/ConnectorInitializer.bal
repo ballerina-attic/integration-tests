@@ -18,11 +18,14 @@ function init () (sql:ClientConnector connection){
 }
 
 function initOther () (sql:ClientConnector connectionOther){
-    string mysqlHostNameOther = system:getEnv("MYSQL_HOSTNAME");
-    var mysqlPortOther, _ = <int>system:getEnv("MYSQL_PORT");
+    string mysqlHostNameOther = system:getEnv("MYSQL_OTHER_HOSTNAME");
+    var mysqlPortOther, _ = <int>system:getEnv("MYSQL_OTHER_PORT");
+    string mysqlDatabaseOther = system:getEnv("MYSQL_OTHER_DATABASE");
+    string mysqlUserNameOther = system:getEnv("MYSQL_OTHER_USER");
+    string mysqlPasswordOther = system:getEnv("MYSQL_OTHER_PASSWORD");
 
     sql:ConnectionProperties properties = {maximumPoolSize:2, connectionTimeout:300000};
     connectionOther = create sql:ClientConnector(
-                                 sql:MYSQL, mysqlHostNameOther, mysqlPortOther, "BAL_OTHER_DB", "ballerinaother", "ballerinaother", properties);
+                                 sql:MYSQL, mysqlHostNameOther, mysqlPortOther, mysqlDatabaseOther, mysqlUserNameOther, mysqlPasswordOther, properties);
     return;
 }

@@ -49,16 +49,31 @@ spec:
           name: MYSQL_HOSTNAME
           value: "mysql-db"
         -
+          name: MYSQL_OTHER_HOSTNAME
+          value: "mysql-other-db"
+        -
           name: MYSQL_DATABASE
           value: "BAL_DB"
+        -
+          name: MYSQL_OTHER_DATABASE
+          value: "BAL_OTHER_DB"
         -
           name: MYSQL_USER
           value: "ballerina"
         -
+          name: MYSQL_OTHER_USER
+          value: "ballerinaother"
+        -
           name: MYSQL_PASSWORD
           value: "ballerina"
         -
+          name: MYSQL_OTHER_PASSWORD
+          value: "ballerinaother"
+        -
           name: MYSQL_PORT
+          value: "3306"
+        -
+          name: MYSQL_OTHER_PORT
           value: "3306"
 
         ports:
