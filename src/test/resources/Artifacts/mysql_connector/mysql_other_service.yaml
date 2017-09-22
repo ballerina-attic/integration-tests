@@ -12,7 +12,21 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-echo "Removing the K8S PODS!!!!!"
-kubectl delete rc,services,pods -l name="ballerina-server"
-kubectl delete rc,services,pods -l name="mysql-db"
-kubectl delete rc,services,pods -l name="mysql-other-db"
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: mysql-other-db
+  name: mysql-other-db
+spec:
+  type: NodePort
+  ports:
+    -
+      name: 'mysql-other-port'
+      port: 3306
+      targetPort: 3306
+      nodePort: 30310
+  # label keys and values that must match in order to receive traffic for this service
+  selector:
+    name: mysql-other-db
