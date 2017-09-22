@@ -19,7 +19,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class DBDeleteDupTest extends BallerinaBaseTest {
 
