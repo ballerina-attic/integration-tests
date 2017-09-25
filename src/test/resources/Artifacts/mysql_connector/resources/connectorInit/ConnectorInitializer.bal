@@ -24,7 +24,7 @@ function initOther () (sql:ClientConnector connectionOther){
     string mysqlUserNameOther = system:getEnv("MYSQL_OTHER_USER");
     string mysqlPasswordOther = system:getEnv("MYSQL_OTHER_PASSWORD");
 
-    sql:ConnectionProperties properties = {maximumPoolSize:2, connectionTimeout:300000};
+    sql:ConnectionProperties properties = {maximumPoolSize:3, connectionTimeout:300000};
     connectionOther = create sql:ClientConnector(
                                  sql:MYSQL, mysqlHostNameOther, mysqlPortOther, mysqlDatabaseOther, mysqlUserNameOther, mysqlPasswordOther, properties);
     return;

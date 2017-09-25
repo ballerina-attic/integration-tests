@@ -31,6 +31,7 @@
             <class name="org.ballerinalang.tests.connectors.rdbms.operations.delete.DBDeleteDupTest"/>
             <class name="org.ballerinalang.tests.connectors.rdbms.operations.update.DBUpdateTests"/>
             <class name="org.ballerinalang.tests.connectors.rdbms.operations.update.DBUpdateSpecialTests"/>
+            <class name="org.ballerinalang.tests.connectors.rdbms.operations.transactions.distributed.DisTransactionTest"/>
         </classes>
     </test>
 </suite>
