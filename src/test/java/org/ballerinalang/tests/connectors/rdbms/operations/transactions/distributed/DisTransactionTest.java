@@ -81,7 +81,7 @@ public class DisTransactionTest extends BallerinaBaseTest {
         int statuscode = client.executeMethod(get);
         String response = get.getResponseBodyAsString();
 
-         //Querying the database to obtain values
+        //Querying the database to obtain values
         String queryPerson = "select FirstName from Persons where Lastname='Clerk'";
         String queryPeople = "select FirstName from People where Lastname='Clerk'";
         ResultSet resultPerson = stmt.executeQuery(queryPerson);
@@ -106,6 +106,117 @@ public class DisTransactionTest extends BallerinaBaseTest {
         //Asseting database values
         assertEquals(firstNamePerson, expectedPerson);
         assertEquals(firstNamePeople, expectedPeople);
+    }
+
+    @Test(description = "Tests transaction failure and default retry when a sql action fails")
+    public void executeDisTransDefaultRetryAtFailure() throws SQLException, IOException {
+        log.info("Executing:executeDisTransDefaultRetryAtFailure");
+        String serviceURL = ballerinaURL + "/distransaction/fail/retry/default";
+        String firstNamePerson = null;
+        String firstNamePeople = null;
+
+        //Reading response and status code from response
+        GetMethod get = new GetMethod(serviceURL);
+        int statuscode = client.executeMethod(get);
+        String response = get.getResponseBodyAsString();
+
+        //Querying the database to obtain values
+        String queryPerson = "select FirstName from Persons where Lastname='Clerk'";
+        String queryPeople = "select FirstName from People where Lastname='Clerk'";
+        ResultSet resultPerson = stmt.executeQuery(queryPerson);
+        ResultSet resultPeople = stmtOther.executeQuery(queryPeople);
+        while (resultPerson.next()) {
+            firstNamePerson = resultPerson.getString("FirstName");
+        }
+        while (resultPeople.next()) {
+            firstNamePeople = resultPeople.getString("FirstName");
+        }
+        String endQueryPerson = "delete from Persons";
+        String endQueryPeople = "delete from People";
+        stmt.executeUpdate(endQueryPerson);
+        stmtOther.executeUpdate(endQueryPeople);
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, "Error in transaction. Please retry. Retried: 3");
+        //Asseting database values
+        assertEquals(firstNamePerson, null);
+        assertEquals(firstNamePeople, null);
+    }
+
+    @Test(description = "Tests transaction failure and custom retry when a sql action fails")
+    public void executeDisTransCustomRetryAtFailure() throws SQLException, IOException {
+        log.info("Executing:executeDisTransCustomRetryAtFailure");
+        String serviceURL = ballerinaURL + "/distransaction/fail/retry/custom";
+        String firstNamePerson = null;
+        String firstNamePeople = null;
+
+        //Reading response and status code from response
+        GetMethod get = new GetMethod(serviceURL);
+        int statuscode = client.executeMethod(get);
+        String response = get.getResponseBodyAsString();
+
+        //Querying the database to obtain values
+        String queryPerson = "select FirstName from Persons where Lastname='Clerk'";
+        String queryPeople = "select FirstName from People where Lastname='Clerk'";
+        ResultSet resultPerson = stmt.executeQuery(queryPerson);
+        ResultSet resultPeople = stmtOther.executeQuery(queryPeople);
+        while (resultPerson.next()) {
+            firstNamePerson = resultPerson.getString("FirstName");
+        }
+        while (resultPeople.next()) {
+            firstNamePeople = resultPeople.getString("FirstName");
+        }
+        String endQueryPerson = "delete from Persons";
+        String endQueryPeople = "delete from People";
+        stmt.executeUpdate(endQueryPerson);
+        stmtOther.executeUpdate(endQueryPeople);
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, "Error in transaction. Please retry. Retried: 100");
+        //Asseting database values
+        assertEquals(firstNamePerson, null);
+        assertEquals(firstNamePeople, null);
+    }
+
+    @Test(description = "Tests transaction failure with force aborting sql action of one database")
+    public void executeDisTransForceAbort() throws SQLException, IOException {
+        log.info("Executing:executeDisTransForceAbort");
+        String serviceURL = ballerinaURL + "/distransaction/fail/abort";
+        String firstNamePerson = null;
+        String firstNamePeople = null;
+
+        //Reading response and status code from response
+        GetMethod get = new GetMethod(serviceURL);
+        int statuscode = client.executeMethod(get);
+        String response = get.getResponseBodyAsString();
+
+        //Querying the database to obtain values
+        String queryPerson = "select FirstName from Persons where Lastname='Clerk'";
+        String queryPeople = "select FirstName from People where Lastname='Clerk'";
+        ResultSet resultPerson = stmt.executeQuery(queryPerson);
+        ResultSet resultPeople = stmtOther.executeQuery(queryPeople);
+        while (resultPerson.next()) {
+            firstNamePerson = resultPerson.getString("FirstName");
+        }
+        while (resultPeople.next()) {
+            firstNamePeople = resultPeople.getString("FirstName");
+        }
+        String endQueryPerson = "delete from Persons";
+        String endQueryPeople = "delete from People";
+        stmt.executeUpdate(endQueryPerson);
+        stmtOther.executeUpdate(endQueryPeople);
+
+        // Asserting the Status code. Expected 200 OK
+        assertEquals(statuscode, HttpStatus.SC_OK);
+        // Asserting the Response Message.
+        assertEquals(response, "Inside aborted block. Retried: 0");
+        //Asseting database values
+        assertEquals(firstNamePerson, null);
+        assertEquals(firstNamePeople, null);
     }
 
     @AfterClass(alwaysRun = true)
