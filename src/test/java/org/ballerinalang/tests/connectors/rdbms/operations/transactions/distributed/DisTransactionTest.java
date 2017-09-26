@@ -41,8 +41,8 @@ public class DisTransactionTest extends BallerinaBaseTest {
 
     DisTransactionTest() {
         client = new HttpClient();
-        client.getHttpConnectionManager().getParams().setConnectionTimeout(8000);
-        client.getHttpConnectionManager().getParams().setSoTimeout(11000);
+        client.getHttpConnectionManager().getParams().setConnectionTimeout(5000);
+        client.getHttpConnectionManager().getParams().setSoTimeout(8000);
     }
 
     @BeforeClass(alwaysRun = true)
