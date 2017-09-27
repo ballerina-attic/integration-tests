@@ -39,10 +39,10 @@ public class GzipCompressor {
      * @return decompress the stream
      * @throws IOException
      */
-    public ByteArrayInputStream decompress(final InputStream inputStream) throws IOException {
+    public String decompress(final InputStream inputStream) throws IOException {
         OutputStream writer = new ByteArrayOutputStream();
         GZIPInputStream gzipStream = new GZIPInputStream(inputStream);
         IOUtils.copy(gzipStream, writer);
-        return new ByteArrayInputStream(((ByteArrayOutputStream) writer).toByteArray());
+        return IOUtils.toString(new ByteArrayInputStream(((ByteArrayOutputStream) writer).toByteArray()), "UTF-8");
     }
 }

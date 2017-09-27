@@ -10,7 +10,16 @@ public class ResponseHolder {
     private String responseMessage;
     private int responseCode;
     private String httpVersion;
-    private HashMap<String, String> Headers;
+    private HashMap<String, String> headers;
+    private byte[] responseStream;
+
+    public byte[] getResponseAsByteArray() {
+        return responseStream;
+    }
+
+    public void setResponseAsByteArray(byte[] responseStream) {
+        this.responseStream = responseStream;
+    }
 
     public String getResponseMessage() {
         return responseMessage;
@@ -37,10 +46,10 @@ public class ResponseHolder {
     }
 
     public HashMap<String, String> getHeaders() {
-        return Headers;
+        return headers;
     }
 
     public void setHeaders(HashMap<String, String> headers) {
-        Headers = headers;
+        this.headers = headers;
     }
 }
