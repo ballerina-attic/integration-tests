@@ -27,7 +27,7 @@ import static org.testng.Assert.assertEquals;
  * Uses DisTransactionService.bal service and DistributedTransactionTest.bal
  */
 
-public class DisTransactionTest {
+public class DisTransactionTest extends BallerinaBaseTest {
 
     private static final Log log = LogFactory.getLog(DisTransactionTest.class);
     HttpClient client = new HttpClient();
@@ -35,9 +35,9 @@ public class DisTransactionTest {
     Connection connOther = null;
     Statement stmt = null;
     Statement stmtOther = null;
-    String dbURL = "localhost:3306/baldb";
-    String otherDbURL = "localhost:3306/BAL_OTHER_DB";
-    private String ballerinaURL = "http://localhost:9090";
+    //String dbURL = "localhost:3306/baldb";
+    //String otherDbURL = "localhost:3306/BAL_OTHER_DB";
+    //private String ballerinaURL = "http://localhost:9090";
 
     DisTransactionTest() {
         client = new HttpClient();
