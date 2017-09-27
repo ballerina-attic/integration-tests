@@ -18,8 +18,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="suite of suites">
     <suite-files>
-        <!--<suite-file path="Test-suites/testng_pattern1.xml"/>-->
+        <suite-file path="Test-suites/testng_pattern1.xml"/>
         <suite-file path="Test-suites/testng_pattern2.xml"/>
-        <!--<suite-file path="Test-suites/testng_pattern3.xml"/>-->
+        <suite-file path="Test-suites/testng_pattern3.xml"/>
     </suite-files>
 </suite>
