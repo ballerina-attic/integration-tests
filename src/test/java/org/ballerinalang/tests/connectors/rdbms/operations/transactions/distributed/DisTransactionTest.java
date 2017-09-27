@@ -27,7 +27,7 @@ import static org.testng.Assert.assertEquals;
  * Uses DisTransactionService.bal service and DistributedTransactionTest.bal
  */
 
-public class DisTransactionTest extends BallerinaBaseTest {
+public class DisTransactionTest {
 
     private static final Log log = LogFactory.getLog(DisTransactionTest.class);
     HttpClient client = new HttpClient();
@@ -35,14 +35,14 @@ public class DisTransactionTest extends BallerinaBaseTest {
     Connection connOther = null;
     Statement stmt = null;
     Statement stmtOther = null;
-    //String dbURL = "localhost:3306/baldb";
-    //String otherDbURL = "localhost:3306/BAL_OTHER_DB";
-    //private String ballerinaURL = "http://localhost:9090";
+    String dbURL = "localhost:3306/baldb";
+    String otherDbURL = "localhost:3306/BAL_OTHER_DB";
+    private String ballerinaURL = "http://localhost:9090";
 
     DisTransactionTest() {
         client = new HttpClient();
-        client.getHttpConnectionManager().getParams().setConnectionTimeout(5000);
-        client.getHttpConnectionManager().getParams().setSoTimeout(8000);
+        client.getHttpConnectionManager().getParams().setConnectionTimeout(50000000);
+        client.getHttpConnectionManager().getParams().setSoTimeout(80000000);
     }
 
     @BeforeClass(alwaysRun = true)
@@ -115,7 +115,8 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(firstNamePeople, expectedPeople);
     }
 
-    @Test(description = "Tests transaction failure and default retry when a sql action fails")
+    @Test(description = "Tests transaction failure and default retry when a sql action fails"
+            , dependsOnMethods = {"executeDisTransSuccess"})
     public void executeDisTransDefaultRetryAtFailure() throws SQLException, IOException {
         log.info("Executing:executeDisTransDefaultRetryAtFailure");
         String serviceURL = ballerinaURL + "/distransaction/fail/retry/default";
@@ -152,7 +153,8 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(firstNamePeople, null);
     }
 
-    @Test(description = "Tests transaction failure and custom retry when a sql action fails")
+    @Test(description = "Tests transaction failure and custom retry when a sql action fails"
+            , dependsOnMethods = {"executeDisTransSuccess"})
     public void executeDisTransCustomRetryAtFailure() throws SQLException, IOException {
         log.info("Executing:executeDisTransCustomRetryAtFailure");
         String serviceURL = ballerinaURL + "/distransaction/fail/retry/custom";
@@ -189,7 +191,8 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(firstNamePeople, null);
     }
 
-    @Test(description = "Tests transaction failure with force aborting sql action of one database")
+    @Test(description = "Tests transaction failure with force aborting sql action of one database"
+            , dependsOnMethods = {"executeDisTransSuccess"})
     public void executeDisTransForceAbort() throws SQLException, IOException {
         log.info("Executing:executeDisTransForceAbort");
         String serviceURL = ballerinaURL + "/distransaction/fail/abort";
@@ -226,7 +229,8 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(firstNamePeople, null);
     }
 
-    @Test(description = "Tests transaction failure with explicit throw")
+    @Test(description = "Tests transaction failure with explicit throw"
+            , dependsOnMethods = {"executeDisTransSuccess"})
     public void executeDisTransForceThrow() throws SQLException, IOException {
         log.info("Executing:executeDisTransForceThrow");
         String serviceURL = ballerinaURL + "/distransaction/fail/throw";
@@ -263,7 +267,8 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(firstNamePeople, null);
     }
 
-    @Test(description = "This tests successful distributed multiple transaction invocation")
+    @Test(description = "This tests successful distributed multiple transaction invocation"
+            , dependsOnMethods = {"executeDisTransSuccess"})
     public void executeDisMultipleTransSuccess() throws SQLException, IOException {
         log.info("Executing:executeDisMultipleTransSuccess");
         String serviceURL = ballerinaURL + "/distransaction/success/multiple";
@@ -302,7 +307,8 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(firstNamePeople, expectedPeople);
     }
 
-    @Test(description = "Tests single transaction failure in multiple transaction blocks with custom retry")
+    @Test(description = "Tests single transaction failure in multiple transaction blocks with custom retry"
+            , dependsOnMethods = {"executeDisTransSuccess"})
     public void executeDisMulTransFailRetryOne() throws SQLException, IOException {
         log.info("Executing:executeDisMulTransFailRetryOne");
         String serviceURL = ballerinaURL + "/distransaction/failure/retry/one";
@@ -339,7 +345,8 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(firstNamePeople, null);
     }
 
-    @Test(description = "Tests child transaction failure in nested with retry")
+    @Test(description = "Tests child transaction failure in nested with retry"
+            , dependsOnMethods = {"executeDisTransSuccess"}, enabled = false)
     public void executeDisNestedTransChildFailureRetry() throws SQLException, IOException {
         log.info("Executing:executeDisNestedTransChildFailureRetry");
         String serviceURL = ballerinaURL + "/distransaction/nested/failure/retry/child";
@@ -376,7 +383,8 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(firstNamePeople, null);
     }
 
-    @Test(description = "Tests parent transaction failure in nested with retry")
+    @Test(description = "Tests parent transaction failure in nested with retry"
+            , dependsOnMethods = {"executeDisTransSuccess"}, enabled = false)
     public void executeDisNestedTransParentFailureRetry() throws SQLException, IOException {
         log.info("Executing:executeDisNestedTransParentFailureRetry");
         String serviceURL = ballerinaURL + "/distransaction/nested/failure/retry/parent";
@@ -413,8 +421,8 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(firstNamePeople, null);
     }
 
-
-    @Test(description = "Tests successful transaction for multiple data")
+    @Test(description = "Tests successful transaction for multiple data"
+            , dependsOnMethods = {"executeDisTransSuccess"})
     public void executeDisMultipleData() throws SQLException, IOException {
         log.info("Executing:executeDisMultipleData");
         String serviceURL = ballerinaURL + "/distransaction/general/single/success";
@@ -478,7 +486,8 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(countPeople, "3");
     }
 
-    @Test(description = "Tests transaction failure for multiple data with retry")
+    @Test(description = "Tests transaction failure for multiple data with retry"
+            , dependsOnMethods = {"executeDisTransSuccess"})
     public void executeDisMultipleDataRetry() throws SQLException, IOException {
         log.info("Executing:executeDisMultipleDataRetry");
         String serviceURL = ballerinaURL + "/distransaction/general/single/retry";
@@ -501,7 +510,7 @@ public class DisTransactionTest extends BallerinaBaseTest {
                 "         \"status\":\"active\"\n" +
                 "      },\n" +
                 "      {\n" +
-                "        \"id\":3,\n" +
+                "        \"id\":2,\n" +
                 "    \t\"lastname\":\"SloaneA\",\n" +
                 "         \"firstname\":\"Kelly\",\n" +
                 "         \"age\":25,\n" +
@@ -542,7 +551,8 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(countPeople, "0");
     }
 
-    @Test(description = "Tests transaction failure for multiple data with force abort")
+    @Test(description = "Tests transaction failure for multiple data with force abort"
+            , dependsOnMethods = {"executeDisTransSuccess"})
     public void executeDisMultipleDataForceAbort() throws SQLException, IOException {
         log.info("Executing:executeDisMultipleDataForceAbort");
         String serviceURL = ballerinaURL + "/distransaction/general/single/abort";

@@ -6,8 +6,8 @@ import resources.connectorInit as conn;
 import ballerina.lang.system;
 import ballerina.lang.strings;
 
-sql:ClientConnector connectorInstanceFirst = conn:init();
-sql:ClientConnector connectorInstanceSecond = conn:initOther();
+sql:ClientConnector connectorInstanceFirst = conn:initDistributedOne();
+sql:ClientConnector connectorInstanceSecond = conn:initDistributedTwo();
 
 function disTransctionSuccess () (string, errors:Error){
 
@@ -329,7 +329,7 @@ function disNestedTransFailRetryParent () (string, int, int, errors:Error){
             } failed {
                 returnValue = returnValue + ": failed child trx";
                 childRetryCount = childRetryCount + 1;
-                retry 35;
+                retry 4;
             } aborted {
                 returnValue = returnValue + ": aborted child trx";
             } committed {
@@ -339,7 +339,7 @@ function disNestedTransFailRetryParent () (string, int, int, errors:Error){
         } failed {
             returnValue = returnValue + ": failed parent trx";
             parentRetryCount = parentRetryCount + 1;
-            retry 50;
+            retry 4;
         } aborted {
             returnValue = returnValue + ": aborted parent trx";
         } committed {
