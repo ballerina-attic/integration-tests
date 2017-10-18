@@ -1,6 +1,5 @@
 package resources.services;
 
-import ballerina.lang.errors;
 import ballerina.data.sql;
 import ballerina.lang.datatables;
 import resources.connectorInit as conn;
@@ -11,25 +10,25 @@ struct ResultCount{
     int COUNTTENPERCENT;
 }
 
-function selectGeneral (string query) (json, errors:Error){
+function selectGeneral (string query) (json, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     json data = "e";
 
     try {
         datatable dt = connectorInstanceSelect.select (query, parameters);
         data, _ = <json>dt;
-    } catch (errors:Error e) {
+    } catch (error e) {
         err = e;
     }
     return data, err;
 }
 
-function selectBetween (string query) (json, errors:Error){
+function selectBetween (string query) (json, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     json data;
 
     try {
@@ -38,16 +37,16 @@ function selectBetween (string query) (json, errors:Error){
         parameters = [para1, para2];
         datatable dt = connectorInstanceSelect.select (query, parameters);
         data, _ = <json>dt;
-    } catch (errors:Error e) {
+    } catch (error e) {
         err = e;
     }
     return data, err;
 }
 
-function selectLike (string query) (json, errors:Error){
+function selectLike (string query) (json, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     json data;
     string value = "or";
     string likeValue = string `%{{value}}%`;
@@ -57,16 +56,16 @@ function selectLike (string query) (json, errors:Error){
         parameters = [para];
         datatable dt = connectorInstanceSelect.select (query, parameters);
         data, _ = <json>dt;
-    } catch (errors:Error e) {
+    } catch (error e) {
         err = e;
     }
     return data, err;
 }
 
-function selectIn (string query) (json, errors:Error){
+function selectIn (string query) (json, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     json data;
     string [] in = ["Germany", "UK"];
     try {
@@ -74,16 +73,16 @@ function selectIn (string query) (json, errors:Error){
         parameters = [para];
         datatable dt = connectorInstanceSelect.select (query, parameters);
         data, _ = <json>dt;
-    } catch (errors:Error e) {
+    } catch (error e) {
         err = e;
     }
     return data, err;
 }
 
-function selectAndOr (string query) (json, errors:Error){
+function selectAndOr (string query) (json, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     json data;
 
     try {
@@ -93,17 +92,17 @@ function selectAndOr (string query) (json, errors:Error){
         parameters = [para3, para1, para2];
         datatable dt = connectorInstanceSelect.select (query, parameters);
         data, _ = <json>dt;
-    } catch (errors:Error e) {
+    } catch (error e) {
         err = e;
     }
     return data, err;
 }
 
-function selectWithLimit () (json, errors:Error){
+function selectWithLimit () (json, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
-    errors:TypeCastError ex;
+    error err;
+    TypeCastError ex;
     json data;
     int count;
 
@@ -111,7 +110,7 @@ function selectWithLimit () (json, errors:Error){
         datatable dt = connectorInstanceSelect.select ("select CEIL(count(CustomerID)*50/100) as countTenPercent from Customers", parameters);
         ResultCount rs;
         while (datatables:hasNext(dt)) {
-            any dataStruct = datatables:next(dt);
+            any dataStruct = datatables:getNext(dt);
             rs, ex = (ResultCount) dataStruct;
             count = rs.COUNTTENPERCENT;
         }
@@ -119,16 +118,16 @@ function selectWithLimit () (json, errors:Error){
         parameters = [para];
         dt = connectorInstanceSelect.select ("select CustomerName from Customers ORDER BY TotalPurchases DESC limit 4", parameters);
         data, _ = <json>dt;
-    } catch (errors:Error e) {
+    } catch (error e) {
         err = e;
     }
     return data, err;
 }
 
-function selectWithExists (string query) (json, errors:Error){
+function selectWithExists (string query) (json, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     json data;
 
     try {
@@ -136,16 +135,16 @@ function selectWithExists (string query) (json, errors:Error){
         parameters = [para];
         datatable dt = connectorInstanceSelect.select (query, parameters);
         data, _ = <json>dt;
-    } catch (errors:Error e) {
+    } catch (error e) {
         err = e;
     }
     return data, err;
 }
 
-function selectWithComplexSql () (json, errors:Error){
+function selectWithComplexSql () (json, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     json data;
 
     try {
@@ -154,22 +153,22 @@ function selectWithComplexSql () (json, errors:Error){
         parameters = [para1, para2];
         datatable dt = connectorInstanceSelect.select ("select Country, TRUNCATE(MAX(LoyaltyPoints/TotalPurchases), ?) as MaxBuyingRatio from Customers where TotalPurchases > ? group by Country", parameters);
         data, _ = <json>dt;
-    } catch (errors:Error e) {
+    } catch (error e) {
         err = e;
     }
     return data, err;
 }
 
-function selectGeneralToXml (string query) (xml, errors:Error){
+function selectGeneralToXml (string query) (xml, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     xml data;
 
     try {
         datatable dt = connectorInstance.select (query, parameters);
         data, _ = <xml>dt;
-    } catch (errors:Error e) {
+    } catch (error e) {
         err = e;
     }
     return data, err;

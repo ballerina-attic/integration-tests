@@ -4,7 +4,7 @@ import ballerina.data.sql;
 import ballerina.lang.system;
 
 
-function init() (sql:ClientConnector connInit){
+public function init() (sql:ClientConnector connInit){
     string mysqlHostName = system:getEnv("MYSQL_HOSTNAME");
     var mysqlPort, _ = <int>system:getEnv("MYSQL_PORT");
     string mysqlDatabase = system:getEnv("MYSQL_DATABASE");
@@ -17,7 +17,7 @@ function init() (sql:ClientConnector connInit){
     return;
 }
 
-function initDistributedOne () (sql:ClientConnector connDisOne){
+public function initDistributedOne () (sql:ClientConnector connDisOne){
     string mysqlHostName = system:getEnv("MYSQL_HOSTNAME");
     var mysqlPort, _ = <int>system:getEnv("MYSQL_PORT");
     string mysqlDatabase = system:getEnv("MYSQL_DATABASE");
@@ -31,7 +31,7 @@ function initDistributedOne () (sql:ClientConnector connDisOne){
 }
 
 
-function initDistributedTwo () (sql:ClientConnector connDisTwo){
+public function initDistributedTwo () (sql:ClientConnector connDisTwo){
     string mysqlHostNameOther = system:getEnv("MYSQL_OTHER_HOSTNAME");
     var mysqlPortOther, _ = <int>system:getEnv("MYSQL_OTHER_PORT");
     string mysqlDatabaseOther = system:getEnv("MYSQL_OTHER_DATABASE");

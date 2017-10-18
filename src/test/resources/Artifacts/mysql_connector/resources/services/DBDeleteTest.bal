@@ -1,36 +1,35 @@
 package resources.services;
 
-import ballerina.lang.errors;
 import ballerina.data.sql;
 import resources.connectorInit as conn;
 
 sql:ClientConnector connectorInstanceDelete = conn:init();
 
-function deleteWithParams (string query, string valueToBeDeleted) (int, errors:Error){
+function deleteWithParams (string query, string valueToBeDeleted) (int, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     int noOfRows;
 
     try {
         sql:Parameter para = {sqlType:"varchar", value:valueToBeDeleted, direction:0};
         parameters = [para];
         noOfRows = connectorInstanceDelete.update (query, parameters);
-    } catch (errors:Error e) {
+    } catch (error e) {
         err = e;
     }
     return noOfRows, err;
 }
 
-function deleteGeneral (string query) (int, errors:Error){
+function deleteGeneral (string query) (int, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     int noOfRows;
 
     try {
         noOfRows = connectorInstanceDelete.update (query, parameters);
-    } catch (errors:Error e) {
+    } catch (error e) {
         err = e;
     }
     return noOfRows, err;

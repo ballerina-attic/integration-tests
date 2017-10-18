@@ -1,6 +1,5 @@
 package resources.services;
 
-import ballerina.lang.errors;
 import ballerina.data.sql;
 import resources.connectorInit as conn;
 import ballerina.lang.system;
@@ -9,10 +8,10 @@ import ballerina.lang.strings;
 sql:ClientConnector connectorInstanceFirst = conn:initDistributedOne();
 sql:ClientConnector connectorInstanceSecond = conn:initDistributedTwo();
 
-function disTransctionSuccess () (string, errors:Error){
+function disTransctionSuccess () (string, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     string returnValue;
     string[] keyColumns = [];
 
@@ -31,17 +30,17 @@ function disTransctionSuccess () (string, errors:Error){
         } committed {
             returnValue = "Inside committed block";
         }
-    } catch (errors:Error e) {
+    } catch (error e) {
             returnValue = "Error in transaction. Please retry";
             err = e;
     }
     return returnValue, err;
 }
 
-function disTransctionFailWithDefaultRetry () (string, int, errors:Error){
+function disTransctionFailWithDefaultRetry () (string, int, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     int retryCount = 0;
     string returnValue;
     string[] keyColumns = [];
@@ -62,7 +61,7 @@ function disTransctionFailWithDefaultRetry () (string, int, errors:Error){
         } committed {
             returnValue = "Inside committed block";
         }
-    } catch (errors:Error e) {
+    } catch (error e) {
             string temp = "Error in transaction. Please retry";
             err = {msg:temp};
             //err = e;
@@ -70,10 +69,10 @@ function disTransctionFailWithDefaultRetry () (string, int, errors:Error){
     return returnValue, retryCount, err;
 }
 
-function disTransctionFailWithCustomRetry () (string, int, errors:Error){
+function disTransctionFailWithCustomRetry () (string, int, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     int retryCount = 0;
     string returnValue;
     string[] keyColumns = [];
@@ -95,7 +94,7 @@ function disTransctionFailWithCustomRetry () (string, int, errors:Error){
         } committed {
             returnValue = "Inside committed block";
         }
-    } catch (errors:Error e) {
+    } catch (error e) {
             string temp = "Error in transaction. Please retry";
             err = {msg:temp};
             err = e;
@@ -103,10 +102,10 @@ function disTransctionFailWithCustomRetry () (string, int, errors:Error){
     return returnValue, retryCount, err;
 }
 
-function disTransctionFailForceAbort () (string, int, errors:Error){
+function disTransctionFailForceAbort () (string, int, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     int retryCount = 0;
     string returnValue;
     string[] keyColumns = [];
@@ -133,7 +132,7 @@ function disTransctionFailForceAbort () (string, int, errors:Error){
         } committed {
             returnValue = "Inside committed block";
         }
-    } catch (errors:Error e) {
+    } catch (error e) {
             string temp = "Error in transaction. Please retry";
             err = {msg:temp};
             err = e;
@@ -141,10 +140,10 @@ function disTransctionFailForceAbort () (string, int, errors:Error){
     return returnValue, retryCount, err;
 }
 
-function disTransctionFailForceThrow () (string, int, errors:Error){
+function disTransctionFailForceThrow () (string, int, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     int retryCount = 0;
     string returnValue;
     string[] keyColumns = [];
@@ -156,7 +155,7 @@ function disTransctionFailForceThrow () (string, int, errors:Error){
                (PersonID,LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                                        parameters);
             if (value){
-                errors:Error ex = {msg:"Thrown out from transaction"};
+                error ex = {msg:"Thrown out from transaction"};
                 throw ex;
             }
             connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
@@ -172,16 +171,16 @@ function disTransctionFailForceThrow () (string, int, errors:Error){
         } committed {
             returnValue = "Inside committed block";
         }
-    } catch (errors:Error e) {
+    } catch (error e) {
             err = e;
     }
     return returnValue, retryCount, err;
 }
 
-function disMultipleTransSuccess () (string, errors:Error){
+function disMultipleTransSuccess () (string, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     string returnValue = "Before trx";
     string[] keyColumns = [];
 
@@ -211,17 +210,17 @@ function disMultipleTransSuccess () (string, errors:Error){
         } committed {
             returnValue = returnValue + ": committed trx 2";
         }
-    } catch (errors:Error e) {
+    } catch (error e) {
             returnValue = "Error in transaction. Please retry";
             err = e;
     }
     return returnValue, err;
 }
 
-function disMultipleTransFailWithRetryOne () (string, int, errors:Error){
+function disMultipleTransFailWithRetryOne () (string, int, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     string returnValue = "Before trx";
     string[] keyColumns = [];
     int retryCount = 0;
@@ -253,7 +252,7 @@ function disMultipleTransFailWithRetryOne () (string, int, errors:Error){
         } committed {
             returnValue = returnValue + ": committed trx 2";
         }
-    } catch (errors:Error e) {
+    } catch (error e) {
             string temp = "Error in transaction. Please retry";
             err = {msg:temp};
             //err = e;
@@ -261,10 +260,10 @@ function disMultipleTransFailWithRetryOne () (string, int, errors:Error){
     return returnValue, retryCount, err;
 }
 
-function disNestedTransFailRetryChild () (string, int, int, errors:Error){
+function disNestedTransFailRetryChild () (string, int, int, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     string returnValue = "Before trx";
     string[] keyColumns = [];
     int childRetryCount = 0;
@@ -299,7 +298,7 @@ function disNestedTransFailRetryChild () (string, int, int, errors:Error){
         } committed {
             returnValue = returnValue + ": committed parent trx";
         }
-    } catch (errors:Error e) {
+    } catch (error e) {
             string temp = "Error in transaction. Please retry";
             err = {msg:temp};
             //err = e;
@@ -307,10 +306,10 @@ function disNestedTransFailRetryChild () (string, int, int, errors:Error){
     return returnValue, childRetryCount, parentRetryCount, err;
 }
 
-function disNestedTransFailRetryParent () (string, int, int, errors:Error){
+function disNestedTransFailRetryParent () (string, int, int, error){
 
     sql:Parameter[] parameters = [];
-    errors:Error err;
+    error err;
     string returnValue = "Before trx";
     string[] keyColumns = [];
     int childRetryCount = 0;
@@ -345,7 +344,7 @@ function disNestedTransFailRetryParent () (string, int, int, errors:Error){
         } committed {
             returnValue = returnValue + ": committed parent trx";
         }
-    } catch (errors:Error e) {
+    } catch (error e) {
             string temp = "Error in transaction. Please retry";
             err = {msg:temp};
             //err = e;
@@ -353,11 +352,11 @@ function disNestedTransFailRetryParent () (string, int, int, errors:Error){
     return returnValue, childRetryCount, parentRetryCount, err;
 }
 
-function disTransctionGeneral (json dataset) (string, int, errors:Error){
+function disTransctionGeneral (json dataset) (string, int, error){
 
     sql:Parameter[] parametersPersons = [];
     sql:Parameter[] parametersPeople = [];
-    errors:Error err;
+    error err;
     string returnValue;
     string[] keyColumns = [];
     int length = lengthof dataset.people;
@@ -399,7 +398,7 @@ function disTransctionGeneral (json dataset) (string, int, errors:Error){
         } committed {
             returnValue = "Inside committed block";
         }
-    } catch (errors:Error e) {
+    } catch (error e) {
             returnValue = "Error in transaction. Please retry";
             err = e;
     }
