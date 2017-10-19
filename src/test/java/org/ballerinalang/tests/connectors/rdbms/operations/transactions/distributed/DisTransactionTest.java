@@ -115,7 +115,7 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(firstNamePeople, expectedPeople);
     }
 
-    @Test(description = "Tests transaction failure and default retry when a sql action fails"
+    @Test(description = "Tests transaction failure and default retry when one database sql action fails"
             , dependsOnMethods = {"executeDisTransSuccess"})
     public void executeDisTransDefaultRetryAtFailure() throws SQLException, IOException {
         log.info("Executing:executeDisTransDefaultRetryAtFailure");
@@ -153,7 +153,7 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(firstNamePeople, null);
     }
 
-    @Test(description = "Tests transaction failure and custom retry when a sql action fails"
+    @Test(description = "Tests transaction failure and custom retry when one database sql action fails"
             , dependsOnMethods = {"executeDisTransSuccess"})
     public void executeDisTransCustomRetryAtFailure() throws SQLException, IOException {
         log.info("Executing:executeDisTransCustomRetryAtFailure");
@@ -486,9 +486,9 @@ public class DisTransactionTest extends BallerinaBaseTest {
         assertEquals(countPeople, "3");
     }
 
-    @Test(description = "Tests transaction failure for multiple data with retry"
+    @Test(description = "Tests transaction failure for multiple data with primary key violation"
             , dependsOnMethods = {"executeDisTransSuccess"})
-    public void executeDisMultipleDataRetry() throws SQLException, IOException {
+    public void executeDisPrimaryKeyViolation() throws SQLException, IOException {
         log.info("Executing:executeDisMultipleDataRetry");
         String serviceURL = ballerinaURL + "/distransaction/general/single/retry";
         String countPerson = null;

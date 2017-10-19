@@ -1,8 +1,6 @@
 package resources.services;
 
 import ballerina.net.http;
-import ballerina.lang.messages;
-import ballerina.lang.errors;
 
 @http:configuration {
     basePath:"/delete"
@@ -13,37 +11,37 @@ service <http> DeleteTestService {
         methods:["POST"],
         path:"/withParam/*"
     }
-    resource deleteWithParamResource (message m, @http:QueryParam {value:"value"} string valueToBeDeleted) {
-        message response = {};
-        errors:Error err;
-        string payload = messages:getStringPayload(m);
+    resource deleteWithParamResource (http:Request req, http:Response res) {
+        map params = req.getQueryParams();
+        var valueToBeDeleted, _ = (string)params.value;
+        error err;
+        string payload = req.getStringPayload();
         var result, err = deleteWithParams(payload, valueToBeDeleted);
         if(err == null){
               string valueToReturn = <string>result;
-              messages:setStringPayload(response, valueToReturn);
+              res.setStringPayload(valueToReturn);
          }
          else{
-              messages:setStringPayload(response, err.msg);
+              res.setStringPayload(err.msg);
          }
-        reply response;
+        res.send();
     }
 
     @http:resourceConfig {
         methods:["POST"],
         path:"/general/*"
     }
-    resource deleteGeneralResource (message m) {
-        message response = {};
-        errors:Error err;
-        string payload = messages:getStringPayload(m);
+    resource deleteGeneralResource (http:Request req, http:Response res) {
+        error err;
+        string payload = req.getStringPayload();
         var result, err = deleteGeneral(payload);
         if(err == null){
               string valueToReturn = <string>result;
-              messages:setStringPayload(response, valueToReturn);
+              res.setStringPayload(valueToReturn);
          }
          else{
-              messages:setStringPayload(response, err.msg);
+              res.setStringPayload(err.msg);
          }
-        reply response;
+        res.send();
     }
 }

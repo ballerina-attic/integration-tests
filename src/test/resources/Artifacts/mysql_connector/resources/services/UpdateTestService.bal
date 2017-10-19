@@ -1,8 +1,6 @@
 package resources.services;
 
 import ballerina.net.http;
-import ballerina.lang.messages;
-import ballerina.lang.errors;
 
 @http:configuration {
     basePath:"/update"
@@ -13,60 +11,68 @@ service <http> UpdateTestService {
         methods:["POST"],
         path:"/withParam/*"
     }
-    resource updateWithParamResource (message m, @http:QueryParam {value:"value1"} string value1
-                                , @http:QueryParam {value:"value2"} string value2) {
-        message response = {};
-        errors:Error err;
-        string payload = messages:getStringPayload(m);
+    resource updateWithParamResource (http:Request req, http:Response res) {
+        error err;
+        map params = req.getQueryParams();
+        var value2, _ = (string)params.value2;
+        var value1, _ = (string)params.value1;
         var temp, _ = <float>value2;
+        string payload = req.getStringPayload();
         var result, err = updateWithParams(payload, value1, temp);
         if(err == null){
               string valueToReturn = <string>result;
-              messages:setStringPayload(response, valueToReturn);
+              res.setStringPayload(valueToReturn);
+
          }
          else{
-              messages:setStringPayload(response, err.msg);
+              res.setStringPayload(err.msg);
+
          }
-        reply response;
+              res.send();
     }
 
     @http:resourceConfig {
         methods:["POST"],
         path:"/withParam/missing"
     }
-    resource updateWithMissingParamResource (message m, @http:QueryParam {value:"value1"} string value1
-                                , @http:QueryParam {value:"value2"} string value2) {
-        message response = {};
-        errors:Error err;
-        string payload = messages:getStringPayload(m);
+    resource updateWithMissingParamResource (http:Request req, http:Response res) {
+        error err;
+        map params = req.getQueryParams();
+        var value2, _ = (string)params.value2;
+        var value1, _ = (string)params.value1;
         var temp, _ = <float>value2;
+        string payload = req.getStringPayload();
         var result, err = updateWithMissingParams(payload, value1, temp);
         if(err == null){
               string valueToReturn = <string>result;
-              messages:setStringPayload(response, valueToReturn);
+              res.setStringPayload(valueToReturn);
+
          }
          else{
-              messages:setStringPayload(response, err.msg);
+              res.setStringPayload(err.msg);
+
          }
-        reply response;
+              res.send();
+
     }
 
     @http:resourceConfig {
         methods:["POST"],
         path:"/withParam/false"
     }
-    resource updateWithoutParamResource (message m) {
-        message response = {};
-        errors:Error err;
-        string payload = messages:getStringPayload(m);
+    resource updateWithoutParamResource (http:Request req, http:Response res) {
+        error err;
+        string payload = req.getStringPayload();
         var result, err = updateWithoutParams(payload);
         if(err == null){
               string valueToReturn = <string>result;
-              messages:setStringPayload(response, valueToReturn);
-         }
+              res.setStringPayload(valueToReturn);
+        }
          else{
-              messages:setStringPayload(response, err.msg);
+              res.setStringPayload(err.msg);
+
          }
-        reply response;
+              res.send();
+
     }
 }
