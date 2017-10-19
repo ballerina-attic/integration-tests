@@ -1,7 +1,6 @@
 package resources.services;
 
 import ballerina.net.http;
-import ballerina.lang.messages;
 
 @http:configuration {basePath:"/encoded"}
 service<http> EncodingService {
@@ -10,11 +9,10 @@ service<http> EncodingService {
         methods:["POST","GET","PUT","PATCH"],
         path:"/spayload"
     }
-    resource s_echo (message m) {
+    resource s_echo (http:Request req, http:Response res) {
 
-            string payload = messages:getStringPayload(m);
-            message msg = {};
-            messages:setStringPayload(msg, payload);
-            reply msg;
+            string payload = req.getStringPayload();
+            res.setStringPayload(payload);
+            res.send();
     }
 }
