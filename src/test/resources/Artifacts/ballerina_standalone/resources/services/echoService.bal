@@ -10,7 +10,7 @@ service<http> echo {
         path:"/"
     }
     resource echo (http:Request req, http:Response res) {
-        json payload = "This is a test json payload";
+        json payload = req.getJsonPayload();
         res.setJsonPayload(payload);
         res.send();
 

@@ -10,8 +10,8 @@ service<http> echo {
         path:"/"
     }
     resource echo (http:Request req, http:Response res) {
-        string payload= "This is a echo service";
-        res.setStringPayload(payload);
+        json payload = req.getJsonPayload();
+        res.setJsonPayload(payload);
         res.send();
     }
 }

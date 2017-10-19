@@ -107,7 +107,7 @@ public class DBDeleteTest extends BallerinaBaseTest {
         String insertProductFive = "insert into Products " +
                 "(ProductID, ProductName, CustomerID, CategoryID, Unit, Price)" +
                 " values (5, 'Chili Paste', 16, 2, '48 - 6 oz jars', 26.75);";
-   
+
 
         try {
             conn = DriverManager.getConnection(
