@@ -9,9 +9,10 @@ service<http> echo {
         methods:["POST"],
         path:"/"
     }
-    resource echo (message m) {
-        http:convertToResponse(m);
-        reply m;
+    resource echo (http:Request req, http:Response res) {
+        json payload = "This is a test json payload";
+        res.setJsonPayload(payload);
+        res.send();
 
     }
 }

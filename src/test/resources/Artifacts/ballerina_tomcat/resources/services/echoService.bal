@@ -9,9 +9,9 @@ service<http> echo {
         methods:["POST"],
         path:"/"
     }
-    resource echo (message m) {
-        http:convertToResponse(m);
-        reply m;
-
+    resource echo (http:Request req, http:Response res) {
+        string payload= "This is a echo service";
+        res.setStringPayload(payload);
+        res.send();
     }
 }
