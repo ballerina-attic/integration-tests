@@ -24,4 +24,6 @@ package org.ballerinalang.tests;
 public class TestConstants {
     public static final String MYSQL_USERNAME = "ballerina";
     public static final String MYSQL_PASSWORD = "ballerina";
+    public static final String MYSQL_OTHER_PASSWORD = "ballerinaother";
+    public static final String MYSQL_OTHER_USERNAME = "ballerinaother";
 }

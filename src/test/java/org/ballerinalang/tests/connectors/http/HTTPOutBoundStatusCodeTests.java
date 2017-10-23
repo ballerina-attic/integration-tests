@@ -1348,7 +1348,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_GONE);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound411ForPost() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/order/ee1a9ec2-c8a5-4afe-8585-74df591f9990";
 
@@ -1363,7 +1363,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(new String(response), "Content length missing. Please try again");
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound411ForPut() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/order/ee1a9ec2-c8a5-4afe-8585-74df591f9990";
 
@@ -1378,7 +1378,7 @@ public class HTTPOutBoundStatusCodeTests extends BallerinaBaseTest {
         assertEquals(new String(response), "Content length missing. Please try again");
     }
 
-    @Test
+    @Test(enabled = false)
     public void testOutbound411ForDelete() throws Exception {
         String serviceURL = ballerinaURL + "/http/call/order/ee1a9ec2-c8a5-4afe-8585-74df591f9990";
 

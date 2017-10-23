@@ -108,6 +108,7 @@ public class DBDeleteTest extends BallerinaBaseTest {
                 "(ProductID, ProductName, CustomerID, CategoryID, Unit, Price)" +
                 " values (5, 'Chili Paste', 16, 2, '48 - 6 oz jars', 26.75);";
 
+
         try {
             conn = DriverManager.getConnection(
                     "jdbc:mysql://" + dbURL + "?" + "user=" + TestConstants.MYSQL_USERNAME + "&password="

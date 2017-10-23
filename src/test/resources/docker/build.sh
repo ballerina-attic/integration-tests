@@ -28,3 +28,4 @@ sudo docker push dockerhub.private.wso2.com/ballerina_integration_test_server:2.
 # Deleting Extracted tools pack and Artifacts directory
 rm -rf ballerina-tools-*
 rm -rf Artifacts
+

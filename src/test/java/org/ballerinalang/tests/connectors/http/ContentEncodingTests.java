@@ -4,6 +4,7 @@ import org.apache.commons.httpclient.methods.InputStreamRequestEntity;
 import org.ballerinalang.client.HttpTestClient;
 import org.ballerinalang.client.ResponseHolder;
 import org.ballerinalang.client.compressor.GzipCompressor;
+import org.ballerinalang.tests.base.BallerinaBaseTest;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayInputStream;
@@ -18,9 +19,8 @@ import static org.testng.Assert.assertNotNull;
  * Test class for testing transfer and content encoding
  * Uses EncodingService.bal
  */
-public class ContentEncodingTests {
+public class ContentEncodingTests extends BallerinaBaseTest {
 
-    String ballerinaURL = "http://localhost:8899";
 
     /**
      * Tests small chunked message for a Post request

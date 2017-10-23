@@ -24,6 +24,7 @@ public class HTTPMethodsTests extends BallerinaBaseTest {
 
     HttpClient client;
     private static final Log log = LogFactory.getLog(HTTPMethodsTests.class);
+    //String ballerinaURL = "http://192.168.48.12:32013";
 
     HTTPMethodsTests() {
         client = new HttpClient();
