@@ -82,7 +82,7 @@ service <http> HTTPMethodService {
 
     @http:resourceConfig {
         methods:["GET"],
-        path:"/gettopres.send();ost"
+        path:"/gettopost"
     }
     resource getResource (http:Request req, http:Response res) {
         http:ClientConnector httpCheck;

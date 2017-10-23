@@ -44,6 +44,8 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
 
     HttpClient client;
     private static final Log log = LogFactory.getLog(HTTPStatusCodesTests.class);
+    //String ballerinaURL = "http://192.168.48.12:32013";
+    //String ballerinaURL = "http://localhost:9090";
 
     HTTPStatusCodesTests() {
         client = new HttpClient();
