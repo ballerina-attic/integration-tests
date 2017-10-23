@@ -16,12 +16,13 @@ service <http> StatusCodeService {
     resource statusCodeResource (http:Request req, http:Response res, string codeValue) {
         http:ClientConnector httpCheck;
         httpCheck= create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         map params = req.getQueryParams();
         var withbody, _ = (string)params.withbody;
         string resourcePath = "/RESTfulService/mock/statusCodeService/" + codeValue + "?withbody=" + withbody;
         string method = req.getMethod();
-        res = httpCheck.execute(method, resourcePath, req);
-        res.send();
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
     }
 
     @http:resourceConfig {
@@ -31,9 +32,10 @@ service <http> StatusCodeService {
     resource statusCodeResource2 (http:Request req, http:Response res, string codeValue) {
         http:ClientConnector httpCheck;
         httpCheck= create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/statusCodeService/" + codeValue;
         string method = req.getMethod();
-        res = httpCheck.execute(method, resourcePath, req);
-        res.send();
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
     }
 }

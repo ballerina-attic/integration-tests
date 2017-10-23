@@ -17,10 +17,12 @@ function disTransctionSuccess () (string, error){
 
     try {
         transaction {
-            connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            string[] ids;
+            int rowCount_1;
+            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
-            connectorInstanceSecond.update("Insert into People
+            int rowCount_2 = connectorInstanceSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                                        parameters);
         } failed {
@@ -47,10 +49,12 @@ function disTransctionFailWithDefaultRetry () (string, int, error){
 
     try {
         transaction {
-            connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            string[] ids;
+            int rowCount_1;
+            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
-            connectorInstanceSecond.update("Insert into People
+            int rowCount_2 = connectorInstanceSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                                        parameters);
         } failed {
@@ -79,10 +83,12 @@ function disTransctionFailWithCustomRetry () (string, int, error){
 
     try {
         transaction {
-            connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            string[] ids;
+            int rowCount_1;
+            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
-            connectorInstanceSecond.update("Insert into People
+            int rowCount_2 = connectorInstanceSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                                        parameters);
         } failed {
@@ -113,13 +119,16 @@ function disTransctionFailForceAbort () (string, int, error){
 
     try {
         transaction {
-            connectorInstanceSecond.update("Insert into People
+            string[] ids;
+            int rowCount_1;
+            rowCount_1= connectorInstanceSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                                        parameters);
             if (value){
                 abort;
             }
-            connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            int rowCount_2;
+            rowCount_2, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
 
@@ -151,14 +160,17 @@ function disTransctionFailForceThrow () (string, int, error){
 
     try {
         transaction {
-            connectorInstanceSecond.update("Insert into People
+            string[] ids;
+            int rowCount_1;
+            rowCount_1= connectorInstanceSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                                        parameters);
             if (value){
                 error ex = {msg:"Thrown out from transaction"};
                 throw ex;
             }
-            connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            int rowCount_2;
+            rowCount_2, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
 
@@ -186,7 +198,9 @@ function disMultipleTransSuccess () (string, error){
 
     try {
         transaction {
-            connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            string[] ids;
+            int rowCount_1;
+            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
 
@@ -199,7 +213,7 @@ function disMultipleTransSuccess () (string, error){
         }
 
         transaction {
-             connectorInstanceSecond.update("Insert into People
+             int rowCount_2 = connectorInstanceSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                                        parameters);
 
@@ -227,7 +241,9 @@ function disMultipleTransFailWithRetryOne () (string, int, error){
 
     try {
         transaction {
-            connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            string[] ids;
+            int rowCount_1;
+            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
 
@@ -242,7 +258,7 @@ function disMultipleTransFailWithRetryOne () (string, int, error){
         }
 
         transaction {
-             connectorInstanceSecond.update("Insert into People
+             int rowCount_2 = connectorInstanceSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                                        parameters);
         } failed {
@@ -271,12 +287,14 @@ function disNestedTransFailRetryChild () (string, int, int, error){
 
     try {
         transaction {
-            connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            string[] ids;
+            int rowCount_1;
+            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
 
             transaction {
-                 connectorInstanceSecond.update("Insert into People
+                 int rowCount_2 = connectorInstanceSecond.update("Insert into People
                    (PersonID,LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                                                parameters);
             } failed {
@@ -317,12 +335,14 @@ function disNestedTransFailRetryParent () (string, int, int, error){
 
     try {
         transaction {
-            connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            string[] ids;
+            int rowCount_1;
+            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
 
             transaction {
-                 connectorInstanceSecond.update("Insert into People
+                 int rowCount_2 = connectorInstanceSecond.update("Insert into People
                    (PersonID,LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                                                parameters);
             } failed {
@@ -379,9 +399,11 @@ function disTransctionGeneral (json dataset) (string, int, error){
                 parametersPeople = [paraID, paraLPName, paraFPName, paraAgeP, paraStatusP];
                 parametersPersons = [paraLPName, paraFPName, paraAgeP, paraStatusP];
 
-                connectorInstanceSecond.update("Insert into People (PersonID,LastName,FirstName,Age,Status) values (?, ?, ?, ?, ?)",parametersPeople);
+                int rowCount_1 = connectorInstanceSecond.update("Insert into People (PersonID,LastName,FirstName,Age,Status) values (?, ?, ?, ?, ?)",parametersPeople);
                 if (strings:equalsIgnoreCase(status1, "active")){
-                    connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons (LastName,FirstName,Age,Status) values (?, ?, ?, ?)",parametersPersons, keyColumns);
+                    string[] ids;
+                    int rowCount_2;
+                    rowCount_2, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons (LastName,FirstName,Age,Status) values (?, ?, ?, ?)",parametersPersons, keyColumns);
                 }
                 else{
                     abort;
