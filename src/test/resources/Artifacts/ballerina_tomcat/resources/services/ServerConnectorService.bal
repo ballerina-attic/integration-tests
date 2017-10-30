@@ -1,8 +1,6 @@
 package resources.services;
 
 import ballerina.net.http;
-import ballerina.lang.strings;
-import ballerina.lang.system;
 
 @http:configuration {
     basePath:"/http"
@@ -94,23 +92,23 @@ service <http> ServerConnectorService {
     resource batchProcessingRedirectionResource(http:Request req, http:Response res, string code){
         int statusCode;
 
-        if(strings:equalsIgnoreCase(code, "300")){
+        if(code.equalsIgnoreCase("300")){
             statusCode = 300;
         }
-        else if (strings:equalsIgnoreCase(code, "301")){
-            system:println(code);
+        else if (code.equalsIgnoreCase("301")){
+            println(code);
             statusCode = 301;
         }
-        else if (strings:equalsIgnoreCase(code, "302")){
+        else if (code.equalsIgnoreCase("302")){
             statusCode = 302;
         }
-        else if (strings:equalsIgnoreCase(code, "303")){
+        else if (code.equalsIgnoreCase("303")){
             statusCode = 303;
         }
-        else if (strings:equalsIgnoreCase(code, "305")){
+        else if (code.equalsIgnoreCase("305")){
             statusCode = 305;
         }
-        else if (strings:equalsIgnoreCase(code, "307")){
+        else if (code.equalsIgnoreCase("307")){
             statusCode = 307;
         }
 
@@ -131,27 +129,27 @@ service <http> ServerConnectorService {
         string length = req.getHeader("Content-Length");
         cLength, err = <int>length;
 
-        if(strings:equalsIgnoreCase(auth, "YWRtaW46YWRtaW4=")){
+        if(auth.equalsIgnoreCase("YWRtaW46YWRtaW4=")){
             int statusCode = 403;
             res.setStatusCode(statusCode);
         }
-        if(strings:equalsIgnoreCase(orderid, "123x")){
+        if(orderid.equalsIgnoreCase("123x")){
             int statusCode = 406;
             res.setStatusCode(statusCode);
         }
-        if(strings:equalsIgnoreCase(orderid, "123xy")){
+        if(orderid.equalsIgnoreCase("123xy")){
             int statusCode = 409;
             res.setStatusCode(statusCode);
             string sPayload = "Resource conflicted. Please try again";
             res.setStringPayload(sPayload);
         }
-        if(strings:equalsIgnoreCase(orderid, "123ab")){
+        if(orderid.equalsIgnoreCase("123ab")){
             int statusCode = 410;
             res.setStatusCode(statusCode);
             string sPayload = "Resource Gone. Please try again";
             res.setStringPayload(sPayload);
         }
-        if(strings:equalsIgnoreCase(length, "")){
+        if(length.equalsIgnoreCase("")){
             int statusCode = 411;
             res.setStatusCode(statusCode);
             string sPayload = "Content length missing. Please try again";
@@ -173,9 +171,9 @@ service <http> ServerConnectorService {
     }
     resource getNewMenuDetailsResource (http:Request req, http:Response res) {
         string expect = req.getHeader("Expect");
-        system:println(expect);
-        if(!strings:equalsIgnoreCase(expect, "100-continue")){
-            system:println("a");
+        println(expect);
+        if(!expect.equalsIgnoreCase("100-continue")){
+            println("a");
             int statusCode = 417;
             res.setStatusCode(statusCode);
         }

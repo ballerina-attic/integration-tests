@@ -2,7 +2,6 @@ package resources.services;
 
 import resources.connectorInit as conn;
 import ballerina.data.sql;
-import ballerina.lang.datatables;
 
 sql:ClientConnector connectorInstance = conn:init();
 
@@ -109,8 +108,8 @@ function insertWithForeignKey (json dataset) (int, error){
             parameters = [paraLName];
             datatable dt = connectorInstance.select ("select PersonID from persons where Lastname=?", parameters);
             ResultPersons rs;
-            while (datatables:hasNext(dt)) {
-                any dataStruct = datatables:getNext(dt);
+            while (dt.hasNext()) {
+                any dataStruct = dt.getNext();
                 rs, em = (ResultPersons)dataStruct;
                 pId = rs.PersonID;
             }

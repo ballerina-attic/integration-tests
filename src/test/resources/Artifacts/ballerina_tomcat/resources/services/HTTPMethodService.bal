@@ -1,14 +1,14 @@
 package resources.services;
 
 import ballerina.net.http;
-import ballerina.lang.system;
+import ballerina.os;
 
 @http:configuration {
     basePath:"/httpmethods"
 }
 service <http> HTTPMethodService {
 
-    string connection = system:getEnv("TOMCAT_HOST");
+    string connection = os:getEnv("TOMCAT_HOST");
     @http:resourceConfig {
         methods:["POST", "GET", "HEAD", "PUT", "DELETE"],
         path:"/all"

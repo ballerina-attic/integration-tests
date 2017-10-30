@@ -1,8 +1,6 @@
 package resources.services;
 
 import ballerina.data.sql;
-import ballerina.lang.strings;
-import ballerina.lang.datatables;
 import resources.connectorInit as conn;
 
 sql:ClientConnector connectorInstanceCall = conn:init();
@@ -53,7 +51,7 @@ function callProcedureSuccess(int customerNo)(any, any, any, any, any, error){
         paraDisputed = {sqlType:"integer", direction:1};
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         datatable dt = connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
-        datatables:close(dt);
+        dt.close();
     } catch (error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -77,7 +75,7 @@ function callProcedureWithWrongDirectionForParams(int customerNo, string status)
     sql:Parameter paraDisputed;
 
     try {
-        if (strings:equalsIgnoreCase(status, "intoout")){
+        if (status.equalsIgnoreCase("intoout")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"integer", value:inc, direction:1};
             paraCount = {sqlType:"integer", value:count, direction:2};
@@ -86,7 +84,7 @@ function callProcedureWithWrongDirectionForParams(int customerNo, string status)
             paraResolved = {sqlType:"integer", direction:1};
             paraDisputed = {sqlType:"integer", direction:1};
         }
-        else if (strings:equalsIgnoreCase(status, "intoinout")){
+        else if (status.equalsIgnoreCase("intoinout")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"integer", value:inc, direction:2};
             paraCount = {sqlType:"integer", value:count, direction:2};
@@ -95,7 +93,7 @@ function callProcedureWithWrongDirectionForParams(int customerNo, string status)
             paraResolved = {sqlType:"integer", direction:1};
             paraDisputed = {sqlType:"integer", direction:1};
         }
-        else if (strings:equalsIgnoreCase(status, "outtoin")){
+        else if (status.equalsIgnoreCase("outtoin")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"integer", value:inc, direction:0};
             paraCount = {sqlType:"integer", value:count, direction:2};
@@ -104,7 +102,7 @@ function callProcedureWithWrongDirectionForParams(int customerNo, string status)
             paraResolved = {sqlType:"integer", direction:1};
             paraDisputed = {sqlType:"integer", direction:1};
         }
-        else if (strings:equalsIgnoreCase(status, "outtoinout")){
+        else if (status.equalsIgnoreCase("outtoinout")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"integer", value:inc, direction:0};
             paraCount = {sqlType:"integer", value:count, direction:2};
@@ -113,7 +111,7 @@ function callProcedureWithWrongDirectionForParams(int customerNo, string status)
             paraResolved = {sqlType:"integer", direction:1};
             paraDisputed = {sqlType:"integer", direction:1};
         }
-        else if (strings:equalsIgnoreCase(status, "inouttoin")){
+        else if (status.equalsIgnoreCase("inouttoin")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"integer", value:inc, direction:0};
             paraCount = {sqlType:"integer", value:count, direction:0};
@@ -122,7 +120,7 @@ function callProcedureWithWrongDirectionForParams(int customerNo, string status)
             paraResolved = {sqlType:"integer", direction:1};
             paraDisputed = {sqlType:"integer", direction:1};
         }
-        else if (strings:equalsIgnoreCase(status, "inouttoout")){
+        else if (status.equalsIgnoreCase("inouttoout")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"integer", value:inc, direction:0};
             paraCount = {sqlType:"integer", value:count, direction:1};
@@ -142,7 +140,7 @@ function callProcedureWithWrongDirectionForParams(int customerNo, string status)
         }
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         datatable dt = connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
-        datatables:close(dt);
+        dt.close();
     } catch (error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -175,14 +173,14 @@ function callProcedureWithLessInParams(int customerNo, string status)(any, any, 
         paraResolved = {sqlType:"integer", direction:1};
         paraDisputed = {sqlType:"integer", direction:1};
         parameters = [paraCustomerNo, test,  paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
-        if (strings:equalsIgnoreCase(status, "select")){
+        if (status.equalsIgnoreCase("select")){
             parameters = [test, paraInc,  paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         }
         else{
             parameters = [paraCustomerNo, test,  paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         }
         datatable dt = connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
-        datatables:close(dt);
+        dt.close();
     } catch (error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -216,7 +214,7 @@ function callProcedureWithLessOutParams(int customerNo)(any, any, any, any, any,
         paraDisputed = {sqlType:"integer", direction:1};
         parameters = [paraCustomerNo, paraInc,  test, paraCanceled, paraResolved, paraDisputed, paraCount];
         datatable dt = connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
-        datatables:close(dt);
+        dt.close();
     } catch (error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -250,7 +248,7 @@ function callProcedureWithLessInOutParams(int customerNo)(any, any, any, any, an
         paraDisputed = {sqlType:"integer", direction:1};
         parameters = [paraCustomerNo, paraInc,  paraShipped, paraCanceled, paraResolved, paraDisputed, test];
         datatable dt = connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
-        datatables:close(dt);
+        dt.close();
     } catch (error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
@@ -274,7 +272,7 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
     sql:Parameter paraDisputed;
 
     try {
-        if (strings:equalsIgnoreCase(status, "invaluenotchanged")){
+        if (status.equalsIgnoreCase("invaluenotchanged")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"varchar", value:inc, direction:0};
             paraCount = {sqlType:"integer", value:count, direction:2};
@@ -283,7 +281,7 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
             paraResolved = {sqlType:"integer", direction:1};
             paraDisputed = {sqlType:"integer", direction:1};
         }
-        else if (strings:equalsIgnoreCase(status, "invaluechanged")){
+        else if (status.equalsIgnoreCase("invaluechanged")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"varchar", value:"test", direction:0};
             paraCount = {sqlType:"integer", value:count, direction:2};
@@ -292,7 +290,7 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
             paraResolved = {sqlType:"integer", direction:1};
             paraDisputed = {sqlType:"integer", direction:1};
         }
-        else if(strings:equalsIgnoreCase(status, "inonlyvaluechanged")){
+        else if(status.equalsIgnoreCase("inonlyvaluechanged")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"integer", value:"test", direction:0};
             paraCount = {sqlType:"integer", value:count, direction:2};
@@ -301,7 +299,7 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
             paraResolved = {sqlType:"integer", direction:1};
             paraDisputed = {sqlType:"integer", direction:1};
         }
-        else if (strings:equalsIgnoreCase(status, "out")){
+        else if (status.equalsIgnoreCase("out")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"integer", value:inc, direction:0};
             paraCount = {sqlType:"integer", value:count, direction:2};
@@ -310,7 +308,7 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
             paraResolved = {sqlType:"integer", direction:1};
             paraDisputed = {sqlType:"integer", direction:1};
         }
-        else if (strings:equalsIgnoreCase(status, "inoutvaluenotchanged")){
+        else if (status.equalsIgnoreCase("inoutvaluenotchanged")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"integer", value:inc, direction:0};
             paraCount = {sqlType:"varchar", value:count, direction:2};
@@ -319,7 +317,7 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
             paraResolved = {sqlType:"integer", direction:1};
             paraDisputed = {sqlType:"integer", direction:1};
         }
-        else if (strings:equalsIgnoreCase(status, "inoutvaluechanged")){
+        else if (status.equalsIgnoreCase("inoutvaluechanged")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"integer", value:inc, direction:0};
             paraCount = {sqlType:"varchar", value:"test", direction:2};
@@ -328,7 +326,7 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
             paraResolved = {sqlType:"integer", direction:1};
             paraDisputed = {sqlType:"integer", direction:1};
         }
-        else if (strings:equalsIgnoreCase(status, "inoutonlyvaluechanged")){
+        else if (status.equalsIgnoreCase("inoutonlyvaluechanged")){
             paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
             paraInc = {sqlType:"integer", value:inc, direction:0};
             paraCount = {sqlType:"integer", value:"test", direction:2};
@@ -348,7 +346,7 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
         }
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         datatable dt = connectorInstanceCall.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
-        datatables:close(dt);
+        dt.close();
     } catch (error e) {
         string msg = "Error in procedure call. Please retry";
         e = {msg:msg};
