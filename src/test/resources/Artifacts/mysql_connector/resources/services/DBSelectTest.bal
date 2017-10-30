@@ -1,7 +1,6 @@
 package resources.services;
 
 import ballerina.data.sql;
-import ballerina.lang.datatables;
 import resources.connectorInit as conn;
 
 sql:ClientConnector connectorInstanceSelect = conn:init();
@@ -109,8 +108,8 @@ function selectWithLimit () (json, error){
     try {
         datatable dt = connectorInstanceSelect.select ("select CEIL(count(CustomerID)*50/100) as countTenPercent from Customers", parameters);
         ResultCount rs;
-        while (datatables:hasNext(dt)) {
-            any dataStruct = datatables:getNext(dt);
+        while (dt.hasNext()) {
+            any dataStruct = dt.getNext();
             rs, ex = (ResultCount) dataStruct;
             count = rs.COUNTTENPERCENT;
         }

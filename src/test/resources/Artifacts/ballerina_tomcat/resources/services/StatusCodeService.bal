@@ -1,14 +1,14 @@
 package resources.services;
 
 import ballerina.net.http;
-import ballerina.lang.system;
+import ballerina.os;
 
 @http:configuration {
     basePath:"/statuscode"
 }
 service <http> StatusCodeService {
 
-    string connection = system:getEnv("TOMCAT_HOST");
+    string connection = os:getEnv("TOMCAT_HOST");
     @http:resourceConfig {
         methods:["POST", "GET"],
         path:"/code/{code}"
@@ -19,7 +19,7 @@ service <http> StatusCodeService {
         http:Response clientResponse = {};
         map params = req.getQueryParams();
         var withbody, _ = (string)params.withbody;
-        system:println(withbody);
+        println(withbody);
         string resourcePath = "/RESTfulService/mock/statusCodeService/" + code + "?withbody=" + withbody;
         string method = req.getMethod();
         clientResponse = httpCheck.execute(method, resourcePath, req);

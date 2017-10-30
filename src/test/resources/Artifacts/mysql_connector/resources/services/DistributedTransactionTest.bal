@@ -2,8 +2,6 @@ package resources.services;
 
 import ballerina.data.sql;
 import resources.connectorInit as conn;
-import ballerina.lang.system;
-import ballerina.lang.strings;
 
 sql:ClientConnector connectorInstanceFirst = conn:initDistributedOne();
 sql:ClientConnector connectorInstanceSecond = conn:initDistributedTwo();
@@ -134,7 +132,7 @@ function disTransctionFailForceAbort () (string, int, error){
 
         } failed {
             retryCount = retryCount + 1;
-            system:println(retryCount);
+            println(retryCount);
             returnValue = "Inside failed block";
         } aborted {
             returnValue = "Inside aborted block";
@@ -400,7 +398,7 @@ function disTransctionGeneral (json dataset) (string, int, error){
                 parametersPersons = [paraLPName, paraFPName, paraAgeP, paraStatusP];
 
                 int rowCount_1 = connectorInstanceSecond.update("Insert into People (PersonID,LastName,FirstName,Age,Status) values (?, ?, ?, ?, ?)",parametersPeople);
-                if (strings:equalsIgnoreCase(status1, "active")){
+                if (status1.equalsIgnoreCase("active")){
                     string[] ids;
                     int rowCount_2;
                     rowCount_2, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons (LastName,FirstName,Age,Status) values (?, ?, ?, ?)",parametersPersons, keyColumns);
