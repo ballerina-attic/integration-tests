@@ -1,6 +1,5 @@
 package resources.services;
 
-import ballerina.lang.messages;
 import ballerina.net.http;
 
 @http:configuration {basePath:"/ping"}
@@ -10,9 +9,8 @@ service<http> pingService {
         methods:["GET"],
         path:"/"
     }
-    resource sayHello (message m) {
-        message response = {};
-        messages:setStringPayload(response, "Ping from the server!");
-        reply response;
+    resource sayHello (http:Request req, http:Response res) {
+        res.setStringPayload("Ping from the server!");
+        res.send();
     }
 }

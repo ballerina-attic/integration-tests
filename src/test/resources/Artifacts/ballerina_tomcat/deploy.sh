@@ -59,6 +59,7 @@ echo $(date)" Waiting for server startup!"
 sleep 3
 done
 
+sleep 10
 echo 'Generating The deployment.json!'
 pods=$(kubectl get pods --output=jsonpath={.items..metadata.name})
 json='['

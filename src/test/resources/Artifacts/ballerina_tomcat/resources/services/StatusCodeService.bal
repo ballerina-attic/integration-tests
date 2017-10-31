@@ -1,42 +1,42 @@
 package resources.services;
 
 import ballerina.net.http;
-import ballerina.lang.system;
+import ballerina.os;
 
 @http:configuration {
     basePath:"/statuscode"
 }
 service <http> StatusCodeService {
 
+    string connection = os:getEnv("TOMCAT_HOST");
     @http:resourceConfig {
         methods:["POST", "GET"],
         path:"/code/{code}"
     }
-    resource statusCodeResource (message m, @http:PathParam {value:"code"} string codeValue, @http:QueryParam {value:"withbody"}string withbody) {
-        string resourcePath = "/RESTfulService/mock/statusCodeService/" + codeValue + "?withbody=" + withbody;
-        message response = {};
-        string method = http:getMethod(m);
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.execute(method, resourcePath, m);
-
-        reply response;
+    resource statusCodeResource (http:Request req, http:Response res, string code) {
+        http:ClientConnector httpCheck;
+        httpCheck= create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
+        map params = req.getQueryParams();
+        var withbody, _ = (string)params.withbody;
+        println(withbody);
+        string resourcePath = "/RESTfulService/mock/statusCodeService/" + code + "?withbody=" + withbody;
+        string method = req.getMethod();
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
     }
 
     @http:resourceConfig {
         methods:["HEAD"],
         path:"/code/{code}"
     }
-    resource statusCodeResource2 (message m, @http:PathParam {value:"code"} string codeValue) {
-        string resourcePath = "/RESTfulService/mock/statusCodeService/" + codeValue;
-        message response = {};
-        string method = http:getMethod(m);
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.execute(method, resourcePath, m);
-
-        reply response;
+    resource statusCodeResource2 (http:Request req, http:Response res, string code) {
+        http:ClientConnector httpCheck;
+        httpCheck= create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
+        string resourcePath = "/RESTfulService/mock/statusCodeService/" + code;
+        string method = req.getMethod();
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
     }
 }

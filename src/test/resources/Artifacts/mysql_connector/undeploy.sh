@@ -15,3 +15,4 @@
 echo "Removing the K8S PODS!!!!!"
 kubectl delete rc,services,pods -l name="ballerina-server"
 kubectl delete rc,services,pods -l name="mysql-db"
+kubectl delete rc,services,pods -l name="mysql-other-db"

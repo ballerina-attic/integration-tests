@@ -27,5 +27,7 @@ public class BallerinaConstants {
     public static final String BAL_PORT_NAME = "servlet-http";
     public static final String POD_TAG_NAME_MYSQL = "mysql";
     public static final String MYSQL_PORT_NAME = "mysql-port";
+    public static final String POD_TAG_NAME_MYSQL_OTHER = "mysql_other";
+    public static final String MYSQL_PORT_NAME_OTHER = "mysql-other-port";
 
 }

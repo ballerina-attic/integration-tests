@@ -25,8 +25,30 @@ echo "Creating the K8S Pods!!!!"
 echo "Creating the MySQL RC and Service!"
 kubectl create -f $script_path/mysql_service.yaml
 kubectl create -f $script_path/mysql_rc.yaml
+kubectl create -f $script_path/mysql_other_service.yaml
+kubectl create -f $script_path/mysql_other_rc.yaml
 
-sleep 30
+# Waiting for mysql-db to run. Current loop timer is 100*50 Sec.
+for number in {1..100}
+do
+echo $(date)" Waiting for mysql to start!"
+ if [ "Running" == "$(kubectl get po | grep mysql-db | awk '{print $3}')" ]
+ then
+  break
+ fi
+sleep 3
+done
+
+# Waiting for mysql-other to run. Current loop timer is 100*50 Sec.
+for number in {1..100}
+do
+echo $(date)" Waiting for mysql to start!"
+ if [ "Running" == "$(kubectl get po | grep mysql-other | awk '{print $3}')" ]
+ then
+  break
+ fi
+sleep 3
+done
 
 echo "Creating the ballerina server RC and Service!"
 kubectl create -f $script_path/ballerina_server_service.yaml
@@ -46,7 +68,7 @@ kube_nodes=($(kubectl get nodes | awk '{if (NR!=1) print $1}'))
 host=$(getKubeNodeIP "${kube_nodes[0]}")
 
 echo "Waiting Ballerina to launch on http://${host}:${ballerina_port}"
-sleep 10
+sleep 30
 
 # The loop is used as a global timer. Current loop timer is 3*50 Sec.
 for number in {1..50}

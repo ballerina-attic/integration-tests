@@ -1,184 +1,163 @@
 package resources.services;
 
 import ballerina.net.http;
-import ballerina.lang.system;
+import ballerina.os;
 
 @http:configuration {
     basePath:"/httpmethods"
 }
 service <http> HTTPMethodService {
 
-
+    string connection = os:getEnv("TOMCAT_HOST");
     @http:resourceConfig {
         methods:["POST", "GET", "HEAD", "PUT", "DELETE"],
         path:"/all"
     }
-    resource statusCodeResource (message m) {
+    resource statusCodeResource (http:Request req, http:Response res) {
+        http:ClientConnector httpCheck;
+        httpCheck = create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/all";
-        message response = {};
-        string method = http:getMethod(m);
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.execute(method, resourcePath, m);
-
-        reply response;
+        string method = req.getMethod();
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
     }
 
     @http:resourceConfig {
         methods:["HEAD"],
         path:"/head"
     }
-    resource headResource (message m) {
+    resource headResource (http:Request req, http:Response res) {
+        http:ClientConnector httpCheck;
+        httpCheck = create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/head";
-        message response = {};
         string method = "HEAD";
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.execute(method, resourcePath, m);
-
-        reply response;
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
     }
 
     @http:resourceConfig {
         methods:["GET"],
         path:"/get"
     }
-    resource getResource1 (message m) {
+    resource getResource1 (http:Request req, http:Response res) {
+        http:ClientConnector httpCheck;
+        httpCheck = create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/get";
-        message response = {};
         string method = "GET";
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.execute(method, resourcePath, m);
-
-        reply response;
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
     }
 
     @http:resourceConfig {
         methods:["POST"],
         path:"/post"
     }
-    resource postResource1 (message m) {
+    resource postResource1 (http:Request req, http:Response res) {
+        http:ClientConnector httpCheck;
+        httpCheck = create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/post";
-        message response = {};
         string method = "POST";
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.execute(method, resourcePath, m);
-
-        reply response;
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
     }
 
     @http:resourceConfig {
         methods:["PUT"],
         path:"/put"
     }
-    resource putResource1 (message m) {
+    resource putResource1 (http:Request req, http:Response res) {
+        http:ClientConnector httpCheck;
+        httpCheck = create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/put";
-        message response = {};
         string method = "PUT";
-        string connection = system:getEnv("TOMCAT_HOST");
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
 
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.execute(method, resourcePath, m);
-
-        reply response;
     }
 
     @http:resourceConfig {
         methods:["GET"],
         path:"/gettopost"
     }
-    resource getResource (message m) {
+    resource getResource (http:Request req, http:Response res) {
+        http:ClientConnector httpCheck;
+        httpCheck= create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/post";
-        message response = {};
         string method = "POST";
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.execute(method, resourcePath, m);
-
-        reply response;
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
     }
 
     @http:resourceConfig {
         methods:["GET"],
         path:"/doget"
     }
-    resource getResource2 (message m) {
+    resource getResource2 (http:Request req, http:Response res) {
+        http:ClientConnector httpCheck;
+        httpCheck= create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/get";
-        message response = {};
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.get(resourcePath, m);
-
-        reply response;
+        clientResponse = httpCheck.get(resourcePath, req);
+        res.forward(clientResponse);
     }
 
     @http:resourceConfig {
         methods:["POST"],
         path:"/posttoput"
     }
-    resource postResource (message m) {
+    resource postResource (http:Request req, http:Response res) {
+        http:ClientConnector httpCheck;
+        httpCheck= create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/put";
-        message response = {};
         string method = "PUT";
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.execute(method, resourcePath, m);
-
-        reply response;
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
     }
 
     @http:resourceConfig {
         methods:["POST"],
         path:"/dopost"
     }
-    resource postResource2 (message m) {
+    resource postResource2 (http:Request req, http:Response res) {
+        http:ClientConnector httpCheck;
+        httpCheck= create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/post";
-        message response = {};
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.post(resourcePath, m);
-
-        reply response;
+        clientResponse = httpCheck.post(resourcePath, req);
+        res.forward(clientResponse);
     }
 
     @http:resourceConfig {
         methods:["PUT"],
         path:"/puttopost"
     }
-    resource putResource (message m) {
+    resource putResource (http:Request req, http:Response res) {
+        http:ClientConnector httpCheck;
+        httpCheck= create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/post";
-        message response = {};
         string method = "POST";
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.execute(method, resourcePath, m);
-
-        reply response;
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
     }
 
     @http:resourceConfig {
         methods:["PUT"],
         path:"/doput"
     }
-    resource putResource2 (message m) {
+    resource putResource2 (http:Request req, http:Response res) {
+        http:ClientConnector httpCheck;
+        httpCheck= create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/put";
-        message response = {};
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.put(resourcePath, m);
-
-        reply response;
+        clientResponse = httpCheck.put(resourcePath, req);
+        res.forward(clientResponse);
     }
 }
