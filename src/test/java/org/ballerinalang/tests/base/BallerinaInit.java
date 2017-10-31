@@ -52,7 +52,6 @@ public class BallerinaInit {
      * @param patternName
      */
     protected void setURLs(String patternName) {
-
         HashMap<String, String> instanceMap = null;
         try {
             DeploymentConfigurationReader depconf = DeploymentConfigurationReader.readConfiguration();
@@ -81,7 +80,6 @@ public class BallerinaInit {
     }
 
     protected String getHTTPSUrl(String protocol, String hostIP, List<Port> ports, String context) {
-
         String url = "http://" + hostIP + ":";
         for (Port port : ports) {
             if (port.getProtocol().equals(protocol)) {
@@ -102,7 +100,6 @@ public class BallerinaInit {
      * @return
      */
     protected String getJDBCUrl(String protocol, String hostIP, List<Port> ports, String databasename) {
-
         // 192.168.48.44:30306/BAL_DB
         String url = hostIP + ":";
         for (Port port : ports) {

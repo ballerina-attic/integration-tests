@@ -112,7 +112,6 @@ public class DBSelectTest extends BallerinaBaseTest {
             stmt.executeUpdate(insertProductTwo);
             stmt.executeUpdate(insertProductThree);
             stmt.executeUpdate(insertProductFour);
-
         } catch (SQLException ex) {
             log.error("SQLException: " + ex.getMessage());
             log.error("SQLState: " + ex.getSQLState());
@@ -140,7 +139,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select distinct with count")
@@ -161,7 +159,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with where equality")
@@ -182,7 +179,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with where not equal")
@@ -204,7 +200,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with where greater than")
@@ -225,7 +220,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with where less than")
@@ -246,7 +240,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with where greater than or equal")
@@ -267,7 +260,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with where less than or equal")
@@ -288,7 +280,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with where between")
@@ -309,7 +300,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with where like")
@@ -330,7 +320,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(enabled = false, description = "Tests select with where in")
@@ -351,7 +340,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(enabled = false, description = "Tests select with where not in")
@@ -373,7 +361,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with where and or")
@@ -394,7 +381,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with where order by desc, asec")
@@ -416,7 +402,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with where is null")
@@ -437,7 +422,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with where is not null")
@@ -459,7 +443,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(enabled = false, description = "Tests select with where limit")
@@ -482,7 +465,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with minimum value")
@@ -491,20 +473,16 @@ public class DBSelectTest extends BallerinaBaseTest {
         String serviceURL = ballerinaURL + "/select/general/min";
         String payload = "SELECT MIN(TotalPurchases) AS SmallestPurchase FROM Customers;";
         String expectedValue = "[{\"SmallestPurchase\":0.0}]";
-
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
         post.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(post);
         String response = post.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with maximum value")
@@ -513,8 +491,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         String serviceURL = ballerinaURL + "/select/general/max";
         String payload = "SELECT MAX(TotalPurchases) AS LargestPurchase FROM Customers";
         String expectedValue = "[{\"LargestPurchase\":50550.25}]";
-
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
@@ -526,7 +502,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with average and sum")
@@ -537,8 +512,6 @@ public class DBSelectTest extends BallerinaBaseTest {
                 ", AVG(TotalPurchases) as AvgOfPurchases FROM Customers;";
         String expectedValue = "[{\"SumOfPurchases\":81950.55000000002" +
                 ",\"AvgOfPurchases\":10243.818750000002}]";
-
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
@@ -550,7 +523,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with having clause")
@@ -564,8 +536,6 @@ public class DBSelectTest extends BallerinaBaseTest {
                 ",{\"CustomerIDCount\":1,\"Country\":\"South Korea\"}" +
                 ",{\"CustomerIDCount\":1,\"Country\":\"Sri Lanka\"}" +
                 ",{\"CustomerIDCount\":1,\"Country\":\"Sweden\"},{\"CustomerIDCount\":1,\"Country\":\"UK\"}]";
-
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
@@ -577,7 +547,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with exists")
@@ -587,20 +556,16 @@ public class DBSelectTest extends BallerinaBaseTest {
         String payload = "SELECT CustomerName FROM Customers WHERE EXISTS" +
                 " (SELECT ProductName FROM Products WHERE CustomerID = Customers.CustomerID AND Price < ?)";
         String expectedValue = "[{\"CustomerName\":\"Alfreds Futterkiste\"}]";
-
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
         post.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(post);
         String response = post.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with not exists")
@@ -621,12 +586,10 @@ public class DBSelectTest extends BallerinaBaseTest {
         post.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(post);
         String response = post.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with a complex sql that uses several functions and operators")
@@ -638,7 +601,6 @@ public class DBSelectTest extends BallerinaBaseTest {
                 ",{\"Country\":\"India\",\"MaxBuyingRatio\":0.0},{\"Country\":\"Mexico\",\"MaxBuyingRatio\":0.007}" +
                 ",{\"Country\":\"Sri Lanka\",\"MaxBuyingRatio\":0.012}" +
                 ",{\"Country\":\"Sweden\",\"MaxBuyingRatio\":0.012},{\"Country\":\"UK\",\"MaxBuyingRatio\":0.001}]";
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
@@ -650,7 +612,6 @@ public class DBSelectTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select with results converted to xml")
@@ -670,12 +631,10 @@ public class DBSelectTest extends BallerinaBaseTest {
         post.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(post);
         String response = post.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select returning a null value as json")
@@ -684,20 +643,16 @@ public class DBSelectTest extends BallerinaBaseTest {
         String serviceURL = ballerinaURL + "/select/general/nulljson";
         String payload = "SELECT Address from Customers where CustomerID=7";
         String expectedValue = "[{\"Address\":null}]";
-
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
         post.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(post);
         String response = post.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests select returning a null value as xml")
@@ -708,19 +663,16 @@ public class DBSelectTest extends BallerinaBaseTest {
         String expectedValue = "<results>" +
                 "<result><Address xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:nil=\"true\"/></result>" +
                 "</results>";
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
         post.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(post);
         String response = post.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @AfterClass(alwaysRun = true)

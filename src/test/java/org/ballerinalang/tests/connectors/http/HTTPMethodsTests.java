@@ -21,7 +21,6 @@ import static org.testng.Assert.assertEquals;
  * Uses HTTPMethodService.bal service
  */
 public class HTTPMethodsTests extends BallerinaBaseTest {
-
     HttpClient client;
     private static final Log log = LogFactory.getLog(HTTPMethodsTests.class);
     //String ballerinaURL = "http://192.168.48.12:32013";
@@ -34,7 +33,6 @@ public class HTTPMethodsTests extends BallerinaBaseTest {
 
     @Test(description = "Test all methods in one server resource") public void testAllVerbsInOneResource()
             throws IOException {
-
         log.info("Executing Test Method : testAllVerbsInOneResource");
         String serviceURL = ballerinaURL + "/httpmethods/all";
         //String assertResponse = "{\"POST Method:Request Status\":\"Sucess\"}";
@@ -61,7 +59,6 @@ public class HTTPMethodsTests extends BallerinaBaseTest {
 
     @Test(description = "Doing a GET call and calling the BE with a GET using execute action")
     public void testGetResource() throws IOException {
-
         log.info("Executing Test Method : testGetResource");
         String serviceURL = ballerinaURL + "/httpmethods/get";
         GetMethod get = new GetMethod(serviceURL);
@@ -71,7 +68,6 @@ public class HTTPMethodsTests extends BallerinaBaseTest {
 
     @Test(description = "Doing a GET call and calling the BE with a GET using the get action")
     public void testGetResourceWithSpecificMethod() throws IOException {
-
         log.info("Executing Test Method : testGetResourceWithSpecificMethod");
         String serviceURL = ballerinaURL + "/httpmethods/doget";
         GetMethod get = new GetMethod(serviceURL);
@@ -81,33 +77,27 @@ public class HTTPMethodsTests extends BallerinaBaseTest {
 
     @Test(description = "Doing a POST call and calling the BE with a POST using the get action")
     public void testPostResource() throws IOException {
-
         log.info("Executing Test Method : testPostResource");
         String serviceURL = ballerinaURL + "/httpmethods/post";
         PostMethod post = new PostMethod(serviceURL);
         int statuscode = client.executeMethod(post);
         assertEquals(statuscode, HttpStatus.SC_OK);
-
     }
 
     @Test(description = "") public void testPostResourceWithSpecificMethod() throws IOException {
-
         log.info("Executing Test Method : testPostResource");
         String serviceURL = ballerinaURL + "/httpmethods/dopost";
         PostMethod post = new PostMethod(serviceURL);
         int statuscode = client.executeMethod(post);
         assertEquals(statuscode, HttpStatus.SC_OK);
-
     }
 
     @Test(description = "") public void testPutResource() throws IOException {
-
         log.info("Executing Test Method : testPutResource");
         String serviceURL = ballerinaURL + "/httpmethods/put";
         PutMethod put = new PutMethod(serviceURL);
         int statuscode = client.executeMethod(put);
         assertEquals(statuscode, HttpStatus.SC_OK);
-
     }
 
     @Test(description = "") public void testPutResourceWithSpecificMethod() throws IOException {
@@ -121,17 +111,14 @@ public class HTTPMethodsTests extends BallerinaBaseTest {
     }
 
     @Test(description = "") public void testHeadResource() throws IOException {
-
         log.info("Executing Test Method : testHeadResource");
         String serviceURL = ballerinaURL + "/httpmethods/head";
         HeadMethod delete = new HeadMethod(serviceURL);
         int statuscode = client.executeMethod(delete);
         assertEquals(statuscode, HttpStatus.SC_OK);
-
     }
 
     @Test public void testMethodSwitchingFromGetToPostWithExecute() throws IOException {
-
         log.info("Executing Test Method : testMethodSwitchingFromGetToPostWithExecute");
         String serviceURL = ballerinaURL + "/httpmethods/gettopost";
         String assertResponse = "{\"POST Method:Request Status\":\"Sucess\"}";
@@ -146,7 +133,6 @@ public class HTTPMethodsTests extends BallerinaBaseTest {
     }
 
     @Test public void testMethodSwitchingFromPutToPostWithExecute() throws IOException {
-
         log.info("Executing Test Method : testMethodSwitchingFromPutToPostWithExecute");
         String serviceURL = ballerinaURL + "/httpmethods/puttopost";
         String assertResponse = "{\"POST Method:Request Status\":\"Sucess\"}";
@@ -158,11 +144,9 @@ public class HTTPMethodsTests extends BallerinaBaseTest {
         byte[] response = put.getResponseBody();
         // Asserting the Response Message.
         assertEquals(new String(response), assertResponse);
-
     }
 
     @Test public void testMethodSwitchingFromPostToPutWithExecute() throws IOException {
-
         log.info("Executing Test Method : testMethodSwitchingFromPostToPutWithExecute");
         String serviceURL = ballerinaURL + "/httpmethods/posttoput";
         String assertResponse = "{\"PUT Method:Request Status\":\"Sucess\"}";

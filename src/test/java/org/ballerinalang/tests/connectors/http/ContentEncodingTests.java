@@ -1,3 +1,21 @@
+/*
+*  Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*
+*  WSO2 Inc. licenses this file to you under the Apache License,
+*  Version 2.0 (the "License"); you may not use this file except
+*  in compliance with the License.
+*  You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+*  Unless required by applicable law or agreed to in writing,
+*  software distributed under the License is distributed on an
+*  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+*  KIND, either express or implied.  See the License for the
+*  specific language governing permissions and limitations
+*  under the License.
+*/
+
 package org.ballerinalang.tests.connectors.http;
 
 import org.apache.commons.httpclient.methods.InputStreamRequestEntity;
@@ -21,12 +39,10 @@ import static org.testng.Assert.assertNotNull;
  */
 public class ContentEncodingTests extends BallerinaBaseTest {
 
-
     /**
      * Tests small chunked message for a Post request
      */
     @Test public void chunkedMessageForPostWithSmallPayload() throws IOException {
-
         HttpTestClient request = new HttpTestClient(ballerinaURL);
 
         String payload = "This is the payload";
@@ -43,7 +59,6 @@ public class ContentEncodingTests extends BallerinaBaseTest {
      * Tests a large chunked message for a Post request
      */
     @Test public void chunkedMessageForPostWithLargePayload() throws IOException {
-
         HttpTestClient request = new HttpTestClient(ballerinaURL);
 
         File file = new File("src/test/java/resources/content.txt");
@@ -59,7 +74,6 @@ public class ContentEncodingTests extends BallerinaBaseTest {
     }
 
     @Test public void chunkedGzipEncodedMessageForPost() throws IOException {
-
         HttpTestClient request = new HttpTestClient(ballerinaURL);
 
         String payload = "This is the payload";
@@ -74,7 +88,6 @@ public class ContentEncodingTests extends BallerinaBaseTest {
     }
 
     @Test public void chunkedGzipEncodedMessageWithAcceptEncodingForPost() throws IOException {
-
         HttpTestClient request = new HttpTestClient(ballerinaURL);
 
         String payload = "This is the payloadXXXXXXXXXXXXXXXXXX";
@@ -91,17 +104,4 @@ public class ContentEncodingTests extends BallerinaBaseTest {
 
     }
 
-    //    @Test public void chunkedMessageForPut() throws Exception {
-    //
-    //        HttpRequest request = new HttpRequest(ballerinaURL);
-    //
-    //        String payload = "Payload for Put Message";
-    //        request.setChunked(true);
-    //
-    //        ResponseHolder responseHolder = request.putRequest("/encoded/spayload", payload);
-    //
-    //        assertEquals(payload, responseHolder.getResponseMessage());
-    //        assertEquals(responseHolder.getResponseCode(), 200);
-    //
-    //    }
 }

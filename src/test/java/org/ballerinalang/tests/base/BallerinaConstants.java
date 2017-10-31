@@ -18,7 +18,7 @@
 package org.ballerinalang.tests.base;
 
 /**
- * Ballerina Test Contants
+ * Ballerina Test Constants.
  */
 public class BallerinaConstants {
 

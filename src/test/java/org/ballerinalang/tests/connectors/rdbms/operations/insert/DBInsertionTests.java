@@ -172,7 +172,6 @@ public class DBInsertionTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests inserting data with missing columns")
@@ -209,7 +208,6 @@ public class DBInsertionTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in database insertion. Please retry");
-
     }
 
     @Test(description = "Tests inserting with missing data for primary columns")
@@ -251,7 +249,6 @@ public class DBInsertionTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in database insertion. Please retry");
-
     }
 
     @Test(description = "Tests with missing data for optional columns")
@@ -293,7 +290,6 @@ public class DBInsertionTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in database insertion. Please retry");
-
     }
 
     @Test(enabled = false, description = "Tests inserting data with empty strings")
@@ -349,7 +345,6 @@ public class DBInsertionTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests inserting with value as null for column that does not accept null values")
@@ -386,7 +381,6 @@ public class DBInsertionTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in database insertion. Please retry");
-
     }
 
     @Test(enabled = false, description = "Tests with null value for column that accepts null values")
@@ -436,7 +430,6 @@ public class DBInsertionTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests with inserting null values for numeric column which does not accept null")
@@ -473,7 +466,6 @@ public class DBInsertionTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in database insertion. Please retry");
-
     }
 
     @Test(enabled = false, description = "Tests inserting null value for numeric column which accpets null")
@@ -522,7 +514,6 @@ public class DBInsertionTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests inserting data with primary key violations")
@@ -554,12 +545,10 @@ public class DBInsertionTests extends BallerinaBaseTest {
         post.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(post);
         String response = post.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in database insertion. Please retry");
-
     }
 
     @Test(description = "Tests inserting data missing a column in parameter list")
@@ -636,7 +625,6 @@ public class DBInsertionTests extends BallerinaBaseTest {
         assertEquals(firstnames.get(1), "SloaneB");
         assertEquals(ages.get(1), "15");
         assertEquals(status.get(1), "active");
-
     }
 
     @AfterClass(alwaysRun = true)
@@ -664,7 +652,6 @@ public class DBInsertionTests extends BallerinaBaseTest {
             }
         }
     }
-
 }
 
 

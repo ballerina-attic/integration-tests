@@ -22,7 +22,7 @@ import java.sql.Statement;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Tests database update operations and its variations
+ * Tests database update operations and its variations.
  * Uses UpdateTestService.bal service and DBUpdateTest.bal
  */
 
@@ -137,7 +137,6 @@ public class DBUpdateSpecialTests extends BallerinaBaseTest {
             stmt.executeUpdate(insertProductFour);
             stmt.executeUpdate(insertProductFive);
             stmt.executeUpdate(insertProductSix);
-
         } catch (SQLException ex) {
             log.error("SQLException: " + ex.getMessage());
             log.error("SQLState: " + ex.getSQLState());
@@ -155,15 +154,12 @@ public class DBUpdateSpecialTests extends BallerinaBaseTest {
         String expectedValue = "2";
         String actualChangedPrice = null;
         String actualChangedTotalPurchase = null;
-
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
         post.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(post);
         String response = post.getResponseBodyAsString();
-
         //Querying the database to obtain the updated values
         String query = "SELECT TotalPurchases from Customers WHERE CustomerID=8";
         ResultSet result = stmt.executeQuery(query);
@@ -183,7 +179,6 @@ public class DBUpdateSpecialTests extends BallerinaBaseTest {
         //Asserting against actual database values
         assertEquals(actualChangedPrice, "0.0");
         assertEquals(actualChangedTotalPurchase, "5000.0");
-
     }
 
     @Test(description = "Tests updating by using data from a subquery")
@@ -194,8 +189,6 @@ public class DBUpdateSpecialTests extends BallerinaBaseTest {
                 "WHERE Products.CustomerID IN (SELECT CustomerID from Customers WHERE Country='South Korea')";
         String expectedValue = "1";
         String actualChangedPrice = null;
-
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
@@ -216,7 +209,6 @@ public class DBUpdateSpecialTests extends BallerinaBaseTest {
         assertEquals(response, expectedValue);
         //Asserting against actual database values
         assertEquals(actualChangedPrice, "0.0");
-
     }
 
     @AfterClass(alwaysRun = true)
