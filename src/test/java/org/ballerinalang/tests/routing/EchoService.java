@@ -29,10 +29,8 @@ public class EchoService extends BallerinaBaseTest {
 
     @Test public void getPostToEcho() throws Exception {
         String serviceURL = ballerinaURL + "/echo";
-
         StringRequestEntity requestEntity = new StringRequestEntity("{ \"Hello\":\"Ballerina\" };", "application/json",
                 "UTF-8");
-
         HttpClient client = new HttpClient();
         client.getHttpConnectionManager().getParams().setConnectionTimeout(10000);
         client.getHttpConnectionManager().getParams().setSoTimeout(20000);

@@ -22,7 +22,7 @@ import java.sql.Statement;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Tests database update operations and its variations
+ * Tests database update operations and its variations.
  * Uses UpdateTestService.bal service and DBUpdateTest.bal
  */
 
@@ -124,8 +124,6 @@ public class DBUpdateTests extends BallerinaBaseTest {
         String expectedValue = "1";
         String actualChangedAddress = null;
         String actualChangedTotalPurchase = null;
-
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
@@ -140,7 +138,6 @@ public class DBUpdateTests extends BallerinaBaseTest {
             actualChangedAddress = result.getString("Address");
             actualChangedTotalPurchase = String.valueOf(result.getDouble("TotalPurchases"));
         }
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
@@ -148,7 +145,6 @@ public class DBUpdateTests extends BallerinaBaseTest {
         //Asserting against actual database values
         assertEquals(actualChangedAddress, "Obere Str. 53");
         assertEquals(actualChangedTotalPurchase, "14500.25");
-
     }
 
     @Test(description = "Tests updating multiple records in single table")
@@ -159,8 +155,6 @@ public class DBUpdateTests extends BallerinaBaseTest {
         String expectedValue = "2";
         String actualChangedAddress = null;
         String actualChangedTotalPurchase = null;
-
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
@@ -183,7 +177,6 @@ public class DBUpdateTests extends BallerinaBaseTest {
         //Asserting against actual database values
         assertEquals(actualChangedAddress, "hidden");
         assertEquals(actualChangedTotalPurchase, "0.0");
-
     }
 
     @Test(description = "Tests updating records with lesser params")
@@ -192,20 +185,16 @@ public class DBUpdateTests extends BallerinaBaseTest {
         String serviceURL = ballerinaURL + "/update/withParam/missing?value1=hidden";
         String payload = "UPDATE Customers SET Address=?, TotalPurchases=? WHERE Country='South Korea'";
         String expectedValue = "Error in database update. Please retry";
-
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
         post.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(post);
         String response = post.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests updating records with more params")
@@ -214,20 +203,16 @@ public class DBUpdateTests extends BallerinaBaseTest {
         String serviceURL = ballerinaURL + "/update/withParam/missing?value1=hidden&value2=4.0";
         String payload = "UPDATE Customers SET Address='hidden', TotalPurchases=9.0 WHERE Country='South Korea'";
         String expectedValue = "Error in database update. Please retry";
-
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
         post.setRequestEntity(requestEntity);
         int statuscode = client.executeMethod(post);
         String response = post.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests updating records with invalid column name")
@@ -236,8 +221,6 @@ public class DBUpdateTests extends BallerinaBaseTest {
         String serviceURL = ballerinaURL + "/update/withParam/missing?value1=hidden&value2=0.0";
         String payload = "UPDATE Customers SET Address=?, TotalPurchases1=? WHERE Country='South Korea'";
         String expectedValue = "Error in database update. Please retry";
-
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
@@ -249,14 +232,12 @@ public class DBUpdateTests extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
 
     @AfterClass(alwaysRun = true)
     public void afterTest() {
         String dropCustomers = "drop table Customers";
-
         try {
             stmt.executeUpdate(dropCustomers);
         } catch (SQLException e) {

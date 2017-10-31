@@ -23,7 +23,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 /**
- * Base test class for all Ballerina test cases which requires a deployment
+ * Base test class for all Ballerina test cases which requires a deployment.
  */
 public class BallerinaBaseTest extends BallerinaInit {
 

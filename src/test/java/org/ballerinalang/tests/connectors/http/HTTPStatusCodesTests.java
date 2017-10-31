@@ -41,7 +41,6 @@ import static org.testng.Assert.assertNull;
  * Uses StatusCodeService.bal service
  */
 public class HTTPStatusCodesTests extends BallerinaBaseTest {
-
     HttpClient client;
     private static final Log log = LogFactory.getLog(HTTPStatusCodesTests.class);
     //String ballerinaURL = "http://192.168.48.12:32013";
@@ -95,7 +94,6 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * Client (GET) --> Ballerina --> BE | BE (HTTP 200 OK) --> Ballerina --> Client
      */
     @Test(dataProvider = "2xxStatusCodes") public void getHTTP2XXWithBody(String code) throws IOException {
-
         log.info("Executing Test Method : getHTTP2XX for status code : " + code);
         //http://localhost:9090/statuscode/code/201?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=true";
@@ -116,7 +114,6 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * Client (GET) --> Ballerina --> BE | BE (HTTP 200 OK) --> Ballerina --> Client
      */
     @Test(dataProvider = "2xxStatusCodes") public void getHTTP2XXWithoutBody(String code) throws IOException {
-
         log.info("Executing Test Method : getHTTP2XX for status code : " + code);
         //http://localhost:9090/statuscode/code/201?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=false";
@@ -136,7 +133,6 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * Disabled due to a bug
      */
     @Test(dataProvider = "2xxStatusCodes", enabled = false) public void headHTTP2XX(String code) throws IOException {
-
         log.info("Executing Test Method : headHTTP2XX for status code : " + code);
         //http://localhost:9090/statuscode/code/201?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/" + code;
@@ -155,7 +151,6 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * Client (GET) --> Ballerina --> BE | BE (HTTP 204 Accepted) --> Ballerina --> Client
      */
     @Test public void getHTTP204() throws IOException {
-
         log.info("Executing Test Method : getHTTP204");
         //http://localhost:9090/statuscode/code/204?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/204?withbody=false";
@@ -173,7 +168,6 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * disabled due to a bug
      */
     @Test(enabled = false) public void headHTTP204() throws IOException {
-
         log.info("Executing Test Method : headHTTP204");
         //http://localhost:9090/statuscode/code/202
         String serviceURL = ballerinaURL + "/statuscode/code/204";
@@ -194,7 +188,6 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * disabled due to a bug
      */
     @Test (enabled = false) public void postHTTP205() throws IOException {
-
         log.info("Executing Test Method : postHTTP205");
         //http://localhost:9090/statuscode/code/205?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/205?withbody=false";
@@ -211,7 +204,6 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * Client (POST) --> Ballerina --> BE | BE (HTTP 206) --> Ballerina --> Client
      */
     @Test public void postHTTP206() throws IOException {
-
         log.info("Executing Test Method : postHTTP206");
         //http://localhost:9090/statuscode/code/205?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/206?withbody=true";
@@ -226,14 +218,12 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
     }
 
     // TODO: Need to look into other HTTP status codes such as 207 +
-
     /**
      * Test Pass through Scenario for a POST request, that receives HTTP 300 Status code with a
      * message body and Location header
      * Client (POST) --> Ballerina --> BE | BE (HTTP 205) --> Ballerina --> Client
      */
     @Test(dataProvider = "3xxStatusCodes") public void postHTTP3XX(String code) throws IOException {
-
         log.info("Executing Test Method : postHTTP3XX for status code : " + code);
         //http://localhost:9090/statuscode/code/205?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=true";
@@ -257,7 +247,6 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * With 304 a Body is not allowed
      */
     @Test public void postHTTP304() throws IOException {
-
         log.info("Executing Test Method : postHTTP304");
         //http://localhost:9090/statuscode/code/304?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/304";
@@ -282,7 +271,6 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * Client (POST) --> Ballerina --> BE | BE (HTTP 304) --> Ballerina --> Client
      */
     @Test(dataProvider = "4xxStatusCodes") public void postHTTP4XX(String code) throws IOException {
-
         log.info("Executing Test Method : postHTTP4XX for status code : " + code);
         //http://localhost:9090/statuscode/code/400?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=true";
@@ -300,7 +288,6 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * Client (POST) --> Ballerina --> BE | BE (HTTP 405) --> Ballerina --> Client
      */
     @Test public void postHTTP426() throws IOException {
-
         log.info("Executing Test Method : postHTTP426");
         //http://localhost:9090/statuscode/code/404?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/426?withbody=true";
@@ -323,7 +310,6 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * Client (POST) --> Ballerina --> BE | BE (HTTP 304) --> Ballerina --> Client
      */
     @Test(dataProvider = "5xxStatusCodes") public void postHTTP5XX(String code) throws IOException {
-
         log.info("Executing Test Method : postHTTP5XX for status code : " + code);
         // http://localhost:9090/statuscode/code/500?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=true";
@@ -340,7 +326,6 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * Client (GET) --> Ballerina --> BE | BE (HTTP 5XX) --> Ballerina --> Client
      */
     @Test(dataProvider = "5xxStatusCodes") public void getHTTP5XX(String code) throws IOException {
-
         log.info("Executing Test Method : getHTTP5XX for status code : " + code);
         // http://localhost:9090/statuscode/code/500?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/" + code + "?withbody=true";

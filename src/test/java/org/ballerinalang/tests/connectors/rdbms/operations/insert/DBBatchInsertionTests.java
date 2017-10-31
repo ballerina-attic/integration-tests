@@ -175,8 +175,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(ages.get(3), "35");
         assertEquals(ids.get(3), "4");
         assertEquals(status.get(3), "inactive");
-
-
     }
 
     @Test(enabled = false, description = "Tests batch insert with primary key violation in single insertion")
@@ -274,8 +272,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(ages.get(2), "35");
         assertEquals(ids.get(2), "4");
         assertEquals(status.get(2), "inactive");
-
-
     }
 
     @Test(description = "Tests batch insert with int data in place of string")
@@ -379,8 +375,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(ages.get(3), "35");
         assertEquals(ids.get(3), "4");
         assertEquals(status.get(3), "inactive");
-
-
     }
 
     @Test(description = "Tests batch insert with string data in place of int")
@@ -484,7 +478,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(ages.get(3), "35");
         assertEquals(ids.get(3), "4");
         assertEquals(status.get(3), "inactive");
-
     }
 
     @Test(description = "Tests batch insert with empty string for varchar field")
@@ -588,7 +581,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(ages.get(3), "35");
         assertEquals(ids.get(3), "4");
         assertEquals(status.get(3), "inactive");
-
     }
 
     @Test(description = "Tests batch insert with empty string for integer field")
@@ -692,7 +684,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(ages.get(3), "35");
         assertEquals(ids.get(3), "4");
         assertEquals(status.get(3), "inactive");
-
     }
 
     @Test(enabled = false, description = "Tests batch insert with null value for nullable column")
@@ -796,7 +787,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(ages.get(3), "35");
         assertEquals(ids.get(3), "4");
         assertEquals(status.get(3), "inactive");
-
     }
 
     @Test(enabled = false, description = "Tests batch insert with null value integer column")
@@ -900,7 +890,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(ages.get(3), "35");
         assertEquals(ids.get(3), "4");
         assertEquals(status.get(3), "inactive");
-
     }
 
     @Test(enabled = false, description = "Tests batch insert with null value for non nullable column")
@@ -998,7 +987,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(ages.get(2), "35");
         assertEquals(ids.get(2), "4");
         assertEquals(status.get(2), "inactive");
-
     }
 
     @Test(enabled = false, description = "Tests batch insert with foreign key violation in one record")
@@ -1096,7 +1084,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(departmentids.get(2), "1");
         assertEquals(ids.get(2), "4");
         assertEquals(status.get(2), "inactive");
-
     }
 
     @Test(enabled = false, description = "Tests batch insert with data size exceed")
@@ -1194,7 +1181,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(ages.get(2), "35");
         assertEquals(ids.get(2), "4");
         assertEquals(status.get(2), "inactive");
-
     }
 
     @Test(enabled = false, description = "Tests missing parameter in payload for non nullable column")
@@ -1297,7 +1283,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(ages.get(3), "35");
         assertEquals(ids.get(3), "4");
         assertEquals(status.get(3), "inactive");
-
     }
 
     @Test(enabled = false, description = "Tests missing parameter in payload for nullable column")
@@ -1400,7 +1385,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(ages.get(3), "35");
         assertEquals(ids.get(3), "4");
         assertEquals(status.get(3), "inactive");
-
     }
 
     @Test(enabled = false, description = "Tests missing parameter in payload for integer column")
@@ -1503,7 +1487,6 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         assertEquals(ages.get(3), "35");
         assertEquals(ids.get(3), "4");
         assertEquals(status.get(3), "inactive");
-
     }
 
     @AfterClass(alwaysRun = true)

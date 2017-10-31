@@ -108,7 +108,6 @@ public class DBDeleteTest extends BallerinaBaseTest {
                 "(ProductID, ProductName, CustomerID, CategoryID, Unit, Price)" +
                 " values (5, 'Chili Paste', 16, 2, '48 - 6 oz jars', 26.75);";
 
-
         try {
             conn = DriverManager.getConnection(
                     "jdbc:mysql://" + dbURL + "?" + "user=" + TestConstants.MYSQL_USERNAME + "&password="
@@ -147,7 +146,6 @@ public class DBDeleteTest extends BallerinaBaseTest {
         String serviceURL = ballerinaURL + "/delete/withParam/where?value=Around%20the%20Horn";
         String payload = "DELETE FROM Customers WHERE CustomerName=?";
         String expectedValue = "1";
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
@@ -159,7 +157,6 @@ public class DBDeleteTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests deleting already deleted row", dependsOnMethods = {"deleteWithWhereClause"})
@@ -168,7 +165,6 @@ public class DBDeleteTest extends BallerinaBaseTest {
         String serviceURL = ballerinaURL + "/delete/withParam/where?value=Around%20the%20Horn";
         String payload = "DELETE FROM Customers WHERE CustomerName=?";
         String expectedValue = "0";
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
@@ -180,9 +176,6 @@ public class DBDeleteTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
-        //Re inserting deleted record to be used in latter test cases
-
     }
 
     @Test(description = "Tests deleting a record aided by both where and group by clause")
@@ -191,7 +184,6 @@ public class DBDeleteTest extends BallerinaBaseTest {
         String serviceURL = ballerinaURL + "/delete/withParam/orderby?value=Germany";
         String payload = "DELETE FROM Customers WHERE Country=? Order By RecordTime Limit 1";
         String expectedValue = "1";
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "text/plain", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
@@ -203,7 +195,6 @@ public class DBDeleteTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @Test(description = "Tests deleting a records from multiple tables")
@@ -225,7 +216,6 @@ public class DBDeleteTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
-
     }
 
     @AfterClass(alwaysRun = true)

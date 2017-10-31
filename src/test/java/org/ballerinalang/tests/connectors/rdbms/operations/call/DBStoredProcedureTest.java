@@ -79,7 +79,6 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
             conn = DriverManager.getConnection(
                     "jdbc:mysql://" + dbURL + "?" + "user=" + TestConstants.MYSQL_USERNAME + "&password="
                             + TestConstants.MYSQL_PASSWORD);
-
             stmt = conn.createStatement();
             stmt.executeUpdate(createOrders);
             stmt.executeUpdate(insertQueryOne);
@@ -276,7 +275,6 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "1:1:1:1:5");
-
     }
 
     @Test(description = "This tests direction change of an inout parameter to in"
@@ -284,8 +282,6 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
     public void invokeProcWithDirInOutToInParams() throws SQLException, IOException {
         log.info("Executing:invokeProcWithDirInOutToInParams");
         String serviceURL = ballerinaURL + "/procedure/call/directionchange?custNo=1&status=inouttoin";
-
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
@@ -295,7 +291,6 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "1:1:1:1:0");
-
     }
 
     @Test(description = "This tests direction change of an inout parameter to out"
@@ -303,8 +298,6 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
     public void invokeProcWithDirInOutToOutParams() throws SQLException, IOException {
         log.info("Executing:invokeProcWithDirInOutToOutParams");
         String serviceURL = ballerinaURL + "/procedure/call/directionchange?custNo=1&status=inouttoout";
-
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
@@ -322,8 +315,6 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
     public void invokeProcWithLessParamsInSelect() throws SQLException, IOException {
         log.info("Executing:invokeProcWithLessParamsInSelect");
         String serviceURL = ballerinaURL + "/procedure/call/lessparamter/in?custNo=1&status=select";
-
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
@@ -333,7 +324,6 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "0:0:0:0:5");
-
     }
 
     @Test(enabled = false, description = "Tests invoking the procedure:less params for in:param is used in operation"
@@ -341,18 +331,14 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
     public void invokeProcWithLessParamsInOperation() throws SQLException, IOException {
         log.info("Executing:invokeProcWithLessParamsInOperation");
         String serviceURL = ballerinaURL + "/procedure/call/lessparamter/in?custNo=1&status=op";
-
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
         String response = get.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "1:1:1:1:0");
-
     }
 
     @Test(description = "This tests invoking the procedure with less params for out"
@@ -360,18 +346,14 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
     public void invokeProcWithLessParamsOut() throws SQLException, IOException {
         log.info("Executing:invokeProcWithLessParamsOut");
         String serviceURL = ballerinaURL + "/procedure/call/lessparamter/out";
-
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
         String response = get.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in procedure call. Please retry");
-
     }
 
     @Test(description = "This tests invoking the procedure with less params for inout"
@@ -379,18 +361,14 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
     public void invokeProcWithLessParamsInOut() throws SQLException, IOException {
         log.info("Executing:invokeProcWithLessParamsInOut");
         String serviceURL = ballerinaURL + "/procedure/call/lessparamter/inout";
-
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
         String response = get.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in procedure call. Please retry");
-
     }
 
     @Test(enabled = false, description = "Tests invoking the procedure with data type mismatch:in:value not changed"
@@ -398,18 +376,14 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
     public void invokeProcWithMismatchTypeForInOne() throws SQLException, IOException {
         log.info("Executing:invokeProcWithMismatchTypeForInOne");
         String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=invaluenotchanged";
-
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
         String response = get.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in procedure call. Please retry");
-
     }
 
     @Test(description = "This tests invoking the procedure with mismatching data type for in, with value changed"
@@ -417,18 +391,14 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
     public void invokeProcWithMismatchTypeForInTwo() throws SQLException, IOException {
         log.info("Executing:invokeProcWithMismatchTypeForInTwo");
         String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=invaluechanged";
-
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
         String response = get.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in procedure call. Please retry");
-
     }
 
     @Test(description = "This tests calling the procedure with mismatching data type for in, with only value changed"
@@ -436,18 +406,14 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
     public void invokeProcWithMismatchTypeForInThree() throws SQLException, IOException {
         log.info("Executing:invokeProcWithMismatchTypeForInThree");
         String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=inonlyvaluechanged";
-
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
         String response = get.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in procedure call. Please retry");
-
     }
 
     @Test(description = "This tests calling the procedure with mismatching data type for out"
@@ -455,18 +421,14 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
     public void invokeProcWithMismatchTypeForOut() throws SQLException, IOException {
         log.info("Executing:invokeProcWithMismatchTypeForOut");
         String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=out";
-
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
         String response = get.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "0:1:1:1:5");
-
     }
 
     @Test(enabled = false, description = "Tests calling the procedure with data type mismatch:inout:values not changed"
@@ -474,18 +436,14 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
     public void invokeProcWithMismatchTypeForInOutOne() throws SQLException, IOException {
         log.info("Executing:invokeProcWithMismatchTypeForInOutOne");
         String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=inoutvaluenotchanged";
-
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
         String response = get.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in procedure call. Please retry");
-
     }
 
     @Test(description = "This tests calling the procedure with mismatching data type for inout, values changed"
@@ -493,18 +451,14 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
     public void invokeProcWithMismatchTypeForInOutTwo() throws SQLException, IOException {
         log.info("Executing:invokeProcWithMismatchTypeForInOutTwo");
         String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=inoutvaluechanged";
-
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
         String response = get.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in procedure call. Please retry");
-
     }
 
     @Test(description = "This tests calling the procedure with mismatching data type for inout, only values changed"
@@ -512,18 +466,14 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
     public void invokeProcWithMismatchTypeForInOutThree() throws SQLException, IOException {
         log.info("Executing:invokeProcWithMismatchTypeForInOutThree");
         String serviceURL = ballerinaURL + "/procedure/call/mismatchdatatype?custNo=1&status=inoutonlyvaluechanged";
-
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
         String response = get.getResponseBodyAsString();
-
         // Asserting the Status code. Expected 200 OK
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, "Error in procedure call. Please retry");
-
     }
 
     @Test(description = "This tests calling the procedure to obtain resultset in json"
@@ -544,7 +494,6 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
                 ",{\"customerNumber\":2,\"status\":\"Disputed\",\"location\":\"srilanka\"}" +
                 ",{\"customerNumber\":3,\"status\":\"Disputed\",\"location\":\"us\"}]";
 
-
         //Reading response and status code from response
         GetMethod get = new GetMethod(serviceURL);
         int statuscode = client.executeMethod(get);
@@ -554,7 +503,6 @@ public class DBStoredProcedureTest extends BallerinaBaseTest {
         assertEquals(statuscode, HttpStatus.SC_OK);
         // Asserting the Response Message.
         assertEquals(response, expectedResult);
-
     }
 
     @AfterClass(alwaysRun = true)

@@ -145,7 +145,6 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
         //temp[1]
         assertEquals(lastnames.get(1), "SlonneC");
         assertEquals(firstnames.get(1), "Kelly");
-
     }
 
     @Test(description = "This tests insert through select that uses a left join")
@@ -196,7 +195,6 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
         //temp[2]
         assertEquals(lastnames.get(2), "SlonneC");
         assertEquals(firstnames.get(2), "Kelly");
-
     }
 
     @Test(description = "This tests insert through select that uses a right join")
@@ -208,7 +206,6 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
         ArrayList<String> lastnames = new ArrayList<String>();
         ArrayList<String> firstnames = new ArrayList<String>();
         String payload = "";
-
         //Reading response and status code from response
         StringRequestEntity requestEntity = new StringRequestEntity(payload, "application/json", "UTF-8");
         PostMethod post = new PostMethod(serviceURL);
@@ -250,7 +247,6 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
         //temp[3]
         assertEquals(lastnames.get(3), null);
         assertEquals(firstnames.get(3), null);
-
     }
 
     @AfterClass(alwaysRun = true)
@@ -277,5 +273,4 @@ public class DBInsertionsWithJoinsTests extends BallerinaBaseTest {
             }
         }
     }
-
 }
